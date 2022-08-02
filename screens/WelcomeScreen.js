@@ -88,7 +88,7 @@ function WelcomeScreen() {
     flexDirection: 'column',
     marginHorizontal: 16,
     marginVertical: 16,
-    }
+    },
   
   })
   
