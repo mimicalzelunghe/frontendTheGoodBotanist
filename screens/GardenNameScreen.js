@@ -17,38 +17,14 @@ function WelcomeScreen() {
         <SafeAreaView style={styles.safe}>
         <Text style={styles.titleXL}>Comment voulez vous appeller votre jardin ?</Text>
           <View style={styles.inputLayoutContainer}>
-          <Input placeholder='Nom de votre jardin' errorDetails='errorDetails'  affichage="flex"/>
-          <View  style={
-            {
-                flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginVertical: 8,
-        marginHorizontal: 16,
-            }
-        } > 
-        <Image style={
-            {height: 24,
-                width: 24,
-                margin: 4,
-                overflow: 'visible',
-                resizeMode: "cover",}
-        } source={require('../assets/icones/g1/icones24.png' )}/>
-        <Text style={
-          {
-            fontSize: 14,
-        lineHeight: 22,
-        color: "#6A6E6C",
-        textAlign: 'center',
-          }
-        }>Ne dépassez pas 25 caractéres</Text>
-        </View>
+          <Input placeholder='Nom de votre jardin'  affichage="flex"/>
+         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
           </View>
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconName="check"/>
+        <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
         </View>
 
   

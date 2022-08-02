@@ -14,11 +14,12 @@ function ComponentsList() {
   return (
     
     <View style={styles.container}>
+      <Navbar iconNameLeft="keyboard-backspace" iconNameRight="close" iconColorLeft="#6A6E6C" iconColorRight="#6A6E6C" navigationText='titre de navigation'/>
       <Input placeholder='Placeholder' errorDetails='errorDetails'  affichage="flex"/>
       <Caption iconePath="{require('../assets/icones/g1/icones-20.png')}" errorDetails= 'Petit message'/>
 
       <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Boutton Primaire' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+      <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
         <ButtonSecondary buttonLabel='Boutton secondaire' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
         <ButtonTerciary buttonLabel='Boutton secondaire' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
       </View>
