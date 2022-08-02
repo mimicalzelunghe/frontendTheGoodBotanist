@@ -7,6 +7,8 @@ import ButtonPrimary from '../Components/ButtonPrimary.js';
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 
 function WelcomeScreen() {
     return (
@@ -15,17 +17,38 @@ function WelcomeScreen() {
         <SafeAreaView style={styles.safe}>
         <Text style={styles.titleXL}>Comment voulez vous appeller votre jardin ?</Text>
           <View style={styles.inputLayoutContainer}>
-          <Input placeholder='Placeholder' errorDetails='errorDetails'  affichage="flex"/>
+          <Input placeholder='Nom de votre jardin' errorDetails='errorDetails'  affichage="flex"/>
+          <View  style={
+            {
+                flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginVertical: 8,
+        marginHorizontal: 16,
+            }
+        } > 
+        <Image style={
+            {height: 24,
+                width: 24,
+                margin: 4,
+                overflow: 'visible',
+                resizeMode: "cover",}
+        } source={require('../assets/icones/g1/icones24.png' )}/>
+        <Text style={
+          {
+            fontSize: 14,
+        lineHeight: 22,
+        color: "#6A6E6C",
+        textAlign: 'center',
+          }
+        }>Ne dépassez pas 25 caractéres</Text>
+        </View>
           </View>
-       
-        
-
-
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        <ButtonPrimary buttonLabel='Valider' iconName="check"/>
         </View>
 
   
@@ -82,12 +105,11 @@ function WelcomeScreen() {
         textAlign: 'center'
     },
     bodyMd: {
-        fontSize: 16,
+        fontSize: 14,
         lineHeight: 22,
         color: "#2A2C2B",
-        marginHorizontal: 16,
         textAlign: 'center',
-        marginTop: 8,},
+        },
     buttonBlock : {
         flexDirection: 'row',
     gap: 8,

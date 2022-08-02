@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable , Image} from 'react-native';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 
 
 export default function Navbar(props) {
