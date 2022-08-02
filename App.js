@@ -60,7 +60,9 @@ const BottomNavigator = () => {
 
 export default function App() {
   return (
-      <ClimateScreen/>
+
+    <GardenNameScreen/>
+
       // <NavigationContainer>
       //   <Stack.Navigator screenOptions={{headerShown: false}}>
       //     <Stack.Screen name="SignIn" component={SignInScreen} />
