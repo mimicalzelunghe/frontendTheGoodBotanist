@@ -18,7 +18,7 @@ function WelcomeScreen() {
         <Text style={styles.titleXL}>Comment voulez vous appeller votre jardin ?</Text>
           <View style={styles.inputLayoutContainer}>
           <Input placeholder='Nom de votre jardin'  affichage="flex"/>
-         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+          <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
           </View>
 
         </SafeAreaView>
