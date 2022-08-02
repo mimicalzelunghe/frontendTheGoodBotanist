@@ -12,10 +12,9 @@ import Navbar from '../Components/Navbar.js';
 
 function ClimateScreen() {
     return (
-      
+
       <View style={styles.container}>
 
-        <Navbar/>
         <ScrollView style={styles.safe}>
         <Text style={styles.titleXL}>À quel climat est soumis votre jardin ?</Text>
         <View  style={styles.imageContainer} >

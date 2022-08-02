@@ -9,27 +9,10 @@ export default function Navbar(props) {
   return (
     
         <View  style={styles.container} > 
-        <Image
-                style={{ 
-                    width: 32,
-                    height: 32,
-                    marginRight: 16,
-                    resizeMode: 'cover',
-                }}
-                source={require('../assets/icones/g1/icones18.png')}
-                />
+        <MaterialCommunityIcons style={{margin:8}} name={props.iconNameLeft} size={30} color={props.iconColorLeft} />
         
-        <Text style={styles.bodyMD}>Hello</Text>
-        <Image
-                style={{ 
-                    width: 40,
-                    height: 40,
-                    marginRight: 16,
-                    resizeMode: 'cover',
-                }}
-
-                source={require('../assets/icones/g1/icones16.png')}
-                />
+        <Text style={styles.bodyMD}>{props.navigationText}</Text>
+        <MaterialCommunityIcons style={{margin:8}} name={props.iconNameRight} size={30} color={props.iconColorRight} />
         </View>
   );
 }
@@ -54,7 +37,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
     },  
     bodyMD: {
-        fontSize: 20,
+        fontSize: 16,
         lineHeight: 22,
         color: '#2A2C2B',
     },

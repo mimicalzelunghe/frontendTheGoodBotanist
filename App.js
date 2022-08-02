@@ -61,7 +61,7 @@ const BottomNavigator = () => {
 export default function App() {
   return (
 
-    <GardenNameScreen/>
+    <HomeScreen/>
 
       // <NavigationContainer>
       //   <Stack.Navigator screenOptions={{headerShown: false}}>
