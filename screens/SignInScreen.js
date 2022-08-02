@@ -7,52 +7,67 @@ import ButtonPrimary from '../Components/ButtonPrimary.js';
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
+import {connect} from 'react-redux';
+
 
 function SignInScreen(props){
 
-    const [isUnknownUser, setIsUnknownUser] = useState(true)
+    const [isUnknownUser, setIsUnknownUser] = useState(false)
     const [hasNoGarden, setHasNoGarden] = useState(false)
 
     // if the user is unknown or if she has no garden yet (first garden), 
     // then show climateScreen else show HomeScreen
     // isUnknownUser value depends on the login process result
     var screenToDisplay;
-    if(isUnknownUser){
-      //screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
 
-    }else if(hasNoGarden){// else, go to HomeScreen and show the gardens
-      //screenToDisplay = <Button title="Go page to Welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
+    
+    var handleSubmitConnectionRequest = ()=>{
+      // TODO: call to backend: is the user known? route: uploadUser
 
-    }else{// else, display the garden of this well known user
-      //screenToDisplay = <Button title="Go page to HomeScreen" onPress={() => props.navigation.navigate('Home')} />
+      // if known user and if she has a garden the display the home
+      if(isUnknownUser){
+        //screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
+        props.navigation.navigate("SignUp")
+      }else if(hasNoGarden){// else, go to HomeScreen and show the gardens
+        //screenToDisplay = <Button title="Go page to Welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
+        props.navigation.navigate("Welcome")
+      }else{// else, display the garden of this well known user
+        //screenToDisplay = <Button title="Go page to HomeScreen" onPress={() => props.navigation.navigate('Home')} />
+        props.navigation.navigate("Home")
+      }
 
     }
-    
+
+    var handleSubmitSignUpRequest = ()=>{
+      props.navigation.navigate("SignUp")
+
+    }
 
     return(
       <View style={styles.container}>
         <SafeAreaView style={styles.safe}>
-        <Text style={styles.titleXL}>Sign In</Text>
-          <View style={styles.inputLayoutContainer}>
-          <Text>Email</Text>
-          <Input placeholder='Email' affichage="flex"/>
-          <Text>Mot de Passe</Text>
-          <Input placeholder='Mot de passe' affichage="flex"/>
-          <Button title="S'inscrire"/>
-          </View> 
-       
-        
-
-
+        <Image
+          style={styles.Illustration}
+          source={require('../assets/illustrations/logo.png')}
+        />
+        <View style={styles.inputLayoutContainer}>
+        <Input placeholder='Email' affichage="flex"/>
+        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
+        <Input placeholder='Mot de passe' affichage="flex"/>
+        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+      </View> 
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+            <Pressable onPress={() => handleSubmitConnectionRequest()}>
+                <ButtonPrimary buttonLabel='Se connecter' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>              
+            </Pressable>
+            <Pressable onPress={() => handleSubmitSignUpRequest()}>
+                <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+            </Pressable>         
         </View>
 
-  
-  
       </View>
     );
   }
@@ -120,122 +135,4 @@ function SignInScreen(props){
   
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-        <View
-        style={{
-          flex:1,
-          flexDirection: "row",
-          height: 100,
-          padding: 20,
-          textAlign: "center",
-          backgroundColor: "blue"
-          
-        }}
-      >
-        <Text>Sign In</Text>
-
-    
-    </View>
-    )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    justifyContent: 'flex-start'
-  },
-  safe: {
-      marginTop: 80,
-      flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-    },
-    Illustration : {
-      marginVertical: 32,
-      height: 200,
-      width: 200,
-    },
-    input: {
-      paddingHorizontal: 16,
-      paddingVertical: 8,
-      backgroundColor: '#F5F6EF',
-      borderRadius:16,
-      borderWidth:  2,
-      borderColor:  '#A8ADAA',
-      fontSize: 20,
-      lineHeight: 22,
-      color: "#2A2C2B",
-      height: 54, 
-      marginBottom: 50,
-      width: 100,
-      height: 100
-
-    },
-
-    inputLayoutContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-
-  buttonBlock2: {
-    flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-  }, 
-  titleXL: {
-      fontSize: 35,
-      lineHeight: 40,
-      color: "#2A2C2B",
-      marginHorizontal: 16,
-      textAlign: 'center'
-  }, 
-  titleLG: {
-      fontSize: 26,
-      lineHeight: 34,
-      color: "#2A2C2B",
-      marginHorizontal: 16,
-      textAlign: 'center'
-  },
-  bodyMd: {
-      fontSize: 16,
-      lineHeight: 22,
-      color: "#2A2C2B",
-      marginHorizontal: 16,
-      textAlign: 'center',
-      marginTop: 8,},
-  buttonBlock : {
-      flexDirection: 'row',
-  gap: 8,
-  backgroundColor: '#fff',
-  flexDirection: 'column',
-  marginHorizontal: 16,
-  marginVertical: 16,
-  },
-
-})
-*/
 export default SignInScreen

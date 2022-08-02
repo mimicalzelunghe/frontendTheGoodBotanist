@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, Pressable, View, Image, ScrollView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -10,7 +10,17 @@ import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
 
-function ClimateScreen() {
+function ClimateScreen(props) {
+
+    const [climate, setClimate] = useState('')
+
+    var handleClimateSelection = ()=>{
+        // TODO Mimic: climate to put into redux
+        
+        props.navigation.navigate("PlotDimension")
+    
+      }
+    
     return (
 
       <View style={styles.container}>
@@ -37,7 +47,7 @@ function ClimateScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setClimate("oceanique"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -71,7 +81,7 @@ function ClimateScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setClimate("semiOceanique"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -105,7 +115,7 @@ function ClimateScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setClimate("semiContinental"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -139,7 +149,7 @@ function ClimateScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setClimate("mediterraneen"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -174,7 +184,7 @@ function ClimateScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setClimate("montagne"); handleClimateSelection()}}>
 
             <View
                 style={{ 

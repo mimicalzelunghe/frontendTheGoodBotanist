@@ -8,7 +8,14 @@ import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
-function WelcomeScreen() {
+function WelcomeScreen(props) {
+
+  var handleCreateFirstGarden = ()=>{
+
+    props.navigation.navigate("GardenName")
+
+  }
+
     return (
       
       <View style={styles.container}>
@@ -24,7 +31,9 @@ function WelcomeScreen() {
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Créer mon premier jardin' iconePath="{require('../assets/icones/white/Icones-20.png')}" iconName="check"/>
+          <Pressable onPress={()=> handleCreateFirstGarden()}>
+            <ButtonPrimary buttonLabel='Créer mon premier jardin' iconePath="{require('../assets/icones/white/Icones-20.png')}" iconName="check"/>
+          </Pressable>
         </View>
 
   

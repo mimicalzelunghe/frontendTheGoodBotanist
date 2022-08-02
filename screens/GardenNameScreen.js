@@ -8,23 +8,32 @@ import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import {connect} from 'react-redux';
 
+function GardenNameScreen(props) {
 
-function WelcomeScreen() {
-    return (
+  var handleCreateNewGarden = ()=>{
+    props.navigation.navigate("Climate")
+
+  }
+
+  return (
+
       
       <View style={styles.container}>
         <SafeAreaView style={styles.safe}>
         <Text style={styles.titleXL}>Comment voulez vous appeller votre jardin ?</Text>
           <View style={styles.inputLayoutContainer}>
           <Input placeholder='Nom de votre jardin'  affichage="flex"/>
-         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+          <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
           </View>
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
+          <Pressable onPress={()=> handleCreateNewGarden()}>
+            <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
+          </Pressable>
         </View>
 
   
@@ -32,8 +41,7 @@ function WelcomeScreen() {
       </View>
     );
   }
-  
-  export default WelcomeScreen;
+ 
   
   const styles = StyleSheet.create({
     container: {
@@ -97,3 +105,6 @@ function WelcomeScreen() {
   
   })
   
+
+   
+  export default GardenNameScreen;
