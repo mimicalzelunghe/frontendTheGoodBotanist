@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, Pressable, View, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, Pressable, View, Image, ScrollView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -8,24 +8,23 @@ import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
-function WelcomeScreen() {
+function ClimateScreen() {
     return (
       
       <View style={styles.container}>
-        <SafeAreaView style={styles.safe}>
-        <Text style={styles.titleXL}>Bienvenue sur “The good botanist” !</Text>
+        <ScrollView style={styles.safe}>
+        <Text style={styles.titleXL}>À quel climat est soumis votre jardin ?</Text>
+        <View  style={styles.imageContainer} >
         <Image
           style={styles.Illustration}
-          source={require('../assets/illustrations/illustrationWelcomeScreen.png')}
-        />
+          source={require('../assets/illustrations/illustrationMapClimateScreen.png')}
+        /> 
+        </View>
+        
         <Text style={styles.titleLG}>La biodiversité commence dans votre jardin.</Text>
         <Text style={styles.bodyMd}>Chaque jardin a sa signnature écologique et nous vous aidons à l’améliorer.</Text>
+        </ScrollView>
 
-        </SafeAreaView>
-
-        <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Boutton Primaire' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
-        </View>
 
   
   
@@ -33,7 +32,7 @@ function WelcomeScreen() {
     );
   }
   
-  export default WelcomeScreen;
+  export default ClimateScreen;
   
   const styles = StyleSheet.create({
     container: {
@@ -44,14 +43,18 @@ function WelcomeScreen() {
     },
     safe: {
         marginTop: 80,
+        
+      }, imageContainer : {
         flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center'
+
       },
+
       Illustration : {
         marginVertical: 32,
-        height: 200,
-        width: 200,
+        height: 300,
+        width: 300,
       },
     buttonBlock: {
       flexDirection: 'row',
