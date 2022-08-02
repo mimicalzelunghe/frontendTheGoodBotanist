@@ -24,7 +24,7 @@ function WelcomeScreen() {
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Créer mon premier jardin' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        <ButtonPrimary buttonLabel='Créer mon premier jardin' iconePath="{require('../assets/icones/white/Icones-20.png')}" iconName="check"/>
         </View>
 
   
