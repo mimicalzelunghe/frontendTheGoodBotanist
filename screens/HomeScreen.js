@@ -7,8 +7,8 @@ function HomeScreen(props){
     return(
         <View
         style={{
-        flex:1,
-          flexDirection: "row",
+          flex:1,
+          flexDirection: "col",
           height: 100,
           padding: 20,
           textAlign: "center",
@@ -17,6 +17,7 @@ function HomeScreen(props){
         }}
       >
         <Text style={{fontFamily:"Cochin"}}>HomeScreen</Text>
+        <Button title="Go page to plot dimension screen" onPress={() => props.navigation.navigate('PlotDimension')} />
     </View>
     )
 }

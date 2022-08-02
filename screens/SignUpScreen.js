@@ -17,6 +17,7 @@ function SignUpScreen(props){
         }}
       >
         <Text style={{fontFamily:"Cochin"}}>SignUp</Text>
+        <Button title="Go page to welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
     </View>
     )
 }
