@@ -32,27 +32,25 @@ function SignInScreen(props){
     return(
       <View style={styles.container}>
         <SafeAreaView style={styles.safe}>
-        <Text style={styles.titleXL}>Sign In</Text>
-          <View style={styles.inputLayoutContainer}>
-          <Text>Email</Text>
-          <Input placeholder='Email' affichage="flex"/>
-          <Text>Mot de Passe</Text>
-          <Input placeholder='Mot de passe' affichage="flex"/>
-          <Button title="S'inscrire"/>
-          </View> 
-       
-        
-
-
+        <Image
+          style={styles.Illustration}
+          source={require('../assets/illustrations/logo.png')}
+        />
+        <View style={styles.inputLayoutContainer}>
+        <Input placeholder='Email' affichage="flex"/>
+        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
+        <Input placeholder='Mot de passe' affichage="flex"/>
+        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+      </View> 
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        <ButtonPrimary buttonLabel='Se connecter' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+
         </View>
 
-  
-  
       </View>
     );
   }
@@ -120,49 +118,4 @@ function SignInScreen(props){
   
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-        <View
-        style={{
-          flex:1,
-          flexDirection: "row",
-          height: 100,
-          padding: 20,
-          textAlign: "center",
-          backgroundColor: "blue"
-          
-        }}
-      >
-        <Text>Sign In</Text>
-
-    
-    </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        padding: 20
-    }
-})
-*/
 export default SignInScreen
