@@ -24,10 +24,6 @@ import SunshineScreen from './screens/SunshineScreen';
 import ViewSinglePlantScreen from './screens/ViewSinglePlantScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
-<<<<<<< HEAD
-=======
-
->>>>>>> e5216e3db35033f8f761154047e171277d02c961
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,7 +60,6 @@ const BottomNavigator = () => {
 
 export default function App() {
   return (
-<<<<<<< HEAD
     
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -87,30 +82,6 @@ export default function App() {
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
-=======
-      <ClimateScreen/>
-      // <NavigationContainer>
-      //   <Stack.Navigator screenOptions={{headerShown: false}}>
-      //     <Stack.Screen name="SignIn" component={SignInScreen} />
-      //     <Stack.Screen name="Home" component={HomeScreen} />
-      //     <Stack.Screen name="SignUp" component={SignUpScreen} />
-      //     <Stack.Screen name="Congrats" component={CongratsScreen} />
-      //     <Stack.Screen name="GardenName" component={GardenNameScreen} />
-      //     <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />
-      //     <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
-      //     <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
-      //     <Stack.Screen name="PlotName" component={PlotNameScreen} />
-      //     <Stack.Screen name="PlotsScoring" component={PlotsScoringScreen} />
-      //     <Stack.Screen name="SelectsPlant" component={SelectPlantsScreen} />
-      //     <Stack.Screen name="Soil" component={SoilScreen} />
-      //     <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
-      //     <Stack.Screen name="Sunshine" component={SunshineScreen} />
-      //     <Stack.Screen name="ViewSinglePlant" component={ViewSinglePlantScreen} />
-      //     <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          
-      //   </Stack.Navigator>
-      // </NavigationContainer>
->>>>>>> e5216e3db35033f8f761154047e171277d02c961
     
   );
 }
