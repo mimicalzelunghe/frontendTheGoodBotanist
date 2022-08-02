@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable , Image} from 'react-native';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 
 
 export default function Navbar(props) {
@@ -9,8 +11,8 @@ export default function Navbar(props) {
         <View  style={styles.container} > 
         <Image
                 style={{ 
-                    width: 40,
-                    height: 40,
+                    width: 32,
+                    height: 32,
                     marginRight: 16,
                     resizeMode: 'cover',
                 }}

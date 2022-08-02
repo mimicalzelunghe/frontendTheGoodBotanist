@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable , Image} from 'react-native';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 
 
 export default function ButtonPrimary(props) {
@@ -8,7 +10,8 @@ export default function ButtonPrimary(props) {
     
         <View  style={styles.container} > 
         <Pressable style={styles.pressable}>
-        {/* <Image style={styles.icone} source={props.iconPath}/> */}
+        <MaterialCommunityIcons name={props.iconName} size={30} color={propColor} />
+
         <Text style={styles.bodyMD}>{props.buttonLabel}</Text>
         </Pressable>
         </View>
