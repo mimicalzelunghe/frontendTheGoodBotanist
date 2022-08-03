@@ -4,13 +4,13 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 
-import ButtonPrimaryExp from '../Components/ButtonPrimary.js';
-import ButtonSecondaryExp from '../Components/ButtonSecondary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
 function SignInScreen(props){
-
+    
     const [isUnknownUser, setIsUnknownUser] = useState(false)
     const [hasNoGarden, setHasNoGarden] = useState(false)
 
@@ -19,8 +19,8 @@ function SignInScreen(props){
     // isUnknownUser value depends on the login process result
     var screenToDisplay;
 
-    
     var handleSubmitConnectionRequest = (props)=>{
+      console.log("Mimic connectionRequest")
 
       // appel au backend pour retrouver le user
       var user = async (user) => {
@@ -65,6 +65,7 @@ function SignInScreen(props){
     }
 
     var handleSubmitSignUpRequest = ()=>{
+      console.log("Mimic")
       props.navigation.navigate("SignUp")
 
     }
@@ -77,31 +78,33 @@ function SignInScreen(props){
           source={require('../assets/illustrations/logo.png')}
         />
         <View style={styles.inputLayoutContainer}>
-        <Input placeholder='Email' affichage="flex"/>
+        <Input placeholder='Email' affichage="flex" onChangeText = {(texteSaisi)=> console.log("Mimic5: texteSaisi")}/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-        <Input placeholder='Mot de passe' affichage="flex"/>
+        <Input placeholder='Mot de passe' affichage="flex" on/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
       </View> 
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimaryExp
-        buttonLabel='Se connecter' 
-        // iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleSubmitConnectionRequest}
-        />
+
+              <ButtonPrimaryExp
+              buttonLabel='Se connecter' 
+              // iconName="check" 
+              iconColor="white"
+              text='Submit'
+              onPress={handleSubmitConnectionRequest}
+             
+              />
 
 
-      <ButtonSecondaryExp
-        buttonLabel='Créer un compte' 
-        iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleSubmitSignUpRequest}
-        />        
+            <ButtonSecondaryExp
+              buttonLabel='Créer un compte' 
+              iconName="check" 
+              iconColor="white"
+              text='Submit'
+              onPress={handleSubmitSignUpRequest}
+              />        
         </View>
 
       </View>
