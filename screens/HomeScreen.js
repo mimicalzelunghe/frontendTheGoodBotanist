@@ -36,7 +36,7 @@ function HomeScreen() {
         </ScrollView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Créer ma première parcelle' iconName="tree" iconColor="white"/>
+        <ButtonPrimary buttonLabel='Créer ma première parcelle' iconName="tree" iconColor="white" redirectionButton="HomeScreen"/>
         </View>
 
   

@@ -4,21 +4,22 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 
 
-export default function ButtonPrimary(props) {
+const ButtonPrimaryExp = ({iconName,iconColor, onPress, buttonLabel}) =>{
 
-    console.log("propoijoijoi",props);
 
   return (
     
         <View  style={styles.container} > 
-        <Pressable style={styles.pressable} onPress={() => props.cool(props.redirectionButton)}>
-        <MaterialCommunityIcons name={props.iconName} size={30} color={props.iconColor}  />
+        <Pressable style={styles.pressable} onPress={onPress}>
+        <MaterialCommunityIcons name={iconName} size={30} color={iconColor}  />
 
-        <Text style={styles.bodyMD}>{props.buttonLabel}</Text>
+        <Text style={styles.bodyMD}>{buttonLabel}</Text>
         </Pressable>
         </View>
   );
 }
+export default ButtonPrimaryExp;
+
 
 const styles = StyleSheet.create({
     container: {

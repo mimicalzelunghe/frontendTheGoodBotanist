@@ -24,7 +24,7 @@ function WelcomeScreen() {
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
+        <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white" redirectionButton="HomeScreen"/>
         </View>
 
   

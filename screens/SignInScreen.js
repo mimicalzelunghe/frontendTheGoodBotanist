@@ -4,14 +4,19 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp';
+
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
 function SignInScreen(props){
+  console.log("props", props);
 
     const [isUnknownUser, setIsUnknownUser] = useState(true)
     const [hasNoGarden, setHasNoGarden] = useState(false)
+
+    function redirection() {props.navigation.navigate('Welcome')}
 
     // if the user is unknown or if she has no garden yet (first garden), 
     // then show climateScreen else show HomeScreen
@@ -28,6 +33,9 @@ function SignInScreen(props){
 
     }
     
+    function cool(params) {
+      props.navigation.navigate(params)
+    }
 
     return(
       <View style={styles.container}>
@@ -46,7 +54,11 @@ function SignInScreen(props){
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Se connecter' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        
+        
+
+        <ButtonPrimary buttonLabel='Se connecter' iconName="check" iconColor="white" redirectionButton="Welcome" cool={cool} />
+
         <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
 
         </View>

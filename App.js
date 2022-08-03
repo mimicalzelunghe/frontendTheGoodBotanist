@@ -24,6 +24,7 @@ import SunshineScreen from './screens/SunshineScreen';
 import ViewSinglePlantScreen from './screens/ViewSinglePlantScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
+import ComponentsList from './screens/ComponentsList';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,7 +62,7 @@ const BottomNavigator = () => {
 export default function App() {
   return (
 
-    <SunshineScreen/>
+    <ComponentsList/>
 
       // <NavigationContainer>
       //   <Stack.Navigator screenOptions={{headerShown: false}}>

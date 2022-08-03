@@ -9,10 +9,10 @@ export default function Navbar(props) {
   return (
     
         <View  style={styles.container} > 
-        <MaterialCommunityIcons style={{margin:8}} name={props.iconNameLeft} size={30} color={props.iconColorLeft} />
+        <MaterialCommunityIcons style={{margin:8}} name={props.iconNameLeft} size={30} color={props.iconColorLeft} onPress={props.onPressLeftIcon}/>
         
         <Text style={styles.bodyMD}>{props.navigationText}</Text>
-        <MaterialCommunityIcons style={{margin:8}} name={props.iconNameRight} size={30} color={props.iconColorRight} />
+        <MaterialCommunityIcons style={{margin:8}} name={props.iconNameRight} size={30} color={props.iconColorRight} onPress={props.onPressRightIcon}/>
         </View>
   );
 }
