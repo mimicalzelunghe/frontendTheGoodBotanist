@@ -4,23 +4,14 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
-import ButtonPrimaryExp from '../Components/ButtonPrimaryExp';
-import ButtonSecondaryExp from '../Components/ButtonSecondaryExp';
-
-
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
-import {connect} from 'react-redux';
-
 
 function SignInScreen(props){
-  console.log("props", props);
 
     const [isUnknownUser, setIsUnknownUser] = useState(false)
-    const [hasNoGarden, setHasNoGarden] = useState(true)
-
-    function redirection() {props.navigation.navigate('Welcome')}
+    const [hasNoGarden, setHasNoGarden] = useState(false)
 
     // if the user is unknown or if she has no garden yet (first garden), 
     // then show climateScreen else show HomeScreen
@@ -29,7 +20,7 @@ function SignInScreen(props){
 
     
     var handleSubmitConnectionRequest = ()=>{
-      // TODO: call to backend: is the user known? route: uploadUser
+      // TODO: call to backend: is the user known? route:
 
       // if known user and if she has a garden the display the home
       if(isUnknownUser){
@@ -67,21 +58,12 @@ function SignInScreen(props){
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimaryExp
-        buttonLabel='Se connecter' 
-        iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleSubmitConnectionRequest}
-        />
-
-<ButtonSecondaryExp
-        buttonLabel='Créer un compte' 
-        iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleSubmitSignUpRequest}
-        />        
+            <Pressable onPress={() => handleSubmitConnectionRequest()}>
+                <ButtonPrimary buttonLabel='Se connecter' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>              
+            </Pressable>
+            <Pressable onPress={() => handleSubmitSignUpRequest()}>
+                <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+            </Pressable>         
         </View>
 
       </View>
@@ -96,8 +78,7 @@ function SignInScreen(props){
       justifyContent: 'flex-start'
     },
     safe: {
-        marginTop: 24
-      ,
+        marginTop: 80,
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
