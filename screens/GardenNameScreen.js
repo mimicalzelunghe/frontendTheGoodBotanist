@@ -4,8 +4,6 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
-import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
-
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
@@ -14,7 +12,16 @@ import {connect} from 'react-redux';
 
 function GardenNameScreen(props) {
 
+  var gardenName=''
+
   var handleCreateNewGarden = ()=>{
+
+    // call the backend to create a new garden for this user
+    //use climateSelected as parameter
+    // return should be the gardenid
+    props.onCreateGardenSubmit(gardenName)
+
+    // navigate to climate screen
     props.navigation.navigate("Climate")
 
   }
@@ -43,8 +50,7 @@ function GardenNameScreen(props) {
       </View>
     );
   }
- 
-  
+    
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -106,7 +112,24 @@ function GardenNameScreen(props) {
     },
   
   })
-  
 
+  // pour lire une variable Redux
+  function mapStateToProps(state) {
+    return { climateSelected: state.climate }
+   }
+
+     // update the variable into the Redux store
+  function mapDispatchToProps(dispatch) {
+    return {
+      onCreateGardenSubmit: function() { 
+          dispatch( {type: 'idGarden', idGarden: idGarden} ) 
+      }
+    }
+   }
    
-  export default GardenNameScreen;
+  export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+  )(GardenNameScreen);
+
+  

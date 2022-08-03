@@ -1,7 +1,7 @@
-export default function(climate = [], action){
+export default function(climate = '', action){
 
     if(action.type == 'climate'){
-        return climate     
+        return action.climate     
     } else {
         return climate
     }

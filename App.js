@@ -1,4 +1,7 @@
 import React from 'react';
+import {Provider} from 'react-redux';
+
+import {createStore, combineReducers}  from 'redux';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
@@ -26,11 +29,22 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
 import ComponentsList from './screens/ComponentsList';
 
+import climate from './reducers/climate.js'
+import dimension from './reducers/dimension.js'
+import idGarden from './reducers/idGarden.js'
+import soil from './reducers/soil.js'
+import sunshine from './reducers/sunshine.js'
+import token from './reducers/token.js'
+
+const store = createStore(combineReducers({climate, dimension, idJardin, soil, sunshine, token}))
+
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
   return (
+    
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
@@ -61,7 +75,7 @@ const BottomNavigator = () => {
 
 export default function App() {
   return (
-    
+    <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="SignIn" component={SignInScreen} />
@@ -83,6 +97,7 @@ export default function App() {
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
+    </Provider>    
     
   );
 }
