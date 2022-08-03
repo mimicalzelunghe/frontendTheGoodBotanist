@@ -4,11 +4,20 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
-function WelcomeScreen() {
+function WelcomeScreen(props) {
+
+  var handleCreateFirstGarden = ()=>{
+
+    props.navigation.navigate("GardenName")
+
+  }
+
     return (
       
       <View style={styles.container}>
@@ -24,7 +33,13 @@ function WelcomeScreen() {
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Créer mon premier jardin' iconePath="{require('../assets/icones/white/Icones-20.png')}" iconName="check"/>
+        <ButtonPrimaryExp
+        buttonLabel='Créer mon premier jardin' 
+        iconName="tree" 
+        iconColor="white"
+        text='Submit'
+        onPress={handleCreateFirstGarden}
+        />
         </View>
 
   

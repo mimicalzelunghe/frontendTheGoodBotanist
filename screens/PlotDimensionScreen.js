@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, Text, Pressable, View, Image, ScrollView, SafeAreaView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -10,7 +10,16 @@ import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
 
-function PlotDimensionScreen() {
+function PlotDimensionScreen(props) {
+
+    const [plotDimension, setPlotDimension] = useState('')
+
+    var handlePlotDimension = ()=>{
+        // TODO Mimic: plotDimension to put into redux
+        
+        props.navigation.navigate("Sunshine")
+    
+      }
     return (
 
       <View style={styles.container}>
@@ -34,7 +43,7 @@ function PlotDimensionScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setPlotDimension("petite"); handlePlotDimension()}}>
 
             <Image
                 style={{ 
@@ -69,7 +78,7 @@ function PlotDimensionScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setPlotDimension("moyenne"); handlePlotDimension()}}>
 
             <Image
                 style={{ 
@@ -103,7 +112,7 @@ function PlotDimensionScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setPlotDimension("grande"); handlePlotDimension()}}>
 
             <Image
                 style={{ 

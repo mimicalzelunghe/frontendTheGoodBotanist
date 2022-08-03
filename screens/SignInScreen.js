@@ -5,16 +5,20 @@ import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
 import ButtonPrimaryExp from '../Components/ButtonPrimaryExp';
+import ButtonSecondaryExp from '../Components/ButtonSecondaryExp';
+
 
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
+import {connect} from 'react-redux';
+
 
 function SignInScreen(props){
   console.log("props", props);
 
-    const [isUnknownUser, setIsUnknownUser] = useState(true)
-    const [hasNoGarden, setHasNoGarden] = useState(false)
+    const [isUnknownUser, setIsUnknownUser] = useState(false)
+    const [hasNoGarden, setHasNoGarden] = useState(true)
 
     function redirection() {props.navigation.navigate('Welcome')}
 
@@ -22,19 +26,28 @@ function SignInScreen(props){
     // then show climateScreen else show HomeScreen
     // isUnknownUser value depends on the login process result
     var screenToDisplay;
-    if(isUnknownUser){
-      screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
 
-    }else if(hasNoGarden){// else, go to HomeScreen and show the gardens
-      screenToDisplay = <Button title="Go page to Welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
+    
+    var handleSubmitConnectionRequest = ()=>{
+      // TODO: call to backend: is the user known? route: uploadUser
 
-    }else{// else, display the garden of this well known user
-      screenToDisplay = <Button title="Go page to HomeScreen" onPress={() => props.navigation.navigate('Home')} />
+      // if known user and if she has a garden the display the home
+      if(isUnknownUser){
+        //screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
+        props.navigation.navigate("SignUp")
+      }else if(hasNoGarden){// else, go to HomeScreen and show the gardens
+        //screenToDisplay = <Button title="Go page to Welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
+        props.navigation.navigate("Welcome")
+      }else{// else, display the garden of this well known user
+        //screenToDisplay = <Button title="Go page to HomeScreen" onPress={() => props.navigation.navigate('Home')} />
+        props.navigation.navigate("Home")
+      }
 
     }
-    
-    function cool(params) {
-      props.navigation.navigate(params)
+
+    var handleSubmitSignUpRequest = ()=>{
+      props.navigation.navigate("SignUp")
+
     }
 
     return(
@@ -54,13 +67,21 @@ function SignInScreen(props){
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        
-        
+        <ButtonPrimaryExp
+        buttonLabel='Se connecter' 
+        iconName="check" 
+        iconColor="white"
+        text='Submit'
+        onPress={handleSubmitConnectionRequest}
+        />
 
-        <ButtonPrimary buttonLabel='Se connecter' iconName="check" iconColor="white" redirectionButton="Welcome" cool={cool} />
-
-        <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
-
+<ButtonSecondaryExp
+        buttonLabel='Créer un compte' 
+        iconName="check" 
+        iconColor="white"
+        text='Submit'
+        onPress={handleSubmitSignUpRequest}
+        />        
         </View>
 
       </View>
@@ -75,7 +96,8 @@ function SignInScreen(props){
       justifyContent: 'flex-start'
     },
     safe: {
-        marginTop: 80,
+        marginTop: 24
+      ,
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',

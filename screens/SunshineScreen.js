@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, Pressable, View, Image, ScrollView, SafeAreaView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -10,7 +10,17 @@ import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
 
-function SunshineScreen() {
+function SunshineScreen(props) {
+
+    const [sunshine, setSunshine] = useState('')
+
+    var handleSunshineSelection = ()=>{
+        // TODO Mimic: plotDimension to put into redux
+        
+        props.navigation.navigate("Soil")
+    
+      }
+
     return (
 
       <View style={styles.container}>
@@ -34,7 +44,7 @@ function SunshineScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setSunshine("ombre"); handleSunshineSelection()}}>
 
             <Image
                 style={{ 
@@ -69,7 +79,7 @@ function SunshineScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setSunshine("miOmbre"); handleSunshineSelection()}}>
 
             <Image
                 style={{ 
@@ -103,7 +113,7 @@ function SunshineScreen() {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable}>
+            <Pressable style={styles.pressable} onPress={()=> {setSunshine("soleil"); handleSunshineSelection()}}>
 
             <Image
                 style={{ 

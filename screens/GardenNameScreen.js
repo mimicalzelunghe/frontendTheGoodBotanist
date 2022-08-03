@@ -4,14 +4,23 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import {connect} from 'react-redux';
 
+function GardenNameScreen(props) {
 
-function WelcomeScreen() {
-    return (
+  var handleCreateNewGarden = ()=>{
+    props.navigation.navigate("Climate")
+
+  }
+
+  return (
+
       
       <View style={styles.container}>
         <SafeAreaView style={styles.safe}>
@@ -24,7 +33,9 @@ function WelcomeScreen() {
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white" redirectionButton="HomeScreen"/>
+          <Pressable onPress={()=> handleCreateNewGarden()}>
+            <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
+          </Pressable>
         </View>
 
   
@@ -32,8 +43,7 @@ function WelcomeScreen() {
       </View>
     );
   }
-  
-  export default WelcomeScreen;
+ 
   
   const styles = StyleSheet.create({
     container: {
@@ -97,3 +107,6 @@ function WelcomeScreen() {
   
   })
   
+
+   
+  export default GardenNameScreen;

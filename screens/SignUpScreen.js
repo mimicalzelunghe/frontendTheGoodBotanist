@@ -4,6 +4,8 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
@@ -14,40 +16,55 @@ function SignUpScreen(props){
     const [isUnknownUser, setIsUnknownUser] = useState(true)
     const [hasNoGarden, setHasNoGarden] = useState(false)
 
-    // if the user is unknown or if she has no garden yet (first garden), 
-    // then show climateScreen else show HomeScreen
-    // isUnknownUser value depends on the login process result
-    var screenToDisplay;
-    if(isUnknownUser){
-      screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
+    var handleValidation = ()=>{
+      // TODO: call to the backend - route signup
 
-    }else if(hasNoGarden){// else, go to HomeScreen and show the gardens
-      screenToDisplay = <Button title="Go page to Welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
+      //if user is well known, display a message saying to it's already known
 
-    }else{// else, display the garden of this well known user
-      screenToDisplay = <Button title="Go page to HomeScreen" onPress={() => props.navigation.navigate('Home')} />
+      // propagate user info
+
+      // TODO: redirect to the welcome page
+      props.navigation.navigate("Welcome")
 
     }
     
+    var onPressLeftIcon = () => {
+      props.navigation.navigate('SignIn')
+    }
+
+
 
     return(
       <View style={styles.container}>
         <View style={styles.navbartop}>
-          <Navbar iconNameLeft="arrow-left" iconNameRight="" iconColorLeft="#1D6880" iconColorRight="#1D6880" navigationText='Inscription'/>
-        </View>
-        <SafeAreaView style={styles.safe}>
-        <Text style={styles.titleXL}>Créer votre compte :</Text>
-        <View style={styles.inputLayoutContainer}>
-        <Input placeholder='Email' affichage="flex"/>
-        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-        <Input placeholder='Mot de passe' affichage="flex"/>
-        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
-      </View> 
-
+          <Navbar 
+          iconNameLeft="arrow-left" 
+          iconNameRight="close" 
+          iconColorLeft="#1D6880" 
+          iconColorRight="#FFFFFF" 
+          navigationText=' ' 
+          redirectionIconeLeft="../screens/HomeScreen.js" 
+          onPressLeftIcon={onPressLeftIcon} 
+          />
+          </View>
+          <SafeAreaView style={styles.safe}>
+          <Text style={styles.titleXL}>Créer votre compte :</Text>
+          <View style={styles.inputLayoutContainer}>
+            <Input placeholder='Email' affichage="flex"/>
+            <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
+            <Input placeholder='Mot de passe' affichage="flex"/>
+            <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+          </View> 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Valider' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        <ButtonPrimaryExp
+        buttonLabel='Créer son compte' 
+        // iconName="check" 
+        // iconColor="white"
+        text='Submit'
+        onPress={handleValidation}
+        />
         </View>
 
       </View>
@@ -62,7 +79,7 @@ function SignUpScreen(props){
       justifyContent: 'flex-start'
     },
     safe: {
-        marginTop: 80,
+        marginTop: 24,
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -115,7 +132,7 @@ function SignUpScreen(props){
     marginVertical: 16,
     },
     navbartop: {
-      marginTop : 25,
+      marginTop : 8,
     },
   
   })
