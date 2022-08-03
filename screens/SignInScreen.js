@@ -20,7 +20,7 @@ function SignInScreen(props){
     var screenToDisplay;
 
     
-    var handleSubmitConnectionRequest = ()=>{
+    var handleSubmitConnectionRequest = (props)=>{
 
       // appel au backend pour retrouver le user
       var user = async (user) => {
@@ -88,7 +88,7 @@ function SignInScreen(props){
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
         buttonLabel='Se connecter' 
-        iconName="check" 
+        // iconName="check" 
         iconColor="white"
         text='Submit'
         onPress={handleSubmitConnectionRequest}
