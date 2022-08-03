@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, Pressable, View, Image, SafeAreaView } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -14,19 +14,37 @@ import {connect} from 'react-redux';
 
 function GardenNameScreen(props) {
 
-  var gardenName=''
+  console.log("Mimic1: GardenNameScreen climateSelected is: ", props.climateSelected);
+  
+  const [gardenName, setGardenName] = useState('')
 
-  var handleCreateNewGarden = ()=>{
+  var handleCreateNewGarden = async ()=>{
 
     // call the backend to create a new garden for this user
     //use climateSelected as parameter
     // return should be the gardenid
-    props.onCreateGardenSubmit(gardenName)
+    console.log("Mimic7: GardenNameScreen - into the handle - the garden name is : ", gardenName)
+    
+    // create the garden=> fetch to the route
+    
+    // create the garden
+    const gardenData = await fetch('http://192.168.0.26:3000/gardens/createGarden', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `gardenName=${gardenName}&gardenClimate=${props.climateSelected}`
+    })
+
+    //retranscription de la réponse pour qu'on puisse la lire
+    const gardenBody = await gardenData.json()
+
+    
+    //give idGarden tp onCreateGardenSumbit
+    props.onCreateGardenSubmit(gardenName, gardenName)
 
     // navigate to climate screen
-    props.navigation.navigate("Climate")
+    props.navigation.navigate("Home")
 
-  }
+}
 
   return (
 
@@ -35,7 +53,7 @@ function GardenNameScreen(props) {
         <SafeAreaView style={styles.safe}>
         <Text style={styles.titleXL}>Comment voulez vous appeller votre jardin ?</Text>
           <View style={styles.inputLayoutContainer}>
-          <Input placeholder='Nom de votre jardin'  affichage="flex"/>
+          <Input placeholder='Nom de votre jardin'  affichage="flex" onChangeText={(value)=> {setGardenName(value)}} value={gardenName}/>
           <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
           </View>
 
@@ -58,6 +76,29 @@ function GardenNameScreen(props) {
       </View>
     );
   }
+
+  // pour lire une variable Redux
+  function mapStateToProps(state) {
+    return { climateSelected: state.climate }
+   }
+
+  // update the variable into the Redux store
+  function mapDispatchToProps(dispatch) {
+    return {
+      onCreateGardenSubmit: function(createdIdGarden, createdGardenName) { 
+        console.log("Mimic8: GardenNameScreen - into mapDispatchToProps - idgarden is :", createdIdGarden)
+        console.log("Mimic9: GardenNameScreen - into mapDispatchToProps - gardenName is :", createdGardenName)
+          dispatch( {type: 'idGarden', idGarden: createdIdGarden}) 
+          dispatch( {type: 'gardenName', gardenName: createdGardenName}) 
+      }
+    }
+   }
+   
+  export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+  )(GardenNameScreen);
+
     
   const styles = StyleSheet.create({
     container: {
@@ -121,23 +162,6 @@ function GardenNameScreen(props) {
   
   })
 
-  // pour lire une variable Redux
-  function mapStateToProps(state) {
-    return { climateSelected: state.climate }
-   }
 
-     // update the variable into the Redux store
-  function mapDispatchToProps(dispatch) {
-    return {
-      onCreateGardenSubmit: function() { 
-          dispatch( {type: 'idGarden', idGarden: idGarden} ) 
-      }
-    }
-   }
-   
-  export default connect(
-    mapStateToProps, 
-    mapDispatchToProps
-  )(GardenNameScreen);
 
   

@@ -12,7 +12,7 @@ import CardSurvey from '../Components/CardSurvey.js';
 function SignInScreen(props){
     
     const [isUnknownUser, setIsUnknownUser] = useState(false)
-    const [hasNoGarden, setHasNoGarden] = useState(false)
+    const [hasNoGarden, setHasNoGarden] = useState(true)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -27,7 +27,7 @@ function SignInScreen(props){
       // appel au backend pour retrouver le user
       var user = async (user) => {
         // upload user
-        const userData = await fetch('https://192.168.10.106:3000/users/signIn', {
+        const userData = await fetch('http://192.168.0.26:3000/users/signIn', {
           method: 'POST',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`

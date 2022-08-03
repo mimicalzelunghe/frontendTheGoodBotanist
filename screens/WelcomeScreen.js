@@ -14,7 +14,7 @@ function WelcomeScreen(props) {
 
   var handleCreateFirstGarden = ()=>{
 
-    props.navigation.navigate("GardenName")
+    props.navigation.navigate("Climate")
 
   }
 
