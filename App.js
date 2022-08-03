@@ -36,7 +36,7 @@ import soil from './reducers/soil.js'
 import sunshine from './reducers/sunshine.js'
 import token from './reducers/token.js'
 
-const store = createStore(combineReducers({climate, dimension, idJardin, soil, sunshine, token}))
+const store = createStore(combineReducers({climate, dimension, idGarden, soil, sunshine, token}))
 
 
 const Stack = createStackNavigator();

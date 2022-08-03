@@ -4,6 +4,8 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 import ButtonPrimary from '../Components/ButtonPrimary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+
 import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
@@ -40,9 +42,15 @@ function GardenNameScreen(props) {
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-          <Pressable onPress={()=> handleCreateNewGarden()}>
-            <ButtonPrimary buttonLabel='Valider' iconName="check" iconColor="white"/>
-          </Pressable>
+
+        <ButtonPrimaryExp
+        buttonLabel='ButtonPrimaryExp' 
+        iconName="check" 
+        iconColor="white"
+        text='Submit'
+        onPress={handleCreateNewGarden}
+        />
+
         </View>
 
   

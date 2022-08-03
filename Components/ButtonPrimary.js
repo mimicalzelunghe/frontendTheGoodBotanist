@@ -11,7 +11,7 @@ export default function ButtonPrimary(props) {
   return (
     
         <View  style={styles.container} > 
-        <Pressable style={styles.pressable} onPress={() => props.cool(props.redirectionButton)}>
+        <Pressable style={styles.pressable}>
         <MaterialCommunityIcons name={props.iconName} size={30} color={props.iconColor}  />
 
         <Text style={styles.bodyMD}>{props.buttonLabel}</Text>

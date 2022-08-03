@@ -11,6 +11,10 @@ import Navbar from '../Components/Navbar.js';
 
 
 function HomeScreen() {
+
+
+
+  
     return (
       
       <SafeAreaView style={styles.container}>
