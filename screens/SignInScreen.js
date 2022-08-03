@@ -20,8 +20,7 @@ function SignInScreen(props){
 
     
     var handleSubmitConnectionRequest = ()=>{
-      // TODO: call to backend: is the user known? route:
-
+      // call to backend: is the user known?
       // if known user and if she has a garden the display the home
       if(isUnknownUser){
         //screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
@@ -58,10 +57,11 @@ function SignInScreen(props){
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-            <Pressable onPress={() => handleSubmitConnectionRequest()}>
+            <Pressable onPress={() => handleSubmitConnectionRequest()}
+            >
                 <ButtonPrimary buttonLabel='Se connecter' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>              
             </Pressable>
-            <Pressable onPress={() => handleSubmitSignUpRequest()}>
+            <Pressable onPress={() => }>
                 <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
             </Pressable>         
         </View>
