@@ -57,13 +57,22 @@ function SignInScreen(props){
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-            <Pressable onPress={() => handleSubmitConnectionRequest()}
-            >
-                <ButtonPrimary buttonLabel='Se connecter' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>              
-            </Pressable>
-            <Pressable onPress={() => }>
-                <ButtonSecondary buttonLabel='Créer un compte' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
-            </Pressable>         
+        <ButtonPrimaryExp
+        buttonLabel='Se connecter' 
+        iconName="check" 
+        iconColor="white"
+        text='Submit'
+        onPress={handleSubmitConnectionRequest}
+        />
+        
+
+      <ButtonSecondaryExp
+        buttonLabel='Créer un compte' 
+        iconName="check" 
+        iconColor="white"
+        text='Submit'
+        onPress={handleSubmitSignUpRequest}
+        />        
         </View>
 
       </View>
