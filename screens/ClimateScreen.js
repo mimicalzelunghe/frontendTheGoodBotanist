@@ -13,13 +13,15 @@ import {connect} from 'react-redux';
 
 function ClimateScreen(props) {
 
-    const [climate, setClimate] = useState('')
+    const [gardenClimate, setGardenClimate] = useState('')
 
     var handleClimateSelection = ()=>{
+
+        console.log("gardenClimate",gardenClimate);
         // TODO Mimic: climate to put into redux
-        props.onSelectClimate()
+        props.onSelectClimate(gardenClimate)
         
-        props.navigation.navigate("PlotDimension")
+        props.navigation.navigate("GardenName")
     
       }
     
@@ -49,7 +51,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setClimate("oceanique"); handleClimateSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {setGardenClimate("oceanique"); console.log("Salut", gardenClimate); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -83,7 +85,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setClimate("semiOceanique"); handleClimateSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {setGardenClimate("semiOceanique"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -117,7 +119,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setClimate("semiContinental"); handleClimateSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {setGardenClimate("semiContinental"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -151,7 +153,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setClimate("mediterraneen"); handleClimateSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {setGardenClimate("mediterraneen"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -186,7 +188,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setClimate("montagne"); handleClimateSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {setGardenClimate("montagne"); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -224,8 +226,8 @@ function ClimateScreen(props) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      onSelectClimate: function() { 
-          dispatch( {type: 'climate'} ) 
+      onSelectClimate: function(gardenClimate) { 
+          dispatch( {type: 'climate', climateSelected: gardenClimate} ) 
       }
     }
    }

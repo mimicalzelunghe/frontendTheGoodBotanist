@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, Pressable, View, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -13,7 +13,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {connect} from 'react-redux';
 
 function GardenNameScreen(props) {
-
+  console.log("props.climateSelected",props.climateSelected);
   var gardenName=''
 
   var handleCreateNewGarden = ()=>{
