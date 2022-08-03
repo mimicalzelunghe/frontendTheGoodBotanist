@@ -3,12 +3,13 @@ import { StyleSheet, Text, Pressable, View, Image, ScrollView } from 'react-nati
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
-import ButtonPrimary from '../Components/ButtonPrimary.js';
-import ButtonSecondary from '../Components/ButtonSecondary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimary.js';
+import ButtonSecondaryExp from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux';
 
 function ClimateScreen(props) {
 
@@ -16,6 +17,7 @@ function ClimateScreen(props) {
 
     var handleClimateSelection = ()=>{
         // TODO Mimic: climate to put into redux
+        props.onSelectClimate()
         
         props.navigation.navigate("PlotDimension")
     
@@ -219,8 +221,19 @@ function ClimateScreen(props) {
       </View>
     );
   }
-  
-  export default ClimateScreen;
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      onSelectClimate: function() { 
+          dispatch( {type: 'climate'} ) 
+      }
+    }
+   }
+
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(ClimateScreen);
   
   const styles = StyleSheet.create({
     container: {

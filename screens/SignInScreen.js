@@ -4,8 +4,8 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 
-import ButtonPrimary from '../Components/ButtonPrimary.js';
-import ButtonSecondary from '../Components/ButtonSecondary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimary.js';
+import ButtonSecondaryExp from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
@@ -21,6 +21,34 @@ function SignInScreen(props){
 
     
     var handleSubmitConnectionRequest = ()=>{
+
+      // appel au backend pour retrouver le user
+      var user = async (user) => {
+        // upload user
+        const userData = await fetch('https://192.168.10.106:3000/users/signIn', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
+        })
+
+        //retranscription de la réponse pour qu'on puisse la lire
+        const userBody = await userData.json()
+        console.log("Mimic1: fetch signIn terminé")
+
+        if(userBody.result == true){
+   
+          props.addToken(userBody.token)
+          setUserExists(true)
+          
+        }  else {
+          setErrorsSignin(userBody.error)
+        }
+    
+    
+      }
+
+      console.log("Mimic1: fetch terminé")
+
       // call to backend: is the user known?
       // if known user and if she has a garden the display the home
       if(isUnknownUser){
