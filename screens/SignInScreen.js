@@ -74,8 +74,9 @@ function SignInScreen(props){
         text='Submit'
         onPress={handleSubmitConnectionRequest}
         />
+        
 
-<ButtonSecondaryExp
+      <ButtonSecondaryExp
         buttonLabel='Créer un compte' 
         iconName="check" 
         iconColor="white"
