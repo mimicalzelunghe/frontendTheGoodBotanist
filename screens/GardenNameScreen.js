@@ -44,7 +44,7 @@ function GardenNameScreen(props) {
         <View style={styles.buttonBlock}>
 
         <ButtonPrimaryExp
-        buttonLabel='ButtonPrimaryExp' 
+        buttonLabel='Valider' 
         iconName="check" 
         iconColor="white"
         text='Submit'

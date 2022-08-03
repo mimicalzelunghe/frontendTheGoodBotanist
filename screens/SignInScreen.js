@@ -4,8 +4,8 @@ import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
 
-import ButtonPrimaryExp from '../Components/ButtonPrimary.js';
-import ButtonSecondaryExp from '../Components/ButtonSecondary.js';
+import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
@@ -20,8 +20,8 @@ function SignInScreen(props){
     var screenToDisplay;
 
     
-    var handleSubmitConnectionRequest = (props)=>{
-
+    var handleSubmitConnectionRequest = ()=>{
+        console.log('clic');
       // appel au backend pour retrouver le user
       var user = async (user) => {
         // upload user
@@ -65,6 +65,7 @@ function SignInScreen(props){
     }
 
     var handleSubmitSignUpRequest = ()=>{
+      console.log("Clic 2");
       props.navigation.navigate("SignUp")
 
     }
@@ -88,7 +89,7 @@ function SignInScreen(props){
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
         buttonLabel='Se connecter' 
-        // iconName="check" 
+        iconName="check" 
         iconColor="white"
         text='Submit'
         onPress={handleSubmitConnectionRequest}
@@ -116,7 +117,7 @@ function SignInScreen(props){
       justifyContent: 'flex-start'
     },
     safe: {
-        marginTop: 80,
+        marginTop: 24,
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
