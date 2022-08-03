@@ -3,6 +3,7 @@ import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button } from '
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
+
 import ButtonPrimary from '../Components/ButtonPrimary.js';
 import ButtonPrimaryExp from '../Components/ButtonPrimaryExp';
 import ButtonSecondaryExp from '../Components/ButtonSecondaryExp';
@@ -74,7 +75,7 @@ function SignInScreen(props){
         text='Submit'
         onPress={handleSubmitConnectionRequest}
         />
-        
+
 
       <ButtonSecondaryExp
         buttonLabel='Créer un compte' 
