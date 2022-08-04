@@ -49,7 +49,7 @@ function SignUpScreen(props){
         console.log("Mimic2: SignUpScreen - dans le handleValidation, user créé. token :", userBody.token)
         setToken(userBody.token)
         
-        //give idGarden tp onCreateGardenSumbit
+        //save the token into the store
         props.receivedToken(userBody.token)
 
         // Redirect to the welcome page
