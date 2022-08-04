@@ -14,6 +14,9 @@ function PlotDimensionScreen(props) {
 
     const [plotDimension, setPlotDimension] = useState('')
 
+  function onPressRightIcon(){console.log("onPressRightIcon");}
+    
+
     var handlePlotDimension = ()=>{
         // TODO Mimic: plotDimension to put into redux
         
@@ -23,7 +26,15 @@ function PlotDimensionScreen(props) {
     return (
 
       <View style={styles.container}>
-              <Navbar iconNameLeft="keyboard-backspace" iconNameRight="close" iconColorLeft="#FFFFFF" iconColorRight="#6A6E6C" navigationText='Nouvelle parcelle'/>
+        <Navbar 
+        iconNameLeft="keyboard-backspace" 
+        iconNameRight="close" 
+        iconColorLeft="#ffffff" 
+        iconColorRight="#6A6E6C" 
+        navigationText='Nouvelle parcelle' 
+        redirectionIconeLeft="../screens/HomeScreen.js" 
+        // onPressLeftIcon={onPressLeftIcon} 
+        onPressRightIcon={onPressRightIcon}/>
 
 
         <ScrollView style={{paddingTop: 24}}>
@@ -60,7 +71,7 @@ function PlotDimensionScreen(props) {
         
                 <View style={styles.textWrapper}>
                     <Text style={styles.Titre}>Petite</Text>
-                    <Text style={styles.Description}>De 1 à 25 m2. Soit la taille deux tables de ping pong.</Text>
+                    <Text style={styles.Description}>De 1 à 25 m2. Soit la taille de deux tables de ping pong.</Text>
             </View>
             
             </Pressable>
@@ -95,7 +106,7 @@ function PlotDimensionScreen(props) {
         
                 <View style={styles.textWrapper}>
                     <Text style={styles.Titre}>Moyenne</Text>
-                    <Text style={styles.Description}>De 25 à 100 m2. Soit la taille petit terrain de basket.</Text>
+                    <Text style={styles.Description}>De 25 à 100 m2. Soit la taille d'un petit terrain de basket.</Text>
             </View>
             
             </Pressable>

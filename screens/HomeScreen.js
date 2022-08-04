@@ -16,6 +16,9 @@ function HomeScreen(props) {
 
     const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
 
+  function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  function onPressRightIcon(){console.log("onPressRightIcon");}
+
     
     useEffect(()=>{
         if(props.gardenNameToDisplay != ""){
@@ -28,11 +31,20 @@ function HomeScreen(props) {
 
     })
 
-  
     return (
       
       <SafeAreaView style={styles.container}>
-      <Navbar iconNameLeft="plus" iconNameRight="close" iconColorLeft="#1D6880" iconColorRight="#1D6880" navigationText=' '/>
+
+        <Navbar 
+        iconNameLeft="plus" 
+        iconNameRight="square-edit-outline" 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#1D6880" 
+        navigationText='Nouvelle parcelle' 
+        redirectionIconeLeft="../screens/HomeScreen.js" 
+        onPressLeftIcon={onPressLeftIcon} 
+        onPressRightIcon={onPressRightIcon}/>
+
         <ScrollView style={styles.scrollView}>
         <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
 

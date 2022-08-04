@@ -10,6 +10,10 @@ import CardSurvey from '../Components/CardSurvey.js';
 import InputExp from '../Components/InputExp.js';
 import Navbar from '../Components/Navbar.js';
 import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
+import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
+import ButtonTertiaryExp from '../Components/ButtonTertiaryExp.js';
+import CellPlant from '../Components/CellPlant.js';
+
 
 
 
@@ -72,7 +76,7 @@ function ComponentsList() {
       
 
       <View style={styles.buttonBlock}>
-      <ButtonPrimaryExp
+        <ButtonPrimaryExp
         buttonLabel='ButtonPrimaryExp' 
         iconName="check" 
         iconColor="white"
@@ -80,13 +84,28 @@ function ComponentsList() {
         onPress={onPress}
         />
 
-        <ButtonSecondary buttonLabel='Boutton secondaire' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
-        <ButtonTerciary buttonLabel='Boutton secondaire' iconePath="{require('../assets/icones/white/Icones-20.png')}"/>
+        <ButtonSecondaryExp
+        buttonLabel='ButtonSecondaryExp' 
+        iconName="check" 
+        iconColor="#1D6880"
+        text='Submit'
+        onPress={onPress}
+        />
+
+        <ButtonTertiaryExp
+        buttonLabel='ButtonTertiaryExp' 
+        iconName="check" 
+        iconColor="#1D6880"
+        text='Submit'
+        onPress={onPress}
+        />
+
+
       </View>
       
-      <CardSurvey backgroundColor= '#F5F6EF' CardTitle='Titre de la carte' CardDescription='Description de la carte' />
+      <CardSurvey backgroundColor= '#F5F6EF' CardTitle='Titre de la carte' CardDescription='Description de la carte'  />
       
-
+      <CellPlant CellTitle='Titre de la carte' CellDescription='Description de la carte' checkBoxState="checkbox-blank-outline" checkboxColor="black"/>
 
     </View>
   );

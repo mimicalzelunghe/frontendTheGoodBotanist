@@ -29,6 +29,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
 import ComponentsList from './screens/ComponentsList';
 
+
 import climate from './reducers/climate.js'
 import dimension from './reducers/dimension.js'
 import idGarden from './reducers/idGarden.js'
