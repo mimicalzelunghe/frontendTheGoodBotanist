@@ -11,20 +11,51 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux';
+
 function SignUpScreen(props){
 
-    const [isUnknownUser, setIsUnknownUser] = useState(true)
-    const [hasNoGarden, setHasNoGarden] = useState(false)
+    
+    const [email, setEmail] = useState(true)
+    const [password, setPassword] = useState(true)
+    const [token, setToken] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
 
-    var handleValidation = ()=>{
+    var handleValidation = async ()=>{
       // TODO: call to the backend - route signup
+          // create the garden
+      const userData = await fetch('http://192.168.10.107:3000/users/signUp', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `emailFromFront=${email}&passwordFromFront=${password}`
+      })
+      
+      //retranscription de la réponse pour qu'on puisse la lire
+      //body contains the following parameters
+      // 1-result: true if user is created, false if not
+      // 2-token: the user's token
+      // 3-error
+      const userBody = await userData.json()
 
-      //if user is well known, display a message saying to it's already known
+      //if user is well known, display a message saying that she is already known
+      if(userBody.error.lenght>0){
+        console.log("Mimic1: SignUpScreen - dans le handleValidation, user déjà connu. userBody :", userBody)
+        //TODO: renvoyer message à l'écran Utilisateur connu
+        setPasswordError("Utilisateur déjà connu")
 
-      // propagate user info
+      }else{
+        //save the token into the redux store
+        console.log("Mimic2: SignUpScreen - dans le handleValidation, user créé. token :", userBody.token)
+        setToken(userBody.token)
+        
+        //give idGarden tp onCreateGardenSumbit
+        props.receivedToken(token)
 
-      // TODO: redirect to the welcome page
-      props.navigation.navigate("Welcome")
+        // Redirect to the welcome page
+        props.navigation.navigate("Welcome")
+
+      }
 
     }
     
@@ -50,10 +81,10 @@ function SignUpScreen(props){
           <SafeAreaView style={styles.safe}>
           <Text style={styles.titleXL}>Créer votre compte :</Text>
           <View style={styles.inputLayoutContainer}>
-            <Input placeholder='Email' affichage="flex"/>
+            <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email}/>
             <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-            <Input placeholder='Mot de passe' affichage="flex"/>
-            <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+            <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> {setPassword(value)}} value={password}/>
+            <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
           </View> 
         </SafeAreaView>
 
@@ -70,6 +101,24 @@ function SignUpScreen(props){
       </View>
     );
   }
+
+
+  // update the variable token into the Redux store
+  function mapDispatchToProps(dispatch) {
+    return {
+      receivedToken: function(receivedToken) { 
+        console.log("Mimic2: SignUpScreen - into mapDispatchToProps - token is :", receivedToken)
+          dispatch( {type: 'token', token: receivedToken}) 
+          
+      }
+    }
+   }
+   
+  export default connect(
+    null, 
+    mapDispatchToProps
+  )(SignUpScreen);
+
   
   const styles = StyleSheet.create({
     container: {
@@ -137,47 +186,4 @@ function SignUpScreen(props){
   
   })
 
-  export default SignUpScreen
 
-
-
-
-
-
-
-
-
-
-
-/*
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-
-
-function SignUpScreen(props){
-
-    return(
-        <View
-        style={{
-        flex:1,
-          flexDirection: "row",
-          height: 100,
-          padding: 20,
-          textAlign: "center",
-          backgroundColor: "violet"
-          
-        }}
-      >
-        <Text style={{fontFamily:"Cochin"}}>SignUp</Text>
-        <Button title="Go page to welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
-    </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        padding: 20
-    }
-})
-*/
