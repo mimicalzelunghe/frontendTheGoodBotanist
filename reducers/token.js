@@ -1,5 +1,5 @@
 export default function(token = '', action){
-    if(action.type == 'addToken'){
+    if(action.type == 'token'){
         return action.token
     } else {
         return token

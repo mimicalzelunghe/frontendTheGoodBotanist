@@ -28,7 +28,7 @@ function GardenNameScreen(props) {
     // create the garden=> fetch to the route
     
     // create the garden
-    const gardenData = await fetch('http://192.168.0.26:3000/gardens/createGarden', {
+    const gardenData = await fetch('http://192.168.10.107:3000/gardens/createGarden', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `gardenName=${gardenName}&gardenClimate=${props.climateSelected}`
@@ -39,6 +39,7 @@ function GardenNameScreen(props) {
 
     
     //give idGarden tp onCreateGardenSumbit
+    //TODO: change second argument to idVar
     props.onCreateGardenSubmit(gardenName, gardenName)
 
     // navigate to climate screen
@@ -85,7 +86,7 @@ function GardenNameScreen(props) {
   // update the variable into the Redux store
   function mapDispatchToProps(dispatch) {
     return {
-      onCreateGardenSubmit: function(createdIdGarden, createdGardenName) { 
+      onCreateGardenSubmit: function(createdGardenName, createdIdGarden) { 
         console.log("Mimic8: GardenNameScreen - into mapDispatchToProps - idgarden is :", createdIdGarden)
         console.log("Mimic9: GardenNameScreen - into mapDispatchToProps - gardenName is :", createdGardenName)
           dispatch( {type: 'idGarden', idGarden: createdIdGarden}) 
