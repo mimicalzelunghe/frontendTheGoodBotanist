@@ -9,12 +9,17 @@ import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
+import {connect} from 'react-redux';
+
 function SignInScreen(props){
     
-    const [isUnknownUser, setIsUnknownUser] = useState(false)
+    const [token, setToken] = useState('')
+    const [isUnknownUser, setIsUnknownUser] = useState(true)
     const [hasNoGarden, setHasNoGarden] = useState(true)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
     
     // if the user is unknown or if she has no garden yet (first garden), 
     // then show climateScreen else show HomeScreen
@@ -22,46 +27,68 @@ function SignInScreen(props){
     var screenToDisplay;
 
     
-    var handleSubmitConnectionRequest = ()=>{
+    var handleSubmitConnectionRequest = async ()=>{
 
-      // appel au backend pour retrouver le user
-      var user = async (user) => {
-        // upload user
-        const userData = await fetch('http://192.168.10.122:3000/users/signIn', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
-        })
+      var knownUser = false
+      var hasGarden = false
 
-        //retranscription de la réponse pour qu'on puisse la lire
-        const userBody = await userData.json()
-        console.log("Mimic1: fetch signIn terminé")
+      // upload user
+      console.log("Mimic2: SignInScreen - dans user() avant le fetch")
+      const userData = await fetch('http://192.168.10.107:3000/users/signIn', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `emailFromFront=${email}&passwordFromFront=${password}`
+      })
 
-        if(userBody.result == true){
-   
-          props.addToken(userBody.token)
-          setUserExists(true)
-          
-        }  else {
-          setErrorsSignin(userBody.error)
+      //retranscription de la réponse pour qu'on puisse la lire
+      const userBody = await userData.json()
+      console.log("Mimic1:  SignInScreen - fetch terminé - userBody:", userBody)
+
+      if(userBody.result == true){
+        //console.log("Mimic7:  SignInScreen - result body est true:", userBody)
+        knownUser == true
+        console.log("Mimic7:  SignInScreen - knownUser ? ", knownUser)
+        //setIsUnknownUser(false)
+        setToken(userBody.token)
+        props.receivedToken(userBody.token)
+        console.log("Mimic10:  SignInScreen - valeur de isUnknownUser:", isUnknownUser)
+
+        if(userBody.userGardens.length != 0){
+          //console.log("Mimic8:  SignInScreen - il n'y a pas de garden:", hasNoGarden)
+          //setHasNoGarden(false)
+          hasGarden == true
+          console.log("Mimic8:  SignInScreen - il n'y a pas de garden:", hasGarden)
         }
-    
-    
+        
+      }  else {
+        console.log("Mimic9:  SignInScreen - user est inconnu:", userBody.result)
+        //setIsUnknownUser(true)
+        knownUser == false
+        setEmailError(userBody.error)
+        setPasswordError(userBody.errorr)
       }
+  
+  
 
-      console.log("Mimic1: fetch terminé")
-
+      console.log("Mimic3: choix ecran à afficher")
+      console.log("Mimic5:  SignInScreen - test affichage prochaine page, isUnknownUser, hasNoGarden ", isUnknownUser, hasNoGarden )
       // call to backend: is the user known?
       // if known user and if she has a garden the display the home
-      if(isUnknownUser){
+      //if(isUnknownUser){
+      if(knownUser){
         //screenToDisplay = <Button title="Go page to SignUp screen" onPress={() => props.navigation.navigate('SignUp')} />
+        
         props.navigation.navigate("SignUp")
-      }else if(hasNoGarden){// else, go to HomeScreen and show the gardens
+        console.log("Mimic11:  SignInScreen - j'active signUp")
+      //}else if(hasNoGarden){// else, go to HomeScreen and show the gardens
+      }else if(hasGarden){// else, go to HomeScreen and show the gardens
         //screenToDisplay = <Button title="Go page to Welcome screen" onPress={() => props.navigation.navigate('Welcome')} />
         props.navigation.navigate("Welcome")
+        console.log("Mimic12:  SignInScreen - j'active welcome")
       }else{// else, display the garden of this well known user
         //screenToDisplay = <Button title="Go page to HomeScreen" onPress={() => props.navigation.navigate('Home')} />
         props.navigation.navigate("Home")
+        console.log("Mimic13:  SignInScreen - j'active Home")
       }
 
     }
@@ -83,7 +110,7 @@ function SignInScreen(props){
         <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email} keyboardType="email"/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
         <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> setPassword(value)} value={password}/>
-        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
       </View> 
 
         </SafeAreaView>
@@ -109,6 +136,21 @@ function SignInScreen(props){
       </View>
     );
   }
+    // update the variable token into the Redux store
+    function mapDispatchToProps(dispatch) {
+      return {
+        receivedToken: function(receivedToken) { 
+          console.log("Mimic6: SignInScreen - into mapDispatchToProps - token is :", receivedToken)
+            dispatch( {type: 'token', token: receivedToken}) 
+            
+        }
+      }
+     }
+     
+    export default connect(
+      null, 
+      mapDispatchToProps
+    )(SignInScreen);
   
   const styles = StyleSheet.create({
     container: {
@@ -173,4 +215,3 @@ function SignInScreen(props){
   
   })
 
-export default SignInScreen
