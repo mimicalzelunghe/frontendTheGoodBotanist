@@ -15,7 +15,7 @@ export default function Input(props) {
         value={text}
         placeholder={props.placeholder}
         autoComplete="off"
-        keyboardType={keyboardType}
+        keyboardType={props.keyboardType}
         />
     </View>
   );

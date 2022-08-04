@@ -80,7 +80,7 @@ function SignInScreen(props){
           source={require('../assets/illustrations/logo.png')}
         />
         <View style={styles.inputLayoutContainer}>
-        <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email}/>
+        <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email} keyboardType="email"/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
         <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> setPassword(value)} value={password}/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>

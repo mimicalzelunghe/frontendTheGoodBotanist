@@ -79,6 +79,8 @@ function GardenNameScreen(props) {
 
   // pour lire une variable Redux
   function mapStateToProps(state) {
+    console.log("Mimic2: GardenNameScreen state is: ", state);
+
     return { climateSelected: state.climate }
    }
 

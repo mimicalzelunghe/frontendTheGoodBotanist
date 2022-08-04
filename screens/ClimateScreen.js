@@ -13,11 +13,11 @@ import {connect} from 'react-redux';
 
 function ClimateScreen(props) {
 
-    const [gardenClimate, setGardenClimate] = useState('oceanique')
+    const [gardenClimate, setGardenClimate] = useState('')
 
-    var handleClimateSelection = (typeClimat)=>{
+    var handleClimateSelection = (/* typeClimat */)=>{
 
-        setGardenClimate(typeClimat); 
+        // setGardenClimate(typeClimat); 
         console.log("Mimic1: ClimateScreen - dans handleClimateSelectin - valeur de gardenClimate", gardenClimate)
 
         // climate is a redux property
@@ -26,6 +26,7 @@ function ClimateScreen(props) {
         props.navigation.navigate("GardenName")
     
       }
+      console.log("gardenClimate",gardenClimate);
     
     return (
 
@@ -53,7 +54,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> { handleClimateSelection("oceanique")}}>
+            <Pressable style={styles.pressable} onPress={ ()=> { setGardenClimate("atlantique");console.log("Clément gardenClimate :",gardenClimate); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -87,7 +88,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> { handleClimateSelection("semi-oceanique")}}>
+            <Pressable style={styles.pressable} onPress={()=> { setGardenClimate("semi-atlantique");console.log("Clément gardenClimate :",gardenClimate); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -121,7 +122,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-        <Pressable style={styles.pressable} onPress={()=> { handleClimateSelection("semi-continental")}}>
+        <Pressable style={styles.pressable} onPress={()=> { setGardenClimate("continental");console.log("Clément gardenClimate :",gardenClimate); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -155,7 +156,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-        <Pressable style={styles.pressable} onPress={()=> { handleClimateSelection("mediterraneen")}}>
+        <Pressable style={styles.pressable} onPress={()=> { setGardenClimate("mediterraneen");console.log("Clément gardenClimate :",gardenClimate); handleClimateSelection()}}>
 
             <View
                 style={{ 
@@ -190,7 +191,7 @@ function ClimateScreen(props) {
                 paddingVertical:16
         }} > 
         
-        <Pressable style={styles.pressable} onPress={()=> { handleClimateSelection("montagne")}}>
+        <Pressable style={styles.pressable} onPress={()=> { setGardenClimate("montagne");console.log("Clément gardenClimate :",gardenClimate); handleClimateSelection()}}>
 
             <View
                 style={{ 
