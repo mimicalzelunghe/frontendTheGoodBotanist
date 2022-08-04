@@ -25,7 +25,7 @@ function SignUpScreen(props){
     var handleValidation = async ()=>{
       // TODO: call to the backend - route signup
           // create the garden
-      const userData = await fetch('http://192.168.10.107:3000/users/signUp', {
+      const userData = await fetch('http://192.168.10.122:3000/users/signUp', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${email}&passwordFromFront=${password}`

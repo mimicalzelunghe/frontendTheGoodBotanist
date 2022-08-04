@@ -27,7 +27,7 @@ function SignInScreen(props){
       // appel au backend pour retrouver le user
       var user = async (user) => {
         // upload user
-        const userData = await fetch('http://192.168.10.107:3000/users/signIn', {
+        const userData = await fetch('http://192.168.10.122:3000/users/signIn', {
           method: 'POST',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`

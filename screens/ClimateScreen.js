@@ -15,7 +15,6 @@ function ClimateScreen(props) {
 
     var handleClimateSelection = (typeClimat)=>{
 
-        console.log("Mimic10: ClimateScreen - dans handleClimateSelection - typeClimate:", typeClimat)
 
         // climate is a redux property
         props.onSelectClimate(typeClimat)
@@ -227,7 +226,6 @@ function ClimateScreen(props) {
   function mapDispatchToProps(dispatch) {
     return {
       onSelectClimate: function(userClimate) { 
-        console.log("Mimic6: - ClimateScreen - dans le mapDispatchToProps - gardenClimate :", userClimate)
         dispatch( {type: 'climate', climate: userClimate} ) 
       }
     }

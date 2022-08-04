@@ -17,11 +17,11 @@ import {connect} from 'react-redux'
 // async () => {
 //   var rawResponse = await fetch('https://jsonplaceholder.typicode.com/users');
 //   var response = await rawResponse.json();
-//   console.log(response);
 //  }
 
 function HomeScreen (props)  {
 
+  console.log("Store HomeScreen", props.store );
   function homeScreenEmpty () {
 
     return (
@@ -70,7 +70,7 @@ function HomeScreen (props)  {
         await fetch('https://192.168.10.122:3000/gardens/uploadUserGardens', {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: 'tokenId={}&email=john@gmail.com'
+        body: 'token={}&email=john@gmail.com'
       });
       result();
 
@@ -113,9 +113,8 @@ function HomeScreen (props)  {
 
   // pour lire une variable Redux
   function mapStateToProps(state) {
-    console.log("Mimic3: HomeScreen - dans mapStateTpProps - valeur de gardenName :", state.gardenName)
 
-    return { gardenNameToDisplay: state.gardenName }
+    return { store: state }
    }
 
   export default connect(
