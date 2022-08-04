@@ -13,6 +13,9 @@ import Navbar from '../Components/Navbar.js';
 function SunshineScreen(props) {
 
     const [sunshine, setSunshine] = useState('')
+    function onPressRightIcon(){console.log("onPressRightIcon");}
+    function onPressLeftIcon(){console.log("onPressLeftIcon");}
+
 
     var handleSunshineSelection = ()=>{
         // TODO Mimic: plotDimension to put into redux
@@ -24,8 +27,16 @@ function SunshineScreen(props) {
     return (
 
       <View style={styles.container}>
-              <Navbar iconNameLeft="keyboard-backspace" iconNameRight="close" iconColorLeft="#FFFFFF" iconColorRight="#6A6E6C" navigationText='Nouvelle parcelle'/>
 
+        <Navbar 
+        iconNameLeft="keyboard-backspace" 
+        iconNameRight="close" 
+        iconColorLeft="#6A6E6C" 
+        iconColorRight="#6A6E6C" 
+        navigationText='Nouvelle parcelle' 
+        redirectionIconeLeft="../screens/HomeScreen.js" 
+        onPressLeftIcon={onPressLeftIcon} 
+        onPressRightIcon={onPressRightIcon}/>
 
         <ScrollView style={{paddingTop: 24}}>
         <Text style={styles.titleXL}>Quel est l’ensoleillement de votre parcelle ?</Text>

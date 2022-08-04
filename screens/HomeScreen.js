@@ -13,12 +13,24 @@ import Navbar from '../Components/Navbar.js';
 function HomeScreen() {
 
 
+  function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  function onPressRightIcon(){console.log("onPressRightIcon");}
 
-  
+
     return (
       
       <SafeAreaView style={styles.container}>
-      <Navbar iconNameLeft="plus" iconNameRight="close" iconColorLeft="#1D6880" iconColorRight="#1D6880" navigationText=' '/>
+
+        <Navbar 
+        iconNameLeft="plus" 
+        iconNameRight="square-edit-outline" 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#1D6880" 
+        navigationText='Nouvelle parcelle' 
+        redirectionIconeLeft="../screens/HomeScreen.js" 
+        onPressLeftIcon={onPressLeftIcon} 
+        onPressRightIcon={onPressRightIcon}/>
+
         <ScrollView style={styles.scrollView}>
         <Text style={styles.titleXL}>“Nom du jardin”</Text>
 
