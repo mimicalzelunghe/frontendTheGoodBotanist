@@ -12,7 +12,51 @@ import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 import {connect} from 'react-redux'
 
-function HomeScreen(props) {
+
+
+// async () => {
+//   var rawResponse = await fetch('https://jsonplaceholder.typicode.com/users');
+//   var response = await rawResponse.json();
+//   console.log(response);
+//  }
+
+function HomeScreen (props)  {
+
+  function homeScreenEmpty () {
+
+    return (
+    <ScrollView style={styles.scrollView}>
+      <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
+
+      <View  style={styles.imageContainer} >
+      <Image
+        style={styles.Illustration}
+        source={require('../assets/illustrations/illustrationWelcomeScreen.png')}
+      /> 
+      </View>
+      
+      <Text style={styles.titleLG}>Votre jardin est encore vide.</Text>
+      <Text style={styles.bodyMd}>Créez votre première parcelle et ajoutez les végétaux qui y habitent. C’est à l’echelle d’un bout de terrain que l’on peut améliorer notre écosystème.</Text>
+      <Text style={styles.bodyMd}>Vous pouvez diviser votre jardin en autant de petites parcelles que vous avez de projets botaniques.</Text>
+
+      <View style={styles.buttonBlock}>
+      <ButtonPrimary buttonLabel='Créer ma première parcelle' iconName="tree" iconColor="white" redirectionButton="HomeScreen"/>
+      </View>
+
+      </ScrollView>)
+    
+
+  }
+
+  function homeScreenContent () {
+    return (
+      <Text> Coucou</Text>
+    )
+  }
+
+ 
+
+
 
     const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
 
@@ -21,6 +65,17 @@ function HomeScreen(props) {
 
     
     useEffect(()=>{
+
+      var result = async () => {
+        await fetch('https://192.168.10.122:3000/gardens/uploadUserGardens', {
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: 'tokenId={}&email=john@gmail.com'
+      });
+      result();
+
+
+      } 
         if(props.gardenNameToDisplay != ""){
             console.log("Mimic2: Homescreen - props.gardenNameToDisplay : ", props.gardenNameToDisplay )
             setGardenNameToDisplay("Mon jardin "+props.gardenNameToDisplay)
@@ -45,29 +100,9 @@ function HomeScreen(props) {
         onPressLeftIcon={onPressLeftIcon} 
         onPressRightIcon={onPressRightIcon}/>
 
-        <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
-
-        <View  style={styles.imageContainer} >
-        <Image
-          style={styles.Illustration}
-          source={require('../assets/illustrations/illustrationWelcomeScreen.png')}
-        /> 
-        </View>
         
-         
+        {homeScreenEmpty()}
         
-        
-        <Text style={styles.titleLG}>Votre jardin est encore vide.</Text>
-        <Text style={styles.bodyMd}>Créez votre première parcelle et ajoutez les végétaux qui y habitent. C’est à l’echelle d’un bout de terrain que l’on peut améliorer notre écosystème.</Text>
-        <Text style={styles.bodyMd}>Vous pouvez diviser votre jardin en autant de petites parcelles que vous avez de projets botaniques.</Text>
-
-
-        </ScrollView>
-
-        <View style={styles.buttonBlock}>
-        <ButtonPrimary buttonLabel='Créer ma première parcelle' iconName="tree" iconColor="white" redirectionButton="HomeScreen"/>
-        </View>
 
   
   
