@@ -50,7 +50,7 @@ function SignUpScreen(props){
         setToken(userBody.token)
         
         //give idGarden tp onCreateGardenSumbit
-        props.receivedToken(token)
+        props.receivedToken(userBody.token)
 
         // Redirect to the welcome page
         props.navigation.navigate("Welcome")
@@ -107,7 +107,7 @@ function SignUpScreen(props){
   function mapDispatchToProps(dispatch) {
     return {
       receivedToken: function(receivedToken) { 
-        console.log("Mimic2: SignUpScreen - into mapDispatchToProps - token is :", receivedToken)
+        console.log("Mimic3: SignUpScreen - into mapDispatchToProps - token is :", receivedToken)
           dispatch( {type: 'token', token: receivedToken}) 
           
       }

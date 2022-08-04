@@ -23,7 +23,7 @@ function SignInScreen(props){
 
     
     var handleSubmitConnectionRequest = ()=>{
-        console.log('clic email : ', email);
+
       // appel au backend pour retrouver le user
       var user = async (user) => {
         // upload user
