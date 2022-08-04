@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button, TextInput } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -10,10 +10,12 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 
 function SignInScreen(props){
-
+    
     const [isUnknownUser, setIsUnknownUser] = useState(false)
-    const [hasNoGarden, setHasNoGarden] = useState(false)
-
+    const [hasNoGarden, setHasNoGarden] = useState(true)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
     // if the user is unknown or if she has no garden yet (first garden), 
     // then show climateScreen else show HomeScreen
     // isUnknownUser value depends on the login process result
@@ -21,11 +23,11 @@ function SignInScreen(props){
 
     
     var handleSubmitConnectionRequest = ()=>{
-        console.log('clic');
+        console.log('clic email : ', email);
       // appel au backend pour retrouver le user
       var user = async (user) => {
         // upload user
-        const userData = await fetch('https://192.168.10.106:3000/users/signIn', {
+        const userData = await fetch('http://192.168.0.26:3000/users/signIn', {
           method: 'POST',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
@@ -65,7 +67,7 @@ function SignInScreen(props){
     }
 
     var handleSubmitSignUpRequest = ()=>{
-      console.log("Clic 2");
+      console.log("Mimic")
       props.navigation.navigate("SignUp")
 
     }
@@ -78,31 +80,30 @@ function SignInScreen(props){
           source={require('../assets/illustrations/logo.png')}
         />
         <View style={styles.inputLayoutContainer}>
-        <Input placeholder='Email' affichage="flex"/>
+        <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email}/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-        <Input placeholder='Mot de passe' affichage="flex"/>
+        <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> setPassword(value)} value={password}/>
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
       </View> 
 
         </SafeAreaView>
 
         <View style={styles.buttonBlock}>
-        <ButtonPrimaryExp
-        buttonLabel='Se connecter' 
-        iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleSubmitConnectionRequest}
-        />
+            <ButtonPrimaryExp
+            buttonLabel='Se connecter' 
+            iconName="check" 
+            iconColor="white"
+            text='Submit'
+            onPress={handleSubmitConnectionRequest}
+            />
 
-
-      <ButtonSecondaryExp
-        buttonLabel='Créer un compte' 
-        iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleSubmitSignUpRequest}
-        />        
+            <ButtonSecondaryExp
+              buttonLabel='Créer un compte' 
+              iconName="check" 
+              iconColor="white"
+              text='Submit'
+              onPress={handleSubmitSignUpRequest}
+              />        
         </View>
 
       </View>

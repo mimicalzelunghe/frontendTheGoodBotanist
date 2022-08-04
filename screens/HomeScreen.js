@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -8,14 +8,28 @@ import ButtonSecondary from '../Components/ButtonSecondary.js';
 import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
+import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
+import {connect} from 'react-redux'
 
-function HomeScreen() {
+function HomeScreen(props) {
 
+    const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
 
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
 
+    
+    useEffect(()=>{
+        if(props.gardenNameToDisplay != ""){
+            console.log("Mimic2: Homescreen - props.gardenNameToDisplay : ", props.gardenNameToDisplay )
+            setGardenNameToDisplay("Mon jardin "+props.gardenNameToDisplay)
+        }else{
+            console.log("Mimic1: Homescreen - gardenNameToDisplay : ", gardenNameToDisplay )
+    
+        }    
+
+    })
 
     return (
       
@@ -32,7 +46,7 @@ function HomeScreen() {
         onPressRightIcon={onPressRightIcon}/>
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>“Nom du jardin”</Text>
+        <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
 
         <View  style={styles.imageContainer} >
         <Image
@@ -61,7 +75,18 @@ function HomeScreen() {
     );
   }
   
-  export default HomeScreen;
+
+  // pour lire une variable Redux
+  function mapStateToProps(state) {
+    console.log("Mimic3: HomeScreen - dans mapStateTpProps - valeur de gardenName :", state.gardenName)
+
+    return { gardenNameToDisplay: state.gardenName }
+   }
+
+  export default connect(
+    mapStateToProps, 
+    null
+  )(HomeScreen);
   
   const styles = StyleSheet.create({
     container: {

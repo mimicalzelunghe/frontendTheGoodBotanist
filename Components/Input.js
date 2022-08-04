@@ -11,7 +11,7 @@ export default function Input(props) {
     <View style={styles.container}>
         <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
+        onChangeText={props.onChangeText}
         value={text}
         placeholder={props.placeholder}
         autoComplete="off"
