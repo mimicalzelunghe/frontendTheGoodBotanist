@@ -34,7 +34,7 @@ function SignInScreen(props){
 
       // upload user
       console.log("Mimic2: SignInScreen - dans user() avant le fetch")
-      const userData = await fetch('http://192.168.10.107:3000/users/signIn', {
+      const userData = await fetch('http://192.168.0.26:3000/users/signIn', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${email}&passwordFromFront=${password}`

@@ -28,7 +28,7 @@ function GardenNameScreen(props) {
     // create the garden=> fetch to the route
     
     // create the garden
-    const gardenData = await fetch('http://192.168.10.107:3000/gardens/createGarden', {
+    const gardenData = await fetch('http://192.168.0.26:3000/gardens/createGarden', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `gardenName=${gardenName}&gardenClimate=${props.climateSelected}`
