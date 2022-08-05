@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable , Image} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import backendIpAdress from '../parameters/param.js'
+
 
 export default function CellPlant(props) {
 
 
     //conditions pour appliquer le toggle des checkbox
     const [plantAdded, setPlantAdded] = useState("default");
-    const [checkColor, setcheckColor] = useState("#1D6880");
-    const [checkIcon, setCheckIcon] = useState("checkbox-marked");
+    const [checkColor, setcheckColor] = useState("#A8ADAA");
+    const [checkIcon, setCheckIcon] = useState("checkbox-blank-outline");
 
 
     
@@ -30,13 +32,21 @@ export default function CellPlant(props) {
             setCheckIcon("checkbox-marked")}}
 
 
+        var handlePressAddPlant = async ()=>{
+            if(plantAdded === "default"){
+                console.log("handlePressAddPlant")
+                console.log("props.plantId", props.plantId);
+                await fetch(backendIpAdress+'/plants/addPlant', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `plantId=${props.plantId}`
+                  })
 
-        var handlePressAddPlant = ()=>{
-            if(plantAdded === "default"){props.addPlant(props.plantId)} 
+            } 
           }
           
           var handlePressDeletePlant = ()=>{
-            if(plantAdded === "active"){props.deletePlant(props.plantId)} 
+            if(plantAdded === "active"){console.log("handlePressDeletePlant");} 
           }
 
 
@@ -52,7 +62,6 @@ return (
                 marginVertical:8,
                 
         }} > 
-        
             
 
                 <Image
@@ -70,7 +79,7 @@ return (
                     <Text style={styles.Titre}>{props.CellTitle}</Text>
                 </View>
 
-                <MaterialCommunityIcons name={checkIcon} size={24} color={checkColor}  onPress={ () => [checkClick(), /* handlePressAddPlant(), handlePressDeletePlant() */ ]  }/>
+                <MaterialCommunityIcons name={checkIcon} size={24} color={checkColor}  onPress={ () => [checkClick(), handlePressAddPlant(), handlePressDeletePlant() ]  }/>
             
                 </View>
                 <View style={{backgroundColor: "#A8ADAA", height: 1}}></View>

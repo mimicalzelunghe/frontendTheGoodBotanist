@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -7,20 +7,49 @@ import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
 import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
 import ButtonTertiaryExp from '../Components/ButtonTertiaryExp.js';
 import CellPlant from '../Components/CellPlant';
+import {connect} from 'react-redux';
+
 
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
+import backendIpAdress from '../parameters/param.js'
 
 
-function SelectPlantsScreen() {
 
-  var result = async () => {
-    await fetch('http://192.168.10.120:3000/plants/uploadPlants', {
-    method: 'POST',
-    headers: {'Content-Type':'application/x-www-form-urlencoded'},
-    body: 'token=token'
-  });
-  result(true);}
+function SelectPlantsScreen(props) {
+
+  console.log("store", props.store);
+
+  var token = props.store.token;
+ 
+  const [tablePlantList,setTablePlantList] = useState([]);
+
+
+  //Rechercher la liste des plantes dans la base de donnée ======================================
+  
+  useEffect(() => {
+  var listPlant = async () => {
+    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
+    var response = await rawResponse.json();
+    // console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 29 ~ listPlant ~ response", response)
+    
+    setTablePlantList([...response]);
+    
+   }
+
+
+   listPlant();
+  }, []);
+
+
+
+
+
+  
+
+
+  //Rechercher la liste des plantes dans la base de donnée =======================================
+
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
@@ -57,7 +86,9 @@ function SelectPlantsScreen() {
         />
         </View>
 
-        <CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle='Titre de la carte' CellDescription='Description de la carte'/>
+        {tablePlantList.map((plant) => (
+        <CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle={plant.common_name} plantId={plant._id} token={token} />
+        ))}
 
 
         </ScrollView>
@@ -88,7 +119,19 @@ function SelectPlantsScreen() {
     );
   }
   
-  export default SelectPlantsScreen;
+// update the variable into the Redux store
+function mapStateToProps(state) {
+
+  return { store: state }
+ }
+ 
+export default connect(
+  mapStateToProps, 
+  null
+)(SelectPlantsScreen);
+
+
+
   
   const styles = StyleSheet.create({
     container: {

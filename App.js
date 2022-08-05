@@ -78,33 +78,34 @@ const BottomNavigator = () => {
 
 export default function App() {
   return (
-    <SelectPlantsScreen/>
+     
 
-    // <Provider store={store}>
-    //   <NavigationContainer>
-    //     <Stack.Navigator screenOptions={{headerShown: false}}>
-    //     <Stack.Screen name="SignIn" component={SignInScreen} />
-    //       <Stack.Screen name="SignUp" component={SignUpScreen} />
+
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
           
-    //       <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
           
-    //       <Stack.Screen name="Congrats" component={CongratsScreen} />
-    //       <Stack.Screen name="GardenName" component={GardenNameScreen} />
-    //       <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />
-    //       <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
-    //       <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
-    //       <Stack.Screen name="PlotName" component={PlotNameScreen} />
-    //       <Stack.Screen name="SelectsPlant" component={SelectPlantsScreen} />
-    //       <Stack.Screen name="Soil" component={SoilScreen} />
-    //       <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
-    //       <Stack.Screen name="Sunshine" component={SunshineScreen} />
-    //       <Stack.Screen name="ViewSinglePlant" component={ViewSinglePlantScreen} />
-    //       <Stack.Screen name="Welcome" component={WelcomeScreen} />
-    //       <Stack.Screen name="Climate" component={ClimateScreen} />
-    //       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // </Provider>    
+          <Stack.Screen name="Congrats" component={CongratsScreen} />
+          <Stack.Screen name="GardenName" component={GardenNameScreen} />
+          <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />
+          <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
+          <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
+          <Stack.Screen name="PlotName" component={PlotNameScreen} />
+          <Stack.Screen name="SelectsPlant" component={SelectPlantsScreen} />
+          <Stack.Screen name="Soil" component={SoilScreen} />
+          <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
+          <Stack.Screen name="Sunshine" component={SunshineScreen} />
+          <Stack.Screen name="ViewSinglePlant" component={ViewSinglePlantScreen} />
+          <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen name="Climate" component={ClimateScreen} />
+          <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>    
     
   );
 }
