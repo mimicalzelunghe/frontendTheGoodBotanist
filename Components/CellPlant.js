@@ -4,8 +4,41 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function CellPlant(props) {
 
-    const [isSelected, setSelection] = useState(false);
-    isSelected ? "👍" : "👎"
+
+    //conditions pour appliquer le toggle des checkbox
+    const [plantAdded, setPlantAdded] = useState("default");
+    const [checkColor, setcheckColor] = useState("#1D6880");
+    const [checkIcon, setCheckIcon] = useState("checkbox-marked");
+
+
+    
+
+    //Mise en place des settings front du toggle
+    var checkClick = ()=> {
+
+        console.log("checkColor",checkColor);
+        console.log("plantAdded",plantAdded);
+        
+        if(plantAdded === "active"){setPlantAdded("default")} else {setPlantAdded("active")}
+
+        
+        if(plantAdded === "default") {
+            setcheckColor("#A8ADAA");
+            setCheckIcon("checkbox-blank-outline")
+        } else {
+            setcheckColor("#1D6880");
+            setCheckIcon("checkbox-marked")}}
+
+
+
+        var handlePressAddPlant = ()=>{
+            if(plantAdded === "default"){props.addPlant(props.plantId)} 
+          }
+          
+          var handlePressDeletePlant = ()=>{
+            if(plantAdded === "active"){props.deletePlant(props.plantId)} 
+          }
+
 
 return (
         <View style={{
@@ -30,14 +63,14 @@ return (
                     resizeMode: 'cover',
                 
                 }}
-                source={require('../assets/illustrations/expositionNo.png')}
+                source={{uri: props.Img}}
                 />
         
                 <View style={{flex:1}}>
                     <Text style={styles.Titre}>{props.CellTitle}</Text>
                 </View>
 
-                <MaterialCommunityIcons name={props.checkBoxState} size={24} color={props.checkboxColor}  />                
+                <MaterialCommunityIcons name={checkIcon} size={24} color={checkColor}  onPress={ () => [checkClick(), /* handlePressAddPlant(), handlePressDeletePlant() */ ]  }/>
             
                 </View>
                 <View style={{backgroundColor: "#A8ADAA", height: 1}}></View>

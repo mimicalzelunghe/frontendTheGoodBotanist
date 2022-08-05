@@ -21,7 +21,6 @@ import {connect} from 'react-redux'
 
 function HomeScreen (props)  {
 
-  console.log("Store HomeScreen", props.store );
   function homeScreenEmpty () {
 
     return (
@@ -113,6 +112,7 @@ function HomeScreen (props)  {
 
   // pour lire une variable Redux
   function mapStateToProps(state) {
+    console.log("Mimic3: HomeScreen - dans mapStateTpProps - Le store :", state)
 
     return { store: state }
    }
