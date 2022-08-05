@@ -11,6 +11,8 @@ import CardSurvey from '../Components/CardSurvey.js';
 
 import {connect} from 'react-redux';
 
+import backendIpAdress from '../parameters/param.js'
+
 function SignInScreen(props){
     
     const [token, setToken] = useState('')
@@ -34,7 +36,10 @@ function SignInScreen(props){
 
       // upload user
       console.log("Mimic2: SignInScreen - dans user() avant le fetch")
-      const userData = await fetch('http://192.168.10.107:3000/users/signIn', {
+
+      console.log("Mimic14: SignInScreen - dans user() ipadress :", backendIpAdress+'/users/signIn' )
+
+      const userData = await fetch(backendIpAdress+'/users/signIn', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${email}&passwordFromFront=${password}`

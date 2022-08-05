@@ -12,6 +12,8 @@ import CardSurvey from '../Components/CardSurvey.js';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {connect} from 'react-redux';
 
+import backendIpAdress from '../parameters/param.js'
+
 function GardenNameScreen(props) {
 
   console.log("store",props.store);
@@ -28,7 +30,7 @@ function GardenNameScreen(props) {
     // create the garden=> fetch to the route
     
     // create the garden
-    const gardenData = await fetch('http://192.168.10.122:3000/gardens/createGarden', {
+    const gardenData = await fetch(backendIpAdress+'/gardens/createGarden', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `gardenName=${gardenName}&gardenClimate=${props.store.climate}&token=${props.store.token}`

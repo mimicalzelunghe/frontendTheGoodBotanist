@@ -12,6 +12,8 @@ import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 import {connect} from 'react-redux'
 
+import backendIpAdress from '../parameters/param.js'
+
 
 
 // async () => {
@@ -66,7 +68,7 @@ function HomeScreen (props)  {
     useEffect(()=>{
 
       var result = async () => {
-        await fetch('https://192.168.10.122:3000/gardens/uploadUserGardens', {
+        await fetch(backendIpAdress+'/gardens/uploadUserGardens', {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'token={}&email=john@gmail.com'
