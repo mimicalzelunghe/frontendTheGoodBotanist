@@ -15,12 +15,6 @@ import {connect} from 'react-redux'
 import backendIpAdress from '../parameters/param.js'
 
 
-
-// async () => {
-//   var rawResponse = await fetch('https://jsonplaceholder.typicode.com/users');
-//   var response = await rawResponse.json();
-//  }
-
 function HomeScreen (props)  {
 
   function homeScreenEmpty () {
@@ -63,37 +57,47 @@ function HomeScreen (props)  {
     )
   }
 
- 
 
 
-
-    const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
+  const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
+  const [userGardens, setUserGardens] = useState([])
 
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
 
-    
+    /* Before displaying the component, load all user's gardens, */
     useEffect(()=>{
 
       var result = async () => {
-        await fetch(backendIpAdress+'/gardens/uploadUserGardens', {
-        method: 'POST',
-        headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: 'token={}&email=john@gmail.com'
-      });
+        //get all the user's garden
+        var rawGardens = await fetch(backendIpAdress+'/gardens/uploadUserGardens', {
+                        method: 'POST',
+                        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                        body: `token=${props.store.token}&idGarden=${props.store.idGarden}`
+                      })
+
+      //retranscription de la réponse pour qu'on puisse la lire
+        const gardensBody = await rawGardens.json()
+        console.log("Mimic9: returned gardens : ", gardensBody)
+
+        setUserGardens(gardensBody)
+
+      }
+              
       result();
 
+      //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
+      if(props.store.gardenName != ""){
+        setGardenNameToDisplay(props.store.gardenName)
+      }else{
+        console.log("Mimic1: Homescreen - gardenNameToDisplay : ", gardenNameToDisplay )
 
-      } 
-        if(props.gardenNameToDisplay != ""){
-            console.log("Mimic2: Homescreen - props.gardenNameToDisplay : ", props.gardenNameToDisplay )
-            setGardenNameToDisplay("Mon jardin "+props.gardenNameToDisplay)
-        }else{
-            console.log("Mimic1: Homescreen - gardenNameToDisplay : ", gardenNameToDisplay )
+      }  
     
-        }    
+    }, [])
 
-    })
+    console.log("Mimic8: HomeScreen - useEffect - user's garden :", userGardens)
+  
 
     return (
       
