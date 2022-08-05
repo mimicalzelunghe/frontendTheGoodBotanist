@@ -12,10 +12,13 @@ import CardSurvey from '../Components/CardSurvey.js';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {connect} from 'react-redux';
 
+import backendIpAdress from '../parameters/param.js'
+
 function GardenNameScreen(props) {
 
-  console.log("Mimic1: GardenNameScreen climateSelected is: ", props.climateSelected);
-  
+  console.log("store",props.store);
+  console.log("token",props.store.token);
+
   const [gardenName, setGardenName] = useState('')
 
   var handleCreateNewGarden = async ()=>{
@@ -23,15 +26,14 @@ function GardenNameScreen(props) {
     // call the backend to create a new garden for this user
     //use climateSelected as parameter
     // return should be the gardenid
-    console.log("Mimic7: GardenNameScreen - into the handle - the garden name is : ", gardenName)
     
     // create the garden=> fetch to the route
     
     // create the garden
-    const gardenData = await fetch('http://192.168.0.26:3000/gardens/createGarden', {
+    const gardenData = await fetch(backendIpAdress+'/gardens/createGarden', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `gardenName=${gardenName}&gardenClimate=${props.climateSelected}`
+      body: `gardenName=${gardenName}&gardenClimate=${props.store.climate}&token=${props.store.token}`
     })
 
     //retranscription de la réponse pour qu'on puisse la lire
@@ -80,17 +82,15 @@ function GardenNameScreen(props) {
 
   // pour lire une variable Redux
   function mapStateToProps(state) {
-    console.log("Mimic2: GardenNameScreen state is: ", state);
+    console.log("state",state);
 
-    return { climateSelected: state.climate }
+    return { store: state }
    }
 
   // update the variable into the Redux store
   function mapDispatchToProps(dispatch) {
     return {
       onCreateGardenSubmit: function(createdGardenName, createdIdGarden) { 
-        console.log("Mimic8: GardenNameScreen - into mapDispatchToProps - idgarden is :", createdIdGarden)
-        console.log("Mimic9: GardenNameScreen - into mapDispatchToProps - gardenName is :", createdGardenName)
           dispatch( {type: 'idGarden', idGarden: createdIdGarden}) 
           dispatch( {type: 'gardenName', gardenName: createdGardenName}) 
       }
