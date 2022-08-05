@@ -25,11 +25,10 @@ function GardenNameScreen(props) {
 
     // call the backend to create a new garden for this user
     //use climateSelected as parameter
-    // return should be the gardenid
-    
-    // create the garden=> fetch to the route
+    // return should be the gardenId
     
     // create the garden
+    // update the user's garden list
     const gardenData = await fetch(backendIpAdress+'/gardens/createGarden', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -37,12 +36,13 @@ function GardenNameScreen(props) {
     })
 
     //retranscription de la réponse pour qu'on puisse la lire
-    const gardenBody = await gardenData.json()
+    const gardenId = await gardenData.json()
 
+    console.log("Mimic1: gardenNameScreen - retour du fetch gardenBody = ", gardenId)
     
     //give idGarden tp onCreateGardenSumbit
     //TODO: change second argument to idVar
-    props.onCreateGardenSubmit(gardenName, gardenName)
+    props.onCreateGardenSubmit(gardenName, gardenId)
 
     // navigate to climate screen
     props.navigation.navigate("Home")

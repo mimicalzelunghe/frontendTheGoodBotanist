@@ -82,14 +82,14 @@ function SignUpScreen(props){
           />
           </View>
           <SafeAreaView style={styles.safe}>
-          <Text style={styles.titleXL}>Créer votre compte :</Text>
-          <View style={styles.inputLayoutContainer}>
-            <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email}/>
-            <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-            <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> {setPassword(value)}} value={password}/>
-            <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
-          </View> 
-        </SafeAreaView>
+            <Text style={styles.titleXL}>Créer votre compte :</Text>
+            <View style={styles.inputLayoutContainer}>
+              <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email}/>
+              <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
+              <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> {setPassword(value)}} value={password}/>
+              <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
+            </View> 
+          </SafeAreaView>
 
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp

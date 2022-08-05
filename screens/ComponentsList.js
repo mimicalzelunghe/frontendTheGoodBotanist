@@ -48,6 +48,13 @@ function ComponentsList() {
   };
     //InputExp settings
 
+    //CellPlantSetting
+    
+
+    //CellPlantSetting
+
+
+
 
   return (
     
@@ -100,12 +107,11 @@ function ComponentsList() {
         onPress={onPress}
         />
 
-
       </View>
       
       <CardSurvey backgroundColor= '#F5F6EF' CardTitle='Titre de la carte' CardDescription='Description de la carte'  />
       
-      <CellPlant CellTitle='Titre de la carte' CellDescription='Description de la carte' checkBoxState="checkbox-blank-outline" checkboxColor="black"/>
+      <CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle='Titre de la carte' CellDescription='Description de la carte'/>
 
     </View>
   );

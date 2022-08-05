@@ -78,9 +78,10 @@ const BottomNavigator = () => {
 
 export default function App() {
   return (
-    <SuggestionsScreen/>
+     
 
-/*
+
+
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -106,7 +107,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>    
-    */
+    
   );
 }
 
