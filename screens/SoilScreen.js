@@ -11,11 +11,20 @@ import Navbar from '../Components/Navbar.js';
 
 
 
-function SoilScreen() {
+function SoilScreen(props) {
 
     function onPressRightIcon(){console.log("onPressRightIcon");}
     function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
+    var handleSoilSelection = ()=>{
+        // TODO Mimic: plotDimension to put into redux
+        
+        props.navigation.navigate("PlotName")
+    
+      }
+
+
+    
   return (
 
     <View style={styles.container}>
@@ -47,7 +56,7 @@ function SoilScreen() {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()} }>
 
           <Image
               style={{ 
@@ -82,7 +91,7 @@ function SoilScreen() {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()}}>
 
           <Image
               style={{ 
@@ -116,7 +125,7 @@ function SoilScreen() {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()}}>
 
           <Image
               style={{ 
@@ -151,7 +160,7 @@ function SoilScreen() {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()}}>
 
           <Image
               style={{ 

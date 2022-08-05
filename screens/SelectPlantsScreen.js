@@ -55,6 +55,9 @@ function SelectPlantsScreen(props) {
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
   function onPress(){console.log("onPress");}
+  function handleValidation(){
+    props.navigation.navigate("Congrats")
+    }
 
   
     return (
@@ -100,7 +103,7 @@ function SelectPlantsScreen(props) {
         // iconName="check" 
         iconColor="white"
         text='Submit'
-        onPress={onPress}
+        onPress={handleValidation}
         />
 
         <ButtonSecondaryExp

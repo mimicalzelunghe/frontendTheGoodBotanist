@@ -19,7 +19,9 @@ function PlotNameScreen(props){
     function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
 
-  function handleValidation(){console.log("handleValidation");}
+  function handleValidation(){
+    props.navigation.navigate("SelectsPlant")
+    }
 
 
 
@@ -29,9 +31,9 @@ function PlotNameScreen(props){
         <View style={styles.navbartop}>
         <Navbar iconNameLeft="keyboard-backspace" 
         iconNameRight="close" 
-        iconColorLeft="#6A6E6C" 
-        iconColorRight="#6A6E6C" 
-        navigationText='titre de navigation' 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#1D6880" 
+        navigationText='' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         onPressRightIcon={onPressRightIcon}/>
@@ -46,7 +48,7 @@ function PlotNameScreen(props){
 
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
-        buttonLabel='Je valide cette parcelle' 
+        buttonLabel='Découvrir les plantes' 
         // iconName="check" 
         // iconColor="white"
         text='Submit'

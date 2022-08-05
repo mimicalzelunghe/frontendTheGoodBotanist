@@ -17,6 +17,11 @@ import backendIpAdress from '../parameters/param.js'
 
 function HomeScreen (props)  {
 
+
+
+  var redirectionCreatePlot = function() {props.navigation.navigate("PlotDimension")};
+
+
   function homeScreenEmpty () {
 
     return (
@@ -35,13 +40,12 @@ function HomeScreen (props)  {
       <Text style={styles.bodyMd}>Vous pouvez diviser votre jardin en autant de petites parcelles que vous avez de projets botaniques.</Text>
 
       <View style={styles.buttonBlock}>
-      <ButtonPrimary buttonLabel='Créer ma première parcelle' iconName="tree" iconColor="white" redirectionButton="HomeScreen"/>
       <ButtonPrimaryExp
         buttonLabel='Créer ma première parcelle' 
         iconName="tree" 
         iconColor="white"
         text='Submit'
-        onPress={onPress}
+        onPress={redirectionCreatePlot}
         />
       
       </View>
@@ -50,6 +54,8 @@ function HomeScreen (props)  {
     
 
   }
+
+
 
   function homeScreenContent () {
     return (
@@ -108,7 +114,7 @@ function HomeScreen (props)  {
         iconNameRight="square-edit-outline" 
         iconColorLeft="#1D6880" 
         iconColorRight="#1D6880" 
-        navigationText='Nouvelle parcelle' 
+        navigationText='' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         onPressRightIcon={onPressRightIcon}/>
