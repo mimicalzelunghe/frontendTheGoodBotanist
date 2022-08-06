@@ -82,6 +82,7 @@ export default function App() {
      
 
 
+
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
