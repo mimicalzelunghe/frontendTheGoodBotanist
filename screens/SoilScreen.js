@@ -9,6 +9,7 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux';
 
 
 function SoilScreen(props) {
@@ -16,13 +17,13 @@ function SoilScreen(props) {
     function onPressRightIcon(){console.log("onPressRightIcon");}
     function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
-    var handleSoilSelection = ()=>{
-        // TODO Mimic: plotDimension to put into redux
+    var handleSoilSelection = (soilQuality)=>{
+        // store the soil quality into redux
+        props.onChooseSoilQuality(soilQuality)
         
         props.navigation.navigate("PlotName")
     
       }
-
 
     
   return (
@@ -56,7 +57,7 @@ function SoilScreen(props) {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()} }>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection("argileux")} }>
 
           <Image
               style={{ 
@@ -91,7 +92,7 @@ function SoilScreen(props) {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()}}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection("calcaire")}}>
 
           <Image
               style={{ 
@@ -125,7 +126,7 @@ function SoilScreen(props) {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()}}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection("sableux")}}>
 
           <Image
               style={{ 
@@ -160,7 +161,7 @@ function SoilScreen(props) {
               paddingVertical:16
       }} > 
       
-          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection()}}>
+          <Pressable style={styles.pressable} onPress={()=> { handleSoilSelection("limoneux")}}>
 
           <Image
               style={{ 
@@ -199,7 +200,24 @@ function SoilScreen(props) {
   );
 }
 
-export default SoilScreen;
+
+   // update the variable into the Redux store
+  function mapDispatchToProps(dispatch) {
+    return {
+        onChooseSoilQuality: function(soilQuality) { 
+        console.log("🚀 ~ file: SoilScreen.js ~ line 208 ~ mapDispatchToProps ~ soilQuality", soilQuality)
+            
+          dispatch( {type: 'soil', soil: soilQuality}) 
+      }
+    }
+   }
+
+  export default connect(
+    null, 
+    mapDispatchToProps
+  )(SoilScreen);
+
+
 
 const styles = StyleSheet.create({
   container: {

@@ -29,7 +29,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
 import ComponentsList from './screens/ComponentsList';
 
-
+// recuders
 import climate from './reducers/climate.js'
 import dimension from './reducers/dimension.js'
 import idGarden from './reducers/idGarden.js'
@@ -37,9 +37,10 @@ import gardenName from './reducers/gardenName.js'
 import soil from './reducers/soil.js'
 import sunshine from './reducers/sunshine.js'
 import token from './reducers/token.js'
+import ploId from './reducers/plotId'
 
 
-const store = createStore(combineReducers({climate, dimension, idGarden, gardenName, soil, sunshine, token}))
+const store = createStore(combineReducers({climate, dimension, idGarden, gardenName, soil, sunshine, token, ploId}))
 
 
 const Stack = createStackNavigator();

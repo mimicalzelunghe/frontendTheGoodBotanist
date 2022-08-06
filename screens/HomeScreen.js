@@ -87,6 +87,7 @@ function HomeScreen (props)  {
         console.log("Mimic9: returned gardens : ", gardensBody)
 
         setUserGardens(gardensBody)
+        setGardenNameToDisplay(gardensBody[0].garden_name)
 
       }
               
@@ -103,7 +104,6 @@ function HomeScreen (props)  {
     }, [])
 
     console.log("Mimic8: HomeScreen - useEffect - user's garden :", userGardens)
-  
 
     return (
       
@@ -137,9 +137,19 @@ function HomeScreen (props)  {
     return { store: state }
    }
 
+  // update the variable into the Redux store
+  function mapDispatchToProps(dispatch) {
+    return {
+      // the first gaden name is the name to display on top of the screen
+      onReadUserGardens: function(firstGarden) { 
+          dispatch( {type: 'gardenName', idGarden: firstGarden}) 
+      }
+    }
+   }
+
   export default connect(
     mapStateToProps, 
-    null
+    mapDispatchToProps
   )(HomeScreen);
   
   const styles = StyleSheet.create({

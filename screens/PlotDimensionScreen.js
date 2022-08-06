@@ -9,16 +9,19 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux';
+
 
 function PlotDimensionScreen(props) {
 
     const [plotDimension, setPlotDimension] = useState('')
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
-    
 
-    var handlePlotDimension = ()=>{
+    var handlePlotDimension = (plotDimension)=>{
         // TODO Mimic: plotDimension to put into redux
+        //give idGarden tp onCreateGardenSumbit
+        props.onChoosePlotDimension(plotDimension)
         
         props.navigation.navigate("Sunshine")
     
@@ -54,7 +57,7 @@ function PlotDimensionScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setPlotDimension("petite"); handlePlotDimension()}}>
+            <Pressable style={styles.pressable} onPress={()=> {handlePlotDimension("petite")}}>
 
             <Image
                 style={{ 
@@ -89,7 +92,7 @@ function PlotDimensionScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setPlotDimension("moyenne"); handlePlotDimension()}}>
+            <Pressable style={styles.pressable} onPress={()=> {handlePlotDimension("moyenne")}}>
 
             <Image
                 style={{ 
@@ -123,7 +126,7 @@ function PlotDimensionScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setPlotDimension("grande"); handlePlotDimension()}}>
+            <Pressable style={styles.pressable} onPress={()=> {handlePlotDimension("grande")}}>
 
             <Image
                 style={{ 
@@ -161,8 +164,25 @@ function PlotDimensionScreen(props) {
       </View>
     );
   }
+
+    // update the variable into the Redux store
+    function mapDispatchToProps(dispatch) {
+    return {
+        onChoosePlotDimension: function(plotDimensionChosen) { 
+            console.log("🚀 ~ file: PlotDimensionScreen.js ~ line 172 ~ mapDispatchToProps ~ plotDimensionChosen", plotDimensionChosen)
+            
+            dispatch( {type: 'dimension', dimension: plotDimensionChosen}) 
+        }
+    }
+    }
+
+    export default connect(
+    null, 
+    mapDispatchToProps
+    )(PlotDimensionScreen);
+
   
-  export default PlotDimensionScreen;
+
   
   const styles = StyleSheet.create({
     container: {
