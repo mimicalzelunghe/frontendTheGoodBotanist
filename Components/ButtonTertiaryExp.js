@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'center',
-        height: 56,
+        height: 48,
         marginVertical:4,
     },
     pressable :{
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
     },  
     bodyMD: {
-        fontSize: 18,
+        fontSize: 16,
         lineHeight: 22,
         color: '#1D6880',
     },

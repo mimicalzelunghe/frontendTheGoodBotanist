@@ -82,7 +82,12 @@ function ComponentsList() {
 
       
 
-      <View style={styles.buttonBlock}>
+      <View style={{
+        flexDirection: 'row',
+        gap: 8,
+        flexDirection: 'column',
+        marginHorizontal: 16,
+      }}>
         <ButtonPrimaryExp
         buttonLabel='ButtonPrimaryExp' 
         iconName="check" 

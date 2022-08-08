@@ -24,13 +24,13 @@ export default ButtonSecondaryExp;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#FFFFFF',
-        borderWidth:  2,
+        borderWidth:  1,
         borderColor:  '#1D6880',
-        borderRadius:16,
+        borderRadius: 16,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'center',
-        height: 56,
+        height: 48,
         marginVertical:4,
     },
     pressable :{
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
     },  
     bodyMD: {
-        fontSize: 20,
+        fontSize: 16,
         lineHeight: 22,
         color: '#1D6880',
     },

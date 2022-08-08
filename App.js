@@ -28,6 +28,8 @@ import ViewSinglePlantScreen from './screens/ViewSinglePlantScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
 import ComponentsList from './screens/ComponentsList';
+import ModalPlant from './Components/ModalPlant';
+
 
 // recuders
 import climate from './reducers/climate.js'
@@ -79,18 +81,14 @@ const BottomNavigator = () => {
 
 export default function App() {
   return (
-     
-
-
+        
 
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
-          
           <Stack.Screen name="Home" component={HomeScreen} />
-          
           <Stack.Screen name="Congrats" component={CongratsScreen} />
           <Stack.Screen name="GardenName" component={GardenNameScreen} />
           <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />

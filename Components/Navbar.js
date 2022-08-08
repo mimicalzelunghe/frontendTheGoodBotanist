@@ -8,7 +8,12 @@ export default function Navbar(props) {
 
   return (
     
-        <View  style={styles.container} > 
+        <View  style={{
+            flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent:'space-between',
+      height: 56,
+        }} > 
         <MaterialCommunityIcons style={{margin:8}} name={props.iconNameLeft} size={30} color={props.iconColorLeft} onPress={props.onPressLeftIcon}/>
         
         <Text style={styles.bodyMD}>{props.navigationText}</Text>
@@ -18,12 +23,7 @@ export default function Navbar(props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent:'space-between',
-      height: 56,
-    },
+
     pressable :{
         flexDirection: 'row',
         alignItems: 'center',
