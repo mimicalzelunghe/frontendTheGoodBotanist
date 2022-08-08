@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 function PlantsFavoriteScreen(props){
 
+  
+
     return(
         <View
         style={{

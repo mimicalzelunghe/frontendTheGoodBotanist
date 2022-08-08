@@ -12,7 +12,7 @@ import CardSurvey from '../Components/CardSurvey.js';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {connect} from 'react-redux';
 
-import backendIpAdress from '../parameters/param.js'
+import backendIpAddress from '../parameters/param.js'
 
 function GardenNameScreen(props) {
 
@@ -29,7 +29,7 @@ function GardenNameScreen(props) {
     
     // create the garden
     // update the user's garden list
-    const gardenData = await fetch(backendIpAdress+'/gardens/createGarden', {
+    const gardenData = await fetch(backendIpAddress+'/gardens/createGarden', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `gardenName=${gardenName}&gardenClimate=${props.store.climate}&token=${props.store.token}`

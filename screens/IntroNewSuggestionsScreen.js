@@ -11,12 +11,12 @@ import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
 
-function CongratsScreen(props) {
+function IntroNewSuggestionsScreen(props) {
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
-  function onPress(){props.navigation.navigate("SelectsPlant")}
+  function onPress(){props.navigation.navigate("Suggestions")}
 
 
     return (
@@ -27,7 +27,7 @@ function CongratsScreen(props) {
 
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>“Félicitation votre parcelle “Nom de la parcelle” a été créée”</Text>
+        <Text style={styles.titleXL}>Prêts à découvrir les plantes les plus adaptées ?</Text>
 
         <View  style={styles.imageContainer} >
         <Image
@@ -39,15 +39,15 @@ function CongratsScreen(props) {
          
         
         
-        <Text style={styles.titleLG}>Vous pouvez dès à présent ajouter les plantes déjà présentes sur votre parcelle.</Text>
-        <Text style={styles.bodyMd}>Vous pourrez ainsi découvrir les score écologique de votre parcelle actuelle.</Text>
+        <Text style={styles.titleLG}>Vous êtes désormais prêt à contribuer à la favorisation de la biodiversité dans votre ville.</Text>
+        <Text style={styles.bodyMd}>En téte de liste vous retourverez les plantes les plus favorables à un retour de la biodiversité.</Text>
 
 
         </ScrollView>
 
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
-        buttonLabel='Ajouter les plantes existantes' 
+        buttonLabel='Je découvre' 
         // iconName="check" 
         iconColor="white"
         text='Submit'
@@ -61,7 +61,7 @@ function CongratsScreen(props) {
     );
   }
   
-  export default CongratsScreen;
+  export default IntroNewSuggestionsScreen;
   
   const styles = StyleSheet.create({
     container: {

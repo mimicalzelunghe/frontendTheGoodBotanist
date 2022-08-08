@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
-import backendIpAdress from '../parameters/param.js'
+import backendIpAddress from '../parameters/param.js'
 
 
 
@@ -29,24 +29,23 @@ function SelectPlantsScreen(props) {
   //Rechercher la liste des plantes dans la base de donnée ======================================
   
   useEffect(() => {
-  var listPlant = async () => {
-    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
-    var response = await rawResponse.json();
+    //var listPlant = async () => {
+    //var rawResponse = await fetch(backendIpAddress+'/plants/uploadSuggestedPlants');
+
+    var suggestPlants = async ()=>{
+      const rawSuggestedPlants = await fetch(backendIpAddress+'/plants/uploadPlants', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `plotId=${props.store.plotid}&gardenId=${props.store.idGarden}&token=${props.store.token}`
+    })
+    var suggestedPlants = await rawSuggestedPlants.json();
+    // console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 29 ~ listPlant ~ response", response)
     
     setTablePlantList([...response]);
-    
-   }
+  }
 
-
-   listPlant();
+  suggestPlants();
   }, []);
-
-
-
-
-
-  
-
 
   //Rechercher la liste des plantes dans la base de donnée =======================================
 
@@ -56,7 +55,7 @@ function SelectPlantsScreen(props) {
 
   function onPress(){console.log("onPress");}
   function handleValidation(){
-    props.navigation.navigate("Congrats")
+    props.navigation.navigate("IntroNewSuggestions")
     }
 
   
