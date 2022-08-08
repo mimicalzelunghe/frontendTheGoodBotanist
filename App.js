@@ -82,30 +82,17 @@ const BottomNavigator = () => {
 export default function App() {
   return (
         
-<Provider store={store}>
- <SuggestionsScreen/>
-</Provider>    
-
-
-<<<<<<< HEAD
-    // <Provider store={store}>
-    //   <NavigationContainer>
-    //     <Stack.Navigator screenOptions={{headerShown: false}}>
-    //     <Stack.Screen name="SignIn" component={SignInScreen} />
-    //       <Stack.Screen name="SignUp" component={SignUpScreen} />
-=======
 
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
->>>>>>> 54ef3a0bc1d4f6e95fdba0bd48efc9e7998a45bf
           
-    //       <Stack.Screen name="Home" component={HomeScreen} />
+         <Stack.Screen name="Home" component={HomeScreen} />
           
-    //       <Stack.Screen name="Congrats" component={CongratsScreen} />
-    //       <Stack.Screen name="GardenName" component={GardenNameScreen} />
+          <Stack.Screen name="Congrats" component={CongratsScreen} />
+       <Stack.Screen name="GardenName" component={GardenNameScreen} />
     //       <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />
     //       <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
     //       <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
