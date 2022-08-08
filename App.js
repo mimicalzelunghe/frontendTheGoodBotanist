@@ -39,10 +39,11 @@ import gardenName from './reducers/gardenName.js'
 import soil from './reducers/soil.js'
 import sunshine from './reducers/sunshine.js'
 import token from './reducers/token.js'
-import ploId from './reducers/plotId'
+import plotId from './reducers/plotId'
+import plotName from './reducers/plotName'
 
 
-const store = createStore(combineReducers({climate, dimension, idGarden, gardenName, soil, sunshine, token, ploId}))
+const store = createStore(combineReducers({climate, dimension, idGarden, gardenName, soil, sunshine, token, plotId, plotName}))
 
 
 const Stack = createStackNavigator();

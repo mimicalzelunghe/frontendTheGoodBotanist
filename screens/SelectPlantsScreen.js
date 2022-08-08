@@ -27,27 +27,23 @@ function SelectPlantsScreen(props) {
 
 
   //Rechercher la liste des plantes dans la base de donnée ======================================
-  
   useEffect(() => {
     //var listPlant = async () => {
     //var rawResponse = await fetch(backendIpAddress+'/plants/uploadSuggestedPlants');
+    
+    var listPlants =[]
 
-    var suggestPlants = async ()=>{
-      const rawSuggestedPlants = await fetch(backendIpAddress+'/plants/uploadSuggestedPlants', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `plotId=${props.store.plotid}&gardenId=${props.store.idGarden}&token=${props.store.token}`
-    })
-    var suggestedPlants = await rawSuggestedPlants.json();
+    var plantList = async ()=>{
+      const rawListPlants = await fetch(backendIpAddress+'/plants/uploadPlants')
+      listPlants = await rawListPlants.json();
+    }
+
+    plantList();
     // console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 29 ~ listPlant ~ response", response)
     
-    setTablePlantList([...response]);
-  }
+    setTablePlantList([...listPlants]);
 
-  suggestPlants();
   }, []);
-
-  //Rechercher la liste des plantes dans la base de donnée =======================================
 
 
   function onPressRightIcon(){console.log("onPressRightIcon");}

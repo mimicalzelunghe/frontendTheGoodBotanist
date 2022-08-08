@@ -26,6 +26,7 @@ function PlotNameScreen(props){
 
 
           var plotIdCreated = 0
+          var plotNameCreated = ''
 
           // waiting for the call to the backend  to create the plotId
           // use the var plotId as it will be the return of the call function
@@ -47,16 +48,15 @@ function PlotNameScreen(props){
           //save the plotId into the store
           //TODO: to be tested
           plotIdCreated = plotData._id
+          plotNameCreated = plotData.name
 
-          console.log("🚀 ~ file: PlotNameScreen.js ~ line 48 ~ createPlotName ~ plotIdCreated", plotIdCreated)
+          // and fill plotIdCreated with the plotId return by the route
+          // store the soil quality into redux
+          props.onCreatePlotName(plotIdCreated, plotNameCreated)
 
           }
 
           createPlotName()
-
-          // and fill plotIdCreated with the plotId return by the route
-          // store the soil quality into redux
-          props.onCreatePlotName(plotIdCreated)
 
           //props.navigation.navigate("SelectsPlant")
           //TODO: uncomment previous code line
@@ -108,9 +108,11 @@ function PlotNameScreen(props){
     // update the variable into the Redux store
     function mapDispatchToProps(dispatch) {
     return {
-      onCreatePlotName: function(plotIdCreated) { 
-          console.log("🚀 ~ file: PlotNameScreen.js ~ line 79 ~ mapDispatchToProps ~ plotIdCreated", plotIdCreated)
+      onCreatePlotName: function(plotIdCreated, plotNameCreated) { 
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 114 ~ mapDispatchToProps ~ plotIdCreated", plotIdCreated)
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 115 ~ mapDispatchToProps ~ plotIdCreated", plotNameCreated)
           dispatch( {type: 'plotId', plotId: plotIdCreated}) 
+          dispatch( {type: 'plotName', plotName: plotNameCreated}) 
       }
     }
     }

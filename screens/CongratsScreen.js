@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -9,11 +9,27 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux'
 
-function CongratsScreen() {
+function CongratsScreen(props) {
+
+  const [plotNameToDisplay, setPlotNameToDisplay] = useState('')
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
+
+  useEffect(()=>{
+
+    //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
+    if(props.store.plotName != ""){
+      setPlotNameToDisplay(props.store.plotName)
+      console.log("🚀 ~ file: CongratsScreen.js ~ line 24 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
+    }else{
+      console.log("🚀 ~ file: CongratsScreen.js ~ line 26 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
+      
+    }  
+
+  }, [])
 
   
     return (
@@ -24,7 +40,7 @@ function CongratsScreen() {
 
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>“Félicitation votre parcelle “Nom de la parcelle” a été créée”</Text>
+        <Text style={styles.titleXL}>Félicitation votre parcelle {plotNameToDisplay} a été créée</Text>
 
         <View  style={styles.imageContainer} >
         <Image
@@ -51,8 +67,19 @@ function CongratsScreen() {
       </SafeAreaView>
     );
   }
+
+
+  // pour lire une variable Redux
+  function mapStateToProps(state) {
+    console.log("🚀 ~ file: HomeScreen.js ~ line 139 ~ mapStateToProps ~ state", state)
+    return { store: state }
+   }
+
+  export default connect(
+    mapStateToProps, 
+    null
+  )(CongratsScreen);
   
-  export default CongratsScreen;
   
   const styles = StyleSheet.create({
     container: {
