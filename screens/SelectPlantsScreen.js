@@ -51,7 +51,7 @@ function SelectPlantsScreen(props) {
 
   function onPress(){console.log("onPress");}
   function handleValidation(){
-    props.navigation.navigate("Congrats")
+    props.navigation.navigate("IntroNewSuggestions")
     }
 
   

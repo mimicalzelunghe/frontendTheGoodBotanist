@@ -1,11 +1,7 @@
 import React,  { useState, useEffect }  from "react";
-import { StyleSheet, Text, Pressable, View, TextInput, Image, ImageBackground } from 'react-native';
+import { StyleSheet, Text, Pressable, View, TextInput, Image, ImageBackground, ScrollView } from 'react-native';
 import Input from '../Components/Input';
-import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
-import ButtonPrimary from '../Components/ButtonPrimary.js';
-import ButtonSecondary from '../Components/ButtonSecondary.js';
-import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import InputExp from '../Components/InputExp.js';
 import Navbar from '../Components/Navbar.js';
@@ -13,6 +9,7 @@ import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
 import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
 import ButtonTertiaryExp from '../Components/ButtonTertiaryExp.js';
 import CellPlant from '../Components/CellPlant.js';
+import TilePlot from "../Components/TilePlot";
 
 
 
@@ -58,7 +55,7 @@ function ComponentsList() {
 
   return (
     
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Navbar iconNameLeft="keyboard-backspace" 
       iconNameRight="close" 
       iconColorLeft="#6A6E6C" 
@@ -117,8 +114,8 @@ function ComponentsList() {
       <CardSurvey backgroundColor= '#F5F6EF' CardTitle='Titre de la carte' CardDescription='Description de la carte'  />
       
       <CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle='Titre de la carte' CellDescription='Description de la carte'/>
-
-    </View>
+      <TilePlot labelTitle="Le nom de la parcelleparcelleparcelleparcelle"/>
+    </ScrollView >
   );
 }
 
@@ -129,7 +126,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    justifyContent: 'flex-start'
   },
   buttonBlock: {
 

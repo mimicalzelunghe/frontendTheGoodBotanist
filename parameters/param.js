@@ -1,2 +1,2 @@
-var backendIpAddress = "http://192.168.10.112:3000"
+var backendIpAddress = "http://192.168.10.120:3000"
 export default backendIpAddress;

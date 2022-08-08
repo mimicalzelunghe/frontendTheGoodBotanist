@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
@@ -10,31 +10,14 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
-import {connect} from 'react-redux'
 
-function CongratsScreen(props) {
-
-  const [plotNameToDisplay, setPlotNameToDisplay] = useState('')
-
+function IntroNewSuggestionsScreen(props) {
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
-  useEffect(()=>{
+  function onPress(){props.navigation.navigate("Suggestions")}
 
-    //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
-    if(props.store.plotName != ""){
-      setPlotNameToDisplay(props.store.plotName)
-      console.log("🚀 ~ file: CongratsScreen.js ~ line 24 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
-    }else{
-      console.log("🚀 ~ file: CongratsScreen.js ~ line 26 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
-      
-    }  
-
-  }, [])
-
-  
-  function onPress(){props.navigation.navigate("SelectsPlant")}
 
     return (
       
@@ -44,7 +27,7 @@ function CongratsScreen(props) {
 
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>Félicitation votre parcelle {plotNameToDisplay} a été créée</Text>
+        <Text style={styles.titleXL}>Prêts à découvrir les plantes les plus adaptées ?</Text>
 
         <View  style={styles.imageContainer} >
         <Image
@@ -56,15 +39,15 @@ function CongratsScreen(props) {
          
         
         
-        <Text style={styles.titleLG}>Vous pouvez dès à présent ajouter les plantes déjà présentes sur votre parcelle.</Text>
-        <Text style={styles.bodyMd}>Vous pourrez ainsi découvrir les scores écologiques de votre parcelle.</Text>
+        <Text style={styles.titleLG}>Vous êtes désormais prêt à contribuer à la favorisation de la biodiversité dans votre ville.</Text>
+        <Text style={styles.bodyMd}>En téte de liste vous retourverez les plantes les plus favorables à un retour de la biodiversité.</Text>
 
 
         </ScrollView>
 
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
-        buttonLabel='Ajouter les plantes existantes' 
+        buttonLabel='Je découvre' 
         // iconName="check" 
         iconColor="white"
         text='Submit'
@@ -77,19 +60,8 @@ function CongratsScreen(props) {
       </SafeAreaView>
     );
   }
-
-
-  // pour lire une variable Redux
-  function mapStateToProps(state) {
-    console.log("🚀 ~ file: HomeScreen.js ~ line 139 ~ mapStateToProps ~ state", state)
-    return { store: state }
-   }
-
-  export default connect(
-    mapStateToProps, 
-    null
-  )(CongratsScreen);
   
+  export default IntroNewSuggestionsScreen;
   
   const styles = StyleSheet.create({
     container: {
