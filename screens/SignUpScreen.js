@@ -13,7 +13,7 @@ import Navbar from '../Components/Navbar.js';
 
 import {connect} from 'react-redux';
 
-import backendIpAdress from '../parameters/param.js'
+import backendIpAddress from '../parameters/param.js'
 
 function SignUpScreen(props){
 
@@ -28,7 +28,7 @@ function SignUpScreen(props){
       // TODO: call to the backend - route signup
           // create the garden
   
-      const userData = await fetch(backendIpAdress+'/users/signUp', {
+      const userData = await fetch(backendIpAddress+'/users/signUp', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${email}&passwordFromFront=${password}`

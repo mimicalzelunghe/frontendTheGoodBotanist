@@ -11,7 +11,7 @@ import CardSurvey from '../Components/CardSurvey.js';
 
 import {connect} from 'react-redux';
 
-import backendIpAdress from '../parameters/param.js'
+import backendIpAddress from '../parameters/param.js'
 
 function SignInScreen(props){
     
@@ -34,7 +34,7 @@ function SignInScreen(props){
       var hasGarden = false
 
       // upload user
-      const userData = await fetch(backendIpAdress+'/users/signIn', {
+      const userData = await fetch(backendIpAddress+'/users/signIn', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${email}&passwordFromFront=${password}`

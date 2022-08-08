@@ -12,7 +12,7 @@ import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 import {connect} from 'react-redux'
 
-import backendIpAdress from '../parameters/param.js'
+import backendIpAddress from '../parameters/param.js'
 
 
 function HomeScreen (props)  {
@@ -67,6 +67,7 @@ function HomeScreen (props)  {
 
   const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
   const [userGardens, setUserGardens] = useState([])
+  const [gardenIdToDisplay, setGardenIdToDisplay] = useState('')
 
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
@@ -76,10 +77,10 @@ function HomeScreen (props)  {
 
       var result = async () => {
         //get all the user's garden
-        var rawGardens = await fetch(backendIpAdress+'/gardens/uploadUserGardens', {
+        var rawGardens = await fetch(backendIpAddress+'/gardens/uploadUserGardens', {
                         method: 'POST',
                         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-                        body: `token=${props.store.token}&idGarden=${props.store.idGarden}`
+                        body: `token=${props.store.token}`
                       })
 
       //retranscription de la réponse pour qu'on puisse la lire
@@ -88,6 +89,9 @@ function HomeScreen (props)  {
 
         setUserGardens(gardensBody)
         setGardenNameToDisplay(gardensBody[0].garden_name)
+        setGardenIdToDisplay(gardensBody[0]._id)
+        //save the garden into the store
+        props.onLoadGarden(gardensBody[0]._id)
 
       }
               
@@ -132,8 +136,7 @@ function HomeScreen (props)  {
 
   // pour lire une variable Redux
   function mapStateToProps(state) {
-    console.log("Mimic3: HomeScreen - dans mapStateTpProps - Le store :", state)
-
+    console.log("🚀 ~ file: HomeScreen.js ~ line 139 ~ mapStateToProps ~ state", state)
     return { store: state }
    }
 
@@ -143,6 +146,9 @@ function HomeScreen (props)  {
       // the first gaden name is the name to display on top of the screen
       onReadUserGardens: function(firstGarden) { 
           dispatch( {type: 'gardenName', idGarden: firstGarden}) 
+      },
+      onLoadGarden: function(firstGardenId) { 
+        dispatch( {type: 'idGarden', idGarden: firstGardenId}) 
       }
     }
    }

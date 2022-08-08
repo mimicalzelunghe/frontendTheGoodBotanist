@@ -13,6 +13,8 @@ import Navbar from '../Components/Navbar.js';
 
 import {connect} from 'react-redux';
 
+import backendIpAddress from '../parameters/param.js'
+
 function PlotNameScreen(props){
 
   const [plotName, setPlotName] = useState('')
@@ -20,24 +22,46 @@ function PlotNameScreen(props){
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
 
-  function handleValidation(plotNameToCreate){
-
-    // waiting for the call to the backend  to create the plotId
-    // use the var plotId as it will be the return of the call function
-
-    var plotIdCreatedd = 10
-    //TODO: call to the backend to create the plotId
-    // and fill plotIdCreated with the plotId return by the route
-
-    // store the soil quality into redux
-    props.onCreatePlotName(plotIdCreatedd)
+  function handleValidation(){
 
 
-    props.navigation.navigate("SelectsPlant")
+          var plotIdCreated = 0
+
+          // waiting for the call to the backend  to create the plotId
+          // use the var plotId as it will be the return of the call function
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 27 ~ handleValidation")
+
+          // create the garden
+          // update the user's garden list
+          var createPlotName = async ()=>{
+              const rawPlotData = await fetch(backendIpAddress+'/plots/createPlot', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              body: `plotName=${plotName}&plotDimension=${props.store.dimension}&plotSunshine=${props.store.sunshine}&plotSoil=${props.store.soil}&gardenId=${props.store.idGarden}&token=${props.store.token}`
+            })
+                  
+          //retranscription de la réponse pour qu'on puisse la lire
+          const plotData = await rawPlotData.json() 
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 45 ~ createPlotName ~ plotData", plotData)
+          
+          //save the plotId into the store
+          //TODO: to be tested
+          plotIdCreated = plotData._id
+
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 48 ~ createPlotName ~ plotIdCreated", plotIdCreated)
+
+          }
+
+          createPlotName()
+
+          // and fill plotIdCreated with the plotId return by the route
+          // store the soil quality into redux
+          props.onCreatePlotName(plotIdCreated)
+
+          //props.navigation.navigate("SelectsPlant")
+          //TODO: uncomment previous code line
+          props.navigation.navigate("Congrats")
     }
-
-
-
 
     return(
       <View style={styles.container}>
@@ -54,7 +78,7 @@ function PlotNameScreen(props){
           <SafeAreaView style={styles.safe}>
           <Text style={styles.titleXL}>Comment voulez-vous appeller votre parcelle ?</Text>
           <View style={styles.inputLayoutContainer}>
-            <Input placeholder='Nom de votre parcelle' affichage="flex" onChangeText={(value)=> {setPlotName(value)}} value={plotName}/>
+            <Input placeholder='Nom de votre parcelle' affichage="flex" onChangeText={(value)=> {setPlotName(value)}} value={plotName} />
             <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
           </View> 
         </SafeAreaView>
@@ -65,28 +89,36 @@ function PlotNameScreen(props){
         // iconName="check" 
         // iconColor="white"
         text='Submit'
-        // nom parcelle est à remplacer par le texte saisi
-        onPress={handleValidation(plotName)}
+        onPress={handleValidation}
         />
         </View>
 
       </View>
     );
   }
-     // update the variable into the Redux store
-     function mapDispatchToProps(dispatch) {
-      return {
-        onCreatePlotName: function(plotIdCreated) { 
-            console.log("🚀 ~ file: PlotNameScreen.js ~ line 79 ~ mapDispatchToProps ~ plotIdCreated", plotIdCreated)
-            dispatch( {type: 'plotId', plotId: plotIdCreated}) 
-        }
+
+
+
+  // pour lire une variable Redux
+  function mapStateToProps(state) {
+    console.log("🚀 ~ file: PlotNameScreen.js ~ line 93 ~ mapStateToProps ~ state", state)
+    return { store: state }
+   }
+
+    // update the variable into the Redux store
+    function mapDispatchToProps(dispatch) {
+    return {
+      onCreatePlotName: function(plotIdCreated) { 
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 79 ~ mapDispatchToProps ~ plotIdCreated", plotIdCreated)
+          dispatch( {type: 'plotId', plotId: plotIdCreated}) 
       }
-     }
-  
-    export default connect(
-      null, 
-      mapDispatchToProps
-    )(PlotNameScreen);
+    }
+    }
+
+  export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+  )(PlotNameScreen);
   
   
   const styles = StyleSheet.create({

@@ -97,7 +97,7 @@ export default function App() {
           <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
           <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
           <Stack.Screen name="PlotName" component={PlotNameScreen} />
-          <Stack.Screen name="SelectsPlant" component={SelectPlantsScreen} />
+          <Stack.Screen name="SelectPlants" component={SelectPlantsScreen} />
           <Stack.Screen name="Soil" component={SoilScreen} />
           <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
           <Stack.Screen name="Sunshine" component={SunshineScreen} />
