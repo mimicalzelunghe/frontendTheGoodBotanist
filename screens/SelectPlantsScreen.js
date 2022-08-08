@@ -18,11 +18,12 @@ import backendIpAdress from '../parameters/param.js'
 
 function SelectPlantsScreen(props) {
 
-  console.log("store", props.store);
 
   var token = props.store.token;
  
   const [tablePlantList,setTablePlantList] = useState([]);
+
+  console.log("props.store",props.store)
 
 
   //Rechercher la liste des plantes dans la base de donnée ======================================
@@ -31,7 +32,6 @@ function SelectPlantsScreen(props) {
   var listPlant = async () => {
     var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
     var response = await rawResponse.json();
-    // console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 29 ~ listPlant ~ response", response)
     
     setTablePlantList([...response]);
     

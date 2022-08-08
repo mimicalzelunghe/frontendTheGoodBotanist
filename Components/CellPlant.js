@@ -36,17 +36,29 @@ export default function CellPlant(props) {
             if(plantAdded === "default"){
                 console.log("handlePressAddPlant")
                 console.log("props.plantId", props.plantId);
+                console.log("props.token", props.token);
+
                 await fetch(backendIpAdress+'/plants/addPlant', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}`
+                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
                   })
 
             } 
           }
           
-          var handlePressDeletePlant = ()=>{
-            if(plantAdded === "active"){console.log("handlePressDeletePlant");} 
+          var handlePressDeletePlant = async ()=>{
+            if(plantAdded === "active"){
+                
+                console.log("handlePressDeletePlant");
+                await fetch(backendIpAdress+'/plants/deletePlant', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
+                  })
+            
+            
+            } 
           }
 
 

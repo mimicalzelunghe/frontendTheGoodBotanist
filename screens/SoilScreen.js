@@ -68,7 +68,7 @@ function SoilScreen(props) {
                   borderRadius: 50
               
               }}
-              source={require('../assets/illustrations/expositionNo.png')}
+              source={require('../assets/illustrations/solArgileux.png')}
               />
       
               <View style={styles.textWrapper}>
@@ -103,7 +103,7 @@ function SoilScreen(props) {
                   borderRadius: 50
               
               }}
-              source={require('../assets/illustrations/expositionMedium.png')}
+              source={require('../assets/illustrations/solCalcaire.png')}
               />
       
               <View style={styles.textWrapper}>
@@ -137,7 +137,7 @@ function SoilScreen(props) {
                   borderRadius: 50
               
               }}
-              source={require('../assets/illustrations/tailleBig.png')}
+              source={require('../assets/illustrations/solSableux.png')}
               />
       
               <View style={styles.textWrapper}>
@@ -172,7 +172,7 @@ function SoilScreen(props) {
                   borderRadius: 50
               
               }}
-              source={require('../assets/illustrations/tailleBig.png')}
+              source={require('../assets/illustrations/solLimoneux.png')}
               />
       
               <View style={styles.textWrapper}>
