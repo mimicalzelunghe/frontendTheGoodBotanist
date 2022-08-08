@@ -9,6 +9,8 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux';
+
 
 function SunshineScreen(props) {
 
@@ -17,8 +19,9 @@ function SunshineScreen(props) {
     function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
 
-    var handleSunshineSelection = ()=>{
-        // TODO Mimic: plotDimension to put into redux
+    var handleSunshineSelection = (sunshineExposure)=>{
+        // store the sunshine exposure into redux
+        props.onChoosesunshine(sunshineExposure)
         
         props.navigation.navigate("Soil")
     
@@ -55,7 +58,7 @@ function SunshineScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setSunshine("ombre"); handleSunshineSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> { handleSunshineSelection("ombre")}}>
 
             <Image
                 style={{ 
@@ -90,7 +93,7 @@ function SunshineScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setSunshine("miOmbre"); handleSunshineSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {handleSunshineSelection("miOmbre")}}>
 
             <Image
                 style={{ 
@@ -124,7 +127,7 @@ function SunshineScreen(props) {
                 paddingVertical:16
         }} > 
         
-            <Pressable style={styles.pressable} onPress={()=> {setSunshine("soleil"); handleSunshineSelection()}}>
+            <Pressable style={styles.pressable} onPress={()=> {handleSunshineSelection("soleil")}}>
 
             <Image
                 style={{ 
@@ -163,8 +166,24 @@ function SunshineScreen(props) {
     );
   }
   
-  export default SunshineScreen;
-  
+    // update the variable into the Redux store
+    function mapDispatchToProps(dispatch) {
+    return {
+        onChoosesunshine: function(sunshine) { 
+        console.log("🚀 ~ file: SunshineScreen.js ~ line 173 ~ mapDispatchToProps ~ sunshine", sunshine)
+            
+            dispatch( {type: 'sunshine', sunshine: sunshine}) 
+        }
+    }
+    }
+
+    export default connect(
+    null, 
+    mapDispatchToProps
+    )(SunshineScreen);
+
+
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,

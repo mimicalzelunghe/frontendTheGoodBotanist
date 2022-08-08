@@ -11,15 +11,28 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
+import {connect} from 'react-redux';
+
 function PlotNameScreen(props){
 
-    const [isUnknownUser, setIsUnknownUser] = useState(true)
-    const [hasNoGarden, setHasNoGarden] = useState(false)
+  const [plotName, setPlotName] = useState('')
 
-    function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
 
-  function handleValidation(){
+  function handleValidation(plotNameToCreate){
+
+    // waiting for the call to the backend  to create the plotId
+    // use the var plotId as it will be the return of the call function
+
+    var plotIdCreatedd = 10
+    //TODO: call to the backend to create the plotId
+    // and fill plotIdCreated with the plotId return by the route
+
+    // store the soil quality into redux
+    props.onCreatePlotName(plotIdCreatedd)
+
+
     props.navigation.navigate("SelectsPlant")
     }
 
@@ -41,7 +54,7 @@ function PlotNameScreen(props){
           <SafeAreaView style={styles.safe}>
           <Text style={styles.titleXL}>Comment voulez-vous appeller votre parcelle ?</Text>
           <View style={styles.inputLayoutContainer}>
-            <Input placeholder='Nom de votre parcelle' affichage="flex"/>
+            <Input placeholder='Nom de votre parcelle' affichage="flex" onChangeText={(value)=> {setPlotName(value)}} value={plotName}/>
             <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
           </View> 
         </SafeAreaView>
@@ -52,14 +65,29 @@ function PlotNameScreen(props){
         // iconName="check" 
         // iconColor="white"
         text='Submit'
-        onPress={handleValidation}
+        // nom parcelle est à remplacer par le texte saisi
+        onPress={handleValidation(plotName)}
         />
         </View>
 
       </View>
     );
   }
-  export default PlotNameScreen
+     // update the variable into the Redux store
+     function mapDispatchToProps(dispatch) {
+      return {
+        onCreatePlotName: function(plotIdCreated) { 
+            console.log("🚀 ~ file: PlotNameScreen.js ~ line 79 ~ mapDispatchToProps ~ plotIdCreated", plotIdCreated)
+            dispatch( {type: 'plotId', plotId: plotIdCreated}) 
+        }
+      }
+     }
+  
+    export default connect(
+      null, 
+      mapDispatchToProps
+    )(PlotNameScreen);
+  
   
   const styles = StyleSheet.create({
     container: {

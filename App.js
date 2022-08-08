@@ -31,7 +31,7 @@ import ComponentsList from './screens/ComponentsList';
 import ModalPlant from './Components/ModalPlant';
 
 
-
+// recuders
 import climate from './reducers/climate.js'
 import dimension from './reducers/dimension.js'
 import idGarden from './reducers/idGarden.js'
@@ -39,9 +39,10 @@ import gardenName from './reducers/gardenName.js'
 import soil from './reducers/soil.js'
 import sunshine from './reducers/sunshine.js'
 import token from './reducers/token.js'
+import ploId from './reducers/plotId'
 
 
-const store = createStore(combineReducers({climate, dimension, idGarden, gardenName, soil, sunshine, token}))
+const store = createStore(combineReducers({climate, dimension, idGarden, gardenName, soil, sunshine, token, ploId}))
 
 
 const Stack = createStackNavigator();
@@ -86,11 +87,20 @@ export default function App() {
 </Provider>    
 
 
+<<<<<<< HEAD
     // <Provider store={store}>
     //   <NavigationContainer>
     //     <Stack.Navigator screenOptions={{headerShown: false}}>
     //     <Stack.Screen name="SignIn" component={SignInScreen} />
     //       <Stack.Screen name="SignUp" component={SignUpScreen} />
+=======
+
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
+>>>>>>> 54ef3a0bc1d4f6e95fdba0bd48efc9e7998a45bf
           
     //       <Stack.Screen name="Home" component={HomeScreen} />
           

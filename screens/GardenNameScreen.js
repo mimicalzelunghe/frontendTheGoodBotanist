@@ -40,8 +40,7 @@ function GardenNameScreen(props) {
 
     console.log("Mimic1: gardenNameScreen - retour du fetch gardenBody = ", gardenId)
     
-    //give idGarden tp onCreateGardenSumbit
-    //TODO: change second argument to idVar
+    //save the garden into the store
     props.onCreateGardenSubmit(gardenName, gardenId)
 
     // navigate to climate screen

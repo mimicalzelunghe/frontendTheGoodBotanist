@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Input from '../Components/Input';
