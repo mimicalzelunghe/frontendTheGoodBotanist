@@ -25,7 +25,7 @@ function CongratsScreen(props) {
     //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
     if(props.store.plotName != ""){
       setPlotNameToDisplay(props.store.plotName)
-      console.log("🚀 ~ file: CongratsScreen.js ~ line 24 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
+      console.log("🚀 ~ file: CongratsScreen.js ~ line 24 ~ CongratsScreen ~ plotNameToDisplay", props.store.plotName)
     }else{
       console.log("🚀 ~ file: CongratsScreen.js ~ line 26 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
       
@@ -81,7 +81,7 @@ function CongratsScreen(props) {
 
   // pour lire une variable Redux
   function mapStateToProps(state) {
-    console.log("🚀 ~ file: HomeScreen.js ~ line 139 ~ mapStateToProps ~ state", state)
+    console.log("🚀 ~ file: CongratsScreen.js ~ line 139 ~ mapStateToProps ~ state", state)
     return { store: state }
    }
 

@@ -49,12 +49,14 @@ function PlotNameScreen(props){
           //TODO: to be tested
           plotIdCreated = plotData._id
           plotNameCreated = plotData.name
+          setPlotName(plotData.name)
 
           // and fill plotIdCreated with the plotId return by the route
           // store the soil quality into redux
-          props.onCreatePlotName(plotIdCreated, plotNameCreated)
+          //props.onCreatePlotName(plotIdCreated, plotNameCreated)
 
           }
+          props.onCreatePlotName(plotIdCreated, plotName)
 
           createPlotName()
 

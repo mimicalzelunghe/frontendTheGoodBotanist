@@ -68,6 +68,7 @@ function HomeScreen (props)  {
   const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
   const [userGardens, setUserGardens] = useState([])
   const [gardenIdToDisplay, setGardenIdToDisplay] = useState('')
+  const [gardenClimateId, setGardenClimateId] = useState('')
 
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
@@ -87,11 +88,13 @@ function HomeScreen (props)  {
         const gardensBody = await rawGardens.json()
         console.log("Mimic9: returned gardens : ", gardensBody)
 
-        setUserGardens(gardensBody)
-        setGardenNameToDisplay(gardensBody[0].garden_name)
-        setGardenIdToDisplay(gardensBody[0]._id)
-        //save the garden into the store
-        props.onLoadGarden(gardensBody[0]._id)
+        setUserGardens(gardensBody.gardensId[0])
+        setGardenNameToDisplay(gardensBody.gardensId[0].garden_name)
+        setGardenIdToDisplay(gardensBody.gardensId[0]._id)
+        setGardenClimateId(gardensBody.gardensId[0].gardenClimate)
+        
+        //save the gardenId and the climateId into the store
+        props.onLoadGarden(gardensBody.gardensId[0]._id, gardensBody.gardensId[0].gardenClimate)
 
       }
               
@@ -147,8 +150,9 @@ function HomeScreen (props)  {
       onReadUserGardens: function(firstGarden) { 
           dispatch( {type: 'gardenName', idGarden: firstGarden}) 
       },
-      onLoadGarden: function(firstGardenId) { 
+      onLoadGarden: function(firstGardenId, climateId) { 
         dispatch( {type: 'idGarden', idGarden: firstGardenId}) 
+        dispatch( {type: 'idClimate', idClimate: climateId}) 
       }
     }
    }
