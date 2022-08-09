@@ -15,8 +15,8 @@ import {connect} from 'react-redux';
 function SunshineScreen(props) {
 
     const [sunshine, setSunshine] = useState('')
-    function onPressRightIcon(){console.log("onPressRightIcon");}
-    function onPressLeftIcon(){console.log("onPressLeftIcon");}
+    function onPressRightIcon(){props.navigation.navigate("Home");}
+    function onPressLeftIcon(){props.navigation.navigate("PlotDimension");}
 
 
     var handleSunshineSelection = (sunshineExposure)=>{
@@ -34,8 +34,8 @@ function SunshineScreen(props) {
         <Navbar 
         iconNameLeft="keyboard-backspace" 
         iconNameRight="close" 
-        iconColorLeft="#6A6E6C" 
-        iconColorRight="#6A6E6C" 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#1D6880" 
         navigationText='Nouvelle parcelle' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 

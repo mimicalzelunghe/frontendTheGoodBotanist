@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable , Image, ImageBackground} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import backendIpAdress from '../parameters/param.js'
+import backendIpAdress from '../parameters/param.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 export default function TilePlant(props) {
@@ -25,13 +27,23 @@ export default function TilePlant(props) {
     const [likeIcon, setLikeIcon] = useState("cards-heart-outline");
 
 
+    //Ajout des plantes liké dans le store
+    const [favoriePlants, setFavoriePlants] = useState({plotId: props.store.plotId, plantsId: []});
     
+    // AsyncStorage.setItem(props.store.plotId, JSON.stringify(props.plantInfo));
+    //             AsyncStorage.getItem(props.store.plotId, function(error, data) {
+    //                 console.log("data storage just added :",JSON.parse(data));
+    //             });
+    //Ajout des plantes likés dans le store
 
     //Mise en place des settings front du toggle
-    var checkClick = ()=> {
+    var likeClick = ()=> {
 
-        console.log("checkColor",likeIcon);
-        console.log("plantAdded",plantLiked);
+        
+
+        console.log("likeIcon",likeIcon);
+        console.log("plantLiked",plantLiked);
+        console.log("props.store",props.store);
         
         if(plantLiked === "active"){setPlantLiked("default")} else {setPlantLiked("active")}
 
@@ -45,31 +57,21 @@ export default function TilePlant(props) {
 
 
         var handlePressAddPlant = async ()=>{
-            if(plantAdded === "default"){
-                console.log("handlePressAddPlant")
-                console.log("props.plantId", props.plantId);
-                console.log("props.token", props.token);
+            if(plantLiked === "active"){
 
-                await fetch(backendIpAdress+'/plants/addPlant', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
-                  })
+                var plantFavorite = [];
 
+                plantFavorite.push(props.plantInfo);
+                console.log("🚀 ~ file: TilePlant.js ~ line 57 ~ handlePressAddPlant ~ plantFavorite", plantFavorite)
+            
             } 
           }
           
           var handlePressDeletePlant = async ()=>{
-            if(plantAdded === "active"){
+            if(plantLiked === "default"){
                 
-                console.log("handlePressDeletePlant");
-                await fetch(backendIpAdress+'/plants/deletePlant', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
-                  })
-            
-            
+                var uploadedFavoritePlant = favoriePlants;
+                
             } 
           }
 
@@ -94,10 +96,9 @@ return (
                 alignItems: 'center',
                 borderTopLeftRadius: 16,
                 borderTopRightRadius: 16,
-                
         }}  > 
             
-            
+            <Pressable onPress={()=> modalInfoPress()} style={{width:"100%"}}>
             <ImageBackground source={image} resizeMode="cover" style={{
               height: 100,
               width: "100%",
@@ -106,7 +107,7 @@ return (
             }} />
             
         
-                <Pressable onPress={()=> modalInfoPress()}>
+                
                     <Text style={{
                         fontSize: 16,
                         lineHeight: 22,
@@ -131,7 +132,7 @@ return (
                     }}>{props.score}score</Text>
             
                 
-                <MaterialCommunityIcons name={likeIcon} size={24} color={likeColor}  onPress={ () => [checkClick(), handlePressAddPlant(), handlePressDeletePlant() ]  }/>
+                {/* <MaterialCommunityIcons name={likeIcon} size={24} color={likeColor}  onPress={ () => [likeClick(), handlePressAddPlant(), handlePressDeletePlant() ]  }/> */}
                 </View>
         </View>
         

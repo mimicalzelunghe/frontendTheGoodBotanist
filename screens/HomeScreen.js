@@ -9,6 +9,8 @@ import ButtonTerciary from '../Components/ButtonTerciary.js';
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+import TilePlot from "../Components/TilePlot";
+import ButtonTertiaryExp from "../Components/ButtonTertiaryExp.js";
 
 import {connect} from 'react-redux'
 
@@ -49,7 +51,7 @@ function HomeScreen (props)  {
         />
       
       </View>
-
+      
       </ScrollView>)
     
 
@@ -58,8 +60,28 @@ function HomeScreen (props)  {
 
 
   function homeScreenContent () {
+
+    function onPress(){props.navigation.navigate("PlotDimension");
+  }
+
     return (
-      <Text> Coucou</Text>
+      <ScrollView style={styles.scrollView}>
+      <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
+      <View style={{marginVertical: 24}}>
+        {/* {tablePlantList.map((plot) => ( */}
+        <TilePlot  plotName="Le potager"  /*{plots.name} numberOfGroundedPlant={plots.groundedPlants} token={token} */ />
+        {/* ))} */}
+      </View>
+      <ButtonTertiaryExp
+        buttonLabel='Ajouter une nouvelle parcelle' 
+        iconName="checkerboard-plus" 
+        iconColor="#1D6880"
+        text='Submit'
+        onPress={onPress}
+        />
+
+
+      </ScrollView>
     )
   }
 
@@ -69,6 +91,7 @@ function HomeScreen (props)  {
   const [userGardens, setUserGardens] = useState([])
   const [gardenIdToDisplay, setGardenIdToDisplay] = useState('')
   const [gardenClimateId, setGardenClimateId] = useState('')
+  const [gardenPlotNb, setGardenPlotNb] = useState(0)
 
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
   function onPressRightIcon(){console.log("onPressRightIcon");}
@@ -92,6 +115,7 @@ function HomeScreen (props)  {
         setGardenNameToDisplay(gardensBody.gardensId[0].garden_name)
         setGardenIdToDisplay(gardensBody.gardensId[0]._id)
         setGardenClimateId(gardensBody.gardensId[0].gardenClimate)
+        setGardenPlotNb(gardensBody.gardensId[0].gardenPlots.length)
         
         //save the gardenId and the climateId into the store
         props.onLoadGarden(gardensBody.gardensId[0]._id, gardensBody.gardensId[0].gardenClimate)
@@ -112,6 +136,20 @@ function HomeScreen (props)  {
 
     console.log("Mimic8: HomeScreen - useEffect - user's garden :", userGardens)
 
+
+
+    function displayContent () {
+
+      console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
+      if (gardenPlotNb>0){
+
+       return (homeScreenContent())
+      }
+      else
+      { return (homeScreenEmpty())}}
+
+
+
     return (
       
       <SafeAreaView style={styles.container}>
@@ -127,7 +165,7 @@ function HomeScreen (props)  {
         onPressRightIcon={onPressRightIcon}/>
 
         
-        {homeScreenEmpty()}
+        {displayContent()}
         
 
   

@@ -114,7 +114,7 @@ function ComponentsList() {
       <CardSurvey backgroundColor= '#F5F6EF' CardTitle='Titre de la carte' CardDescription='Description de la carte'  />
       
       <CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle='Titre de la carte' CellDescription='Description de la carte'/>
-      <TilePlot labelTitle="Le nom de la parcelleparcelleparcelleparcelle"/>
+      <TilePlot labelTitle="Le nom de lafsdfvefzverv"/>
     </ScrollView >
   );
 }

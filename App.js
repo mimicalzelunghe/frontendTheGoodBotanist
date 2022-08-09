@@ -107,7 +107,6 @@ export default function App() {
            <Stack.Screen name="Welcome" component={WelcomeScreen} />
            <Stack.Screen name="Climate" component={ClimateScreen} />
            <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-
          </Stack.Navigator>
        </NavigationContainer>
      </Provider>    

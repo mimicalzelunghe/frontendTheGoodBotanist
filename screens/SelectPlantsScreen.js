@@ -65,22 +65,23 @@ function SelectPlantsScreen(props) {
   
     return (
       
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
 
         <Navbar 
         iconNameLeft="arrow-left" 
         iconNameRight="window-close" 
         iconColorLeft="#FFFFFF" 
-        iconColorRight="#1D6880" 
+        iconColorRight="#FFFFFF" 
         navigationText='Plantes existantes' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         // onPressLeftIcon={onPressLeftIcon} 
-        onPressRightIcon={onPressRightIcon}/>
+        // onPressRightIcon={onPressRightIcon}
+        />
 
 
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>“Quelles plantes avez-vous déjà sur votre parcelle ?”</Text>
+        <Text style={styles.titleXL}>Quelles plantes avez-vous déjà sur votre parcelle ?</Text>
 
         <View style={{marginVertical: 16}}>
         <ButtonTertiaryExp
@@ -110,7 +111,7 @@ function SelectPlantsScreen(props) {
 
   
   
-      </SafeAreaView>
+      </View>
     );
   }
   
@@ -133,7 +134,8 @@ export default connect(
     container: {
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      backgroundColor: "#FFFFFF"
     },
     scrollView: {
         paddingTop: 24,
