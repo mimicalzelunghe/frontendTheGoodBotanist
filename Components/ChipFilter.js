@@ -28,12 +28,13 @@ export default function ChipFilter(props) {
         if(filterActivation === "default") {
             setBorderColor("#A8ADAA");
             setTextColor("#2A2C2B")
-            setFilterActivation("active")
+            setFilterActivation("active");
+            props.handleActivateModal()
 
         } else {
             setBorderColor("#FFFFFF");
             setTextColor("#FFFFFF");
-            setFilterActivation("default")    
+            setFilterActivation("default")  
         }}
 
 
@@ -69,7 +70,7 @@ export default function ChipFilter(props) {
 
 return (
         <Pressable style={{backgroundColor:filterActivation === "default" ? "#FFF" : "#1D6880", borderRadius: 24, borderColor:filterActivation === "default" ? "#A8ADAA" : "#FFFFFF", borderWidth: 1 , paddingHorizontal: 16, paddingVertical: 8, marginHorizontal:4}} 
-        onPress={ () => filterClick() }>
+        onPress={ () => {filterClick()}}>
                 <View style={{flexDirection: "row"}}>
                 <Text style={{fontSize: 16,lineHeight: 22, color:filterActivation === "default" ? "#2A2C2B" : "#FFFFFF"}}>{props.filterLabel}</Text>
                 </View>

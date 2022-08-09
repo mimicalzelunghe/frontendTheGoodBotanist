@@ -10,7 +10,8 @@ import ModalPlant from "../Components/ModalPlant";
 
 import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
-import backendIpAdress from '../parameters/param.js'
+import backendIpAdress from '../parameters/param.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function SuggestionsScreen(props) {
@@ -24,10 +25,13 @@ function SuggestionsScreen(props) {
   //Initialisation d'un comportement de reverse dataflow pour récupérer les informations de la plantes cliquée et les faire remonter dans le composant parent
   const [plantInfoModal, setPlantInfoModal] = useState([])
   const [activateModal, setActivateModal] = useState(false)
- function handleActivateModal() {
-  setActivateModal(false)
-  
- }
+  //fermeture de la modale par reverse dataflow
+  function handleActivateModal() {
+    setActivateModal(false)
+  }
+  //fermeture de la modale par reverse dataflow
+
+
   var modalInfoPress = (infoModal) => {
     setPlantInfoModal(infoModal)
     console.log('plantInfoModal:',plantInfoModal);
@@ -36,20 +40,60 @@ function SuggestionsScreen(props) {
    //Initialisation d'un comportement de reverse dataflow pour récupérer les informations de la plantes cliquée et les faire remonter dans le composant parent
 
 
+
+
   //Rechercher la liste des plantes dans la base de donnée ======================================
   
   useEffect(() => {
   var listPlant = async () => {
     var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
     var response = await rawResponse.json();
-    
     setTablePlantList([...response]);
-    
    }
-
-
    listPlant();
   }, []);
+    //Rechercher la liste des plantes dans la base de donnée ======================================
+
+  //     //Activation des filtres de recherches ======================================
+  //     const [chipFilterPlantActivation, setChipFilterPlantActivation]= useState(false);
+  //     const [chipFilterSmallTreeActivation, setChipFilterSmallTreeActivation]= useState(false);
+  //     const [chipFilterTreeActivation, setChipFilterTreeActivation]= useState(false);
+
+  //     const [plantList, setPlantList] = useState([]);
+
+  //     const [selectedType, setSelectedType] = useState();
+
+  //     // Add default value on page load
+  //     useEffect(() => {
+  //       setPlantList(tablePlantList);
+  //     }, []);
+
+  //     // Function to get filtered list
+  //     function getFilteredList() {
+  //       // Avoid filter when selectedCategory is null
+  //       if (!selectedCategory) {
+  //         return plantList;
+  //       }
+  //       return plantList.filter((item) => item.type === selectedCategory);
+  //     }
+
+  //     // Avoid duplicate function calls with useMemo
+  //     var filteredList = useMemo(getFilteredList, [selectedCategory, sportList]);
+
+  //     // function handleCategoryChange(event) {
+  //     //   setSelectedCategory(event.target.value);
+  //     // }
+      
+  //     function plantFilterActivation() {
+  //       if(chipFilterPlantActivation === false){
+  //         setChipFilterPlantActivation(true);
+  //         setSelectedCategory([...]);
+
+  //       }
+  //     }
+
+
+      //Activation des filtres de recherches ======================================
 
 
   
@@ -72,7 +116,7 @@ function SuggestionsScreen(props) {
   
     return (
       
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <ModalPlant activateModal={activateModal} handleActivateModal={handleActivateModal} plantInfoModal={plantInfoModal}/>
 
         <Navbar 
@@ -80,7 +124,7 @@ function SuggestionsScreen(props) {
         iconNameRight="window-close" 
         iconColorLeft="#FFFFFF" 
         iconColorRight="#1D6880" 
-        navigationText='Plantes existantes' 
+        navigationText='Nos suggestions' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         // onPressLeftIcon={onPressLeftIcon} 
         onPressRightIcon={onPressRightIcon}/>
@@ -93,14 +137,14 @@ function SuggestionsScreen(props) {
 
         
         <View style={{flex:1, flexDirection: "row", justifyContent:"center", marginHorizontal: 16, marginVertical: 16}}>
-        <ChipFilter filterLabel="Plantes"/>
-        <ChipFilter filterLabel="Arbustre"/>
-        <ChipFilter filterLabel="Arbre"/>
+        <ChipFilter filterLabel="Plantes" /* onPress={plantFilterActivation} *//>
+        <ChipFilter filterLabel="Arbustre" /* onPress={smallTreeFilterActivation} *//>
+        <ChipFilter filterLabel="Arbre" /* onPress={treeFilterActivation} *//>
         </View>
 
        <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
        {tablePlantList.map((plant, i) => (
-        <TilePlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} />
+        <TilePlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
         ))}
        </View>
         </ScrollView>
@@ -124,7 +168,7 @@ function SuggestionsScreen(props) {
         />
 
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
   
@@ -144,7 +188,8 @@ export default connect(
     container: {
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      backgroundColor:"#ffffff"
     },
     scrollView: {
         paddingTop: 24,

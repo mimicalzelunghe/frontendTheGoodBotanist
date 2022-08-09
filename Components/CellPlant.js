@@ -41,7 +41,7 @@ export default function CellPlant(props) {
                 await fetch(backendIpAdress+'/plants/addPlant', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
+                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}&climate=${props.climate}`
                   })
 
             } 
@@ -54,7 +54,7 @@ export default function CellPlant(props) {
                 await fetch(backendIpAdress+'/plants/deletePlant', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
+                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}&climate=${props.climate}`
                   })
             
             

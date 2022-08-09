@@ -14,8 +14,8 @@ import {connect} from 'react-redux';
 
 function SoilScreen(props) {
 
-    function onPressRightIcon(){console.log("onPressRightIcon");}
-    function onPressLeftIcon(){console.log("onPressLeftIcon");}
+    function onPressLeftIcon(){props.navigation.navigate("Sunshine");}
+    function onPressRightIcon(){props.navigation.navigate("Home");}
 
     var handleSoilSelection = (soilQuality)=>{
         // store the soil quality into redux
@@ -33,8 +33,8 @@ function SoilScreen(props) {
         <Navbar 
         iconNameLeft="keyboard-backspace" 
         iconNameRight="close" 
-        iconColorLeft="#6A6E6C" 
-        iconColorRight="#6A6E6C" 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#1D6880" 
         navigationText='Nouvelle parcelle' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 

@@ -15,8 +15,8 @@ import {connect} from 'react-redux';
 function PlotDimensionScreen(props) {
 
     const [plotDimension, setPlotDimension] = useState('')
-
-  function onPressRightIcon(){console.log("onPressRightIcon");}
+    
+    function onPressRightIcon(){props.navigation.navigate("Home");}
 
     var handlePlotDimension = (plotDimension)=>{
         // TODO Mimic: plotDimension to put into redux
@@ -33,7 +33,7 @@ function PlotDimensionScreen(props) {
         iconNameLeft="keyboard-backspace" 
         iconNameRight="close" 
         iconColorLeft="#ffffff" 
-        iconColorRight="#6A6E6C" 
+        iconColorRight="#1D6880" 
         navigationText='Nouvelle parcelle' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         // onPressLeftIcon={onPressLeftIcon} 

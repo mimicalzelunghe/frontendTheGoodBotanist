@@ -19,7 +19,7 @@ const ModalPlant = (props) => {
   
 
 
-  const [heroHeaderHeight, setHeroHeaderHeight] = useState(200)
+  const [heroHeaderHeight, setHeroHeaderHeight] = useState(150)
   
   var tagAttractBirds = () => {
 
@@ -54,12 +54,12 @@ const ModalPlant = (props) => {
    
 
       <Modal
-        animationType="fade"
+        animationType="slide"
         transparent={true}
         visible={props.activateModal}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          props.handleActivateModal();
+          props.handleActivateFilter();
         }}
       >
        
@@ -67,7 +67,6 @@ const ModalPlant = (props) => {
             flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: 22,
     backgroundColor: "#00000030"
           }}>
 

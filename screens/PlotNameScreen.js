@@ -19,8 +19,8 @@ function PlotNameScreen(props){
 
   const [plotName, setPlotName] = useState('')
 
-  function onPressLeftIcon(){console.log("onPressLeftIcon");}
-  function onPressRightIcon(){console.log("onPressRightIcon");}
+  function onPressLeftIcon(){props.navigation.navigate("Soil");}
+  function onPressRightIcon(){props.navigation.navigate("Home");}
 
   function handleValidation(){
 
@@ -85,7 +85,7 @@ function PlotNameScreen(props){
 
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
-        buttonLabel='Découvrir les plantes' 
+        buttonLabel='Enregistrer la nouvelle parcelle' 
         // iconName="check" 
         // iconColor="white"
         text='Submit'

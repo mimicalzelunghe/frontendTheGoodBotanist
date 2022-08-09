@@ -24,7 +24,7 @@ export default function TilePlot(props) {
     const [likeColor, setLikeColor] = useState("#A8ADAA");
     const [likeIcon, setLikeIcon] = useState("cards-heart-outline");
 
-
+    
     
 
     //Mise en place des settings front du toggle
@@ -33,44 +33,7 @@ export default function TilePlot(props) {
         console.log("checkColor",likeIcon);
         console.log("plantAdded",plantLiked);
         
-        if(plantLiked === "active"){setPlantLiked("default")} else {setPlantLiked("active")}
-
         
-        if(plantLiked === "default") {
-            setLikeColor("#A8ADAA");
-            setLikeIcon("cards-heart-outline")
-        } else {
-            setLikeColor("#1D6880");
-            setLikeIcon("cards-heart")}}
-
-
-        var handlePressAddPlant = async ()=>{
-            if(plantAdded === "default"){
-                console.log("handlePressAddPlant")
-                console.log("props.plantId", props.plantId);
-                console.log("props.token", props.token);
-
-                await fetch(backendIpAdress+'/plants/addPlant', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
-                  })
-
-            } 
-          }
-          
-          var handlePressDeletePlant = async ()=>{
-            if(plantAdded === "active"){
-                
-                console.log("handlePressDeletePlant");
-                await fetch(backendIpAdress+'/plants/deletePlant', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}`
-                  })
-            
-            
-            } 
           }
 
 
@@ -78,12 +41,10 @@ return (
         <View style={{
             flex: 1,
             flexDirection: "row",
-            margin: 8,
+            marginHorizontal: 16,
+            marginVertical: 4,
             backgroundColor: "#F5F6EF",
             borderRadius: 16,
-            minWidth: 100,
-            borderWidth: 1,
-            borderColor: "#A8ADAA",
             overflow: "hidden",            
         }}>
         <View  style={{
@@ -95,35 +56,82 @@ return (
                 }}  > 
             
             
-            <ImageBackground source={image} resizeMode="cover" style={{
-              height: 100,
-              width: 100,
+            <Image source={require('../assets/illustrations/illustrationPlotTile.png')} resizeMode="cover" style={{
+                height: "100%",
               borderTopLeftRadius: 16,
               borderBottomLeftRadius: 16,
+              maxWidth: 100,
+
             }} />
-            
-                        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 16, }}>
-                            <Text style={{
-                            fontSize: 19,
-                            lineHeight: 24,
-                            color: "#2A2C2B",
-                            textAlign: "center",
-                            marginRight: 16 ,
-                            }}
-                            numberOfLines={1} 
-                            ellipsizeMode='tail'>{props.labelTitle}</Text>
-                        
-                            <Text style={{
-                            fontSize: 16,
-                            lineHeight: 22,
-                            color: "#1D6880",
-                            textAlign: "center",
-                            borderWidth: 1,
-                            borderRadius: 4,
-                            paddingHorizontal: 4,
-                            borderColor: "#1D6880",
-                            }}>{props.score}score</Text>
+                    <View style={{flex: 1, flexDirection:"column", justifyContent: "flex-start", marginVertical: 16}}>
+                        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 16, marginBottom: 8 }}>
+                            <View style={{flex:1}}>
+                                <Text style={{
+                                fontSize: 19,
+                                lineHeight: 24,
+                                color: "#2A2C2B",
+                                textAlign: "left",
+                                marginRight: 16 ,
+                                }}
+                                numberOfLines={1} 
+                                ellipsizeMode='tail'>{props.plotName}</Text>
+                            </View>
+                            
+                                <Text style={{
+                                fontSize: 16,
+                                lineHeight: 22,
+                                color: "#1D6880",
+                                textAlign: "center",
+                                borderWidth: 1,
+                                borderRadius: 4,
+                                paddingHorizontal: 4,
+                                borderColor: "#1D6880",
+                                }}>{props.score}score</Text>
                         </View>
+                        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 16, marginBottom: 4 }}>
+                            <View style={{flex:1}}>
+                                <Text style={{
+                                 fontSize: 13,
+                                 lineHeight: 15,
+                                 color: "#2A2C2B",
+                                textAlign: "left",
+                                marginRight: 16 ,
+                                }}
+                                numberOfLines={1} 
+                                ellipsizeMode='tail'>Organismes plantés :</Text>
+                            </View>
+                            
+                                <Text style={{
+                                fontSize: 13,
+                                lineHeight: 15,
+                                color: "#1D6880",
+                                textAlign: "center",
+                                }}>8</Text>
+                        </View>
+
+                        {/* <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 16, }}>
+                            <View style={{flex:1}}>
+                                <Text style={{
+                                 fontSize: 13,
+                                 lineHeight: 15,
+                                 color: "#2A2C2B",
+                                textAlign: "left",
+                                marginRight: 16 ,
+                                }}
+                                numberOfLines={1} 
+                                ellipsizeMode='tail'>En favori :</Text>
+                            </View>
+                            
+                                <Text style={{
+                                fontSize: 13,
+                                lineHeight: 15,
+                                color: "#1D6880",
+                                textAlign: "center",
+                                }}>8</Text>
+                        </View> */}
+
+                    </View>
+                        
                     
             
                 
