@@ -21,38 +21,46 @@ function SelectPlantsScreen(props) {
 
   var token = props.store.token;
  
-  const [tablePlantList,setTablePlantList] = useState([]);
+  const [hasPermission, setHasPermission] = useState(false);
+  const [plantsList, setPlantsList] = useState([]);
 
   console.log("props.store",props.store)
 
 
-  //Rechercher la liste des plantes dans la base de donnée ======================================
+  
   useEffect(() => {
-    //var listPlant = async () => {
-    //var rawResponse = await fetch(backendIpAddress+'/plants/uploadSuggestedPlants');
     
-    var listPlants =[]
-
-    var plantList = async ()=>{
-      const rawListPlants = await fetch(backendIpAddress+'/plants/uploadPlants')
-      listPlants = await rawListPlants.json();
+    //Rechercher la liste des plantes dans la base de donnée ======================================
+    var listPlant = async () => {
+    var rawResponse = await fetch(backendIpAddress+'/plants/uploadPlants');
+    var response = await rawResponse.json();
+    
+    setPlantsList(response)
     }
-
-    plantList();
-    // console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 29 ~ listPlant ~ response", response)
-    
-    setTablePlantList([...listPlants]);
+    listPlant()
 
   }, []);
 
+  console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 58 ~ listPlant ~ plantList", plantsList)
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
   function onPress(){console.log("onPress");}
-  function handleValidation(){
+
+  function onPressCamera(){
+    console.log("onPress");
+  
+  }
+
+  var handleValidation = async ()=>{
     props.navigation.navigate("IntroNewSuggestions")
     }
+
+    var tabPlantes = []
+    plantsList.map((plant) => {
+      tabPlantes.push(<CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle={plant.common_name} plantId={plant._id} token={token} climateId={props.store.climate} plotId={props.store.plotId} />)
+      })
 
   
     return (
@@ -63,7 +71,7 @@ function SelectPlantsScreen(props) {
         iconNameLeft="arrow-left" 
         iconNameRight="window-close" 
         iconColorLeft="#FFFFFF" 
-        iconColorRight="#1D6880" 
+        iconColorRight="#FFFFFF" 
         navigationText='Plantes existantes' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         // onPressLeftIcon={onPressLeftIcon} 
@@ -81,33 +89,22 @@ function SelectPlantsScreen(props) {
         iconName="camera" 
         iconColor="#1D6880"
         text='Submit'
-        onPress={onPress}
+        onPress={onPressCamera}
         />
         </View>
 
-        {tablePlantList.map((plant) => (
-        <CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle={plant.common_name} plantId={plant._id} token={token} />
-        ))}
-
+        {tabPlantes}
 
         </ScrollView>
 
         <View style={styles.buttonBlock}>
 
         <ButtonPrimaryExp
-        buttonLabel='Valider' 
+        buttonLabel='Suivant' 
         // iconName="check" 
         iconColor="white"
         text='Submit'
         onPress={handleValidation}
-        />
-
-        <ButtonSecondaryExp
-        buttonLabel='Passer cette étape' 
-        // iconName="check" 
-        iconColor="#1D6880"
-        text='Submit'
-        onPress={onPress}
         />
 
         </View>
@@ -120,6 +117,7 @@ function SelectPlantsScreen(props) {
   
 // update the variable into the Redux store
 function mapStateToProps(state) {
+console.log("🚀 ~ file: SelectPlantsScreen.js ~ line 124 ~ mapStateToProps ~ state", state)
 
   return { store: state }
  }

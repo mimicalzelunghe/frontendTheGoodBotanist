@@ -14,7 +14,7 @@ import Navbar from '../Components/Navbar.js';
 function PlotPlantsScreen() {
 
     function onPressRightIcon(){console.log("onPressRightIcon");}
-    function onPressLeftIcon(){console.log("onPressLeftIcon");}
+    function onPressLeftIcon(){props.navigation.navigate("Home")}
 
   return (
 
@@ -23,12 +23,13 @@ function PlotPlantsScreen() {
         <Navbar 
         iconNameLeft="keyboard-backspace" 
         iconNameRight="close" 
-        iconColorLeft="#6A6E6C" 
-        iconColorRight="#6A6E6C" 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#FFFFFF"  
         navigationText='Nouvelle parcelle' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
-        onPressRightIcon={onPressRightIcon}/>
+        // onPressRightIcon={onPressRightIcon}
+        />
 
       <ScrollView style={{paddingTop: 24}}>
       <Text style={styles.titleXL}>Quel est le type de sol ?</Text>
@@ -51,7 +52,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    backgroundColor: "#FFF",
   }, imageContainer : {
       flex: 1,
       flexDirection: 'row',

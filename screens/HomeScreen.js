@@ -19,160 +19,182 @@ import backendIpAddress from '../parameters/param.js'
 
 function HomeScreen (props)  {
 
+        const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
+        const [userGardens, setUserGardens] = useState([])
+        const [gardenIdToDisplay, setGardenIdToDisplay] = useState('')
+        const [gardenClimateId, setGardenClimateId] = useState('')
+        const [gardenPlotNb, setGardenPlotNb] = useState(0)
 
+        /* Before displaying the component, load all user's gardens, */
+        useEffect(()=>{
 
-  var redirectionCreatePlot = function() {props.navigation.navigate("PlotDimension")};
+          var result = async () => {
+            //get all the user's garden
+            var rawGardens = await fetch(backendIpAddress+'/gardens/uploadUserGardens', {
+                            method: 'POST',
+                            headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                            body: `token=${props.store.token}`
+                          })
 
+          //retranscription de la réponse pour qu'on puisse la lire
+            const gardensBody = await rawGardens.json()
+            console.log("Mimic9: returned gardens : ", gardensBody)
 
-  function homeScreenEmpty () {
+            setUserGardens(gardensBody.gardensId[0])
+            setGardenNameToDisplay(gardensBody.gardensId[0].garden_name)
+            setGardenIdToDisplay(gardensBody.gardensId[0]._id)
+            setGardenClimateId(gardensBody.gardensId[0].gardenClimate)
+            setGardenPlotNb(gardensBody.gardensId[0].gardenPlots.length)
+            
+            //save the gardenId and the climateId into the store
+            props.onLoadGarden(gardensBody.gardensId[0]._id, gardensBody.gardensId[0].gardenClimate)
 
-    return (
-    <ScrollView style={styles.scrollView}>
-      <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
+          }
+                  
+          result();
 
-      <View  style={styles.imageContainer} >
-      <Image
-        style={styles.Illustration}
-        source={require('../assets/illustrations/illustrationWelcomeScreen.png')}
-      /> 
-      </View>
-      
-      <Text style={styles.titleLG}>Votre jardin est encore vide.</Text>
-      <Text style={styles.bodyMd}>Créez votre première parcelle et ajoutez les végétaux qui y habitent. C’est à l’echelle d’un bout de terrain que l’on peut améliorer notre écosystème.</Text>
-      <Text style={styles.bodyMd}>Vous pouvez diviser votre jardin en autant de petites parcelles que vous avez de projets botaniques.</Text>
+          //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
+          if(props.store.gardenName != ""){
+            setGardenNameToDisplay(props.store.gardenName)
+          }else{
+            console.log("Mimic1: Homescreen - gardenNameToDisplay : ", gardenNameToDisplay )
 
-      <View style={{margin: 16}}>
-      <ButtonPrimaryExp
-        buttonLabel='Créer ma première parcelle' 
-        iconName="tree" 
-        iconColor="white"
-        text='Submit'
-        onPress={redirectionCreatePlot}
-        style={{marginHorizontal:16}}/>
-      </View>
-      
-      
-      
-      </ScrollView>)
-    
-
-  }
-
-
-
-  function homeScreenContent () {
-
-    function onPress(){props.navigation.navigate("PlotDimension");
-  }
-
-    return (
-      <ScrollView style={styles.scrollView}>
-      <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
-      <View style={{marginVertical: 24}}>
-        {/* {tablePlantList.map((plot) => ( */}
-        <TilePlot  plotName="Le potager"  /*{plots.name} numberOfGroundedPlant={plots.groundedPlants} token={token} */ />
-        {/* ))} */}
-      </View>
-      <ButtonTertiaryExp
-        buttonLabel='Ajouter une nouvelle parcelle' 
-        iconName="checkerboard-plus" 
-        iconColor="#1D6880"
-        text='Submit'
-        onPress={onPress}
-        />
-
-
-      </ScrollView>
-    )
-  }
-
-
-
-  const [gardenNameToDisplay, setGardenNameToDisplay] = useState('Nom jardin')
-  const [userGardens, setUserGardens] = useState([])
-  const [gardenIdToDisplay, setGardenIdToDisplay] = useState('')
-  const [gardenClimateId, setGardenClimateId] = useState('')
-  const [gardenPlotNb, setGardenPlotNb] = useState(0)
-
-  function onPressLeftIcon(){console.log("onPressLeftIcon");}
-  function onPressRightIcon(){console.log("onPressRightIcon");}
-
-    /* Before displaying the component, load all user's gardens, */
-    useEffect(()=>{
-
-      var result = async () => {
-        //get all the user's garden
-        var rawGardens = await fetch(backendIpAddress+'/gardens/uploadUserGardens', {
-                        method: 'POST',
-                        headers: {'Content-Type':'application/x-www-form-urlencoded'},
-                        body: `token=${props.store.token}`
-                      })
-
-      //retranscription de la réponse pour qu'on puisse la lire
-        const gardensBody = await rawGardens.json()
-        console.log("Mimic9: returned gardens : ", gardensBody)
-
-        setUserGardens(gardensBody.gardensId[0])
-        setGardenNameToDisplay(gardensBody.gardensId[0].garden_name)
-        setGardenIdToDisplay(gardensBody.gardensId[0]._id)
-        setGardenClimateId(gardensBody.gardensId[0].gardenClimate)
-        setGardenPlotNb(gardensBody.gardensId[0].gardenPlots.length)
+          }  
         
-        //save the gardenId and the climateId into the store
-        props.onLoadGarden(gardensBody.gardensId[0]._id, gardensBody.gardensId[0].gardenClimate)
+        }, [])
 
-      }
+        console.log("Mimic8: HomeScreen - useEffect - user's garden :", userGardens)
+
+        //redirects to plot dimension declaration if new plot is to created
+        var redirectionCreatePlot = function() {props.navigation.navigate("PlotDimension")};
+
+
+        // this function handles the left icon pressure
+        function onPressLeftIcon(){console.log("onPressLeftIcon");}
+
+        // this function handles the right icon pressure
+        function onPressRightIcon(){console.log("onPressRightIcon");}
+
+
+        //This function is called if the first garden to display has no plot, 
+        // then we display the empty home screen
+        function homeScreenEmpty () {
+
+          return (
+          <ScrollView style={styles.scrollView}>
+            <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
+
+            <View  style={styles.imageContainer} >
+            <Image
+              style={styles.Illustration}
+              source={require('../assets/illustrations/illustrationWelcomeScreen.png')}
+            /> 
+            </View>
+            
+            <Text style={styles.titleLG}>Votre jardin est encore vide.</Text>
+            <Text style={styles.bodyMd}>Créez votre première parcelle et ajoutez les végétaux qui y habitent. C’est à l’echelle d’un bout de terrain que l’on peut améliorer notre écosystème.</Text>
+            <Text style={styles.bodyMd}>Vous pouvez diviser votre jardin en autant de petites parcelles que vous avez de projets botaniques.</Text>
+
+            <View style={{margin: 16}}>
+            <ButtonPrimaryExp
+              buttonLabel='Créer ma première parcelle' 
+              iconName="tree" 
+              iconColor="white"
+              text='Submit'
+              onPress={redirectionCreatePlot}
+              style={{marginHorizontal:16}}/>
+            </View>
+            
+            
+            
+            </ScrollView>)
+          
+
+        }
+
+        //This function id called when the first garden to display has 
+        // at least one plot, we display the homeScreenContent
+        function homeScreenContent (gardens) {
+
+          console.log("🚀 ~ file: HomeScreen.js ~ line 65 ~ homeScreenContent ~ gardens", gardens)
+          
+
+          function onPress(){
+            props.navigation.navigate("PlotDimension");
+          
+          }
+
+          function redirectionPlot(){props.navigation.navigate("BottomNavigator");}
+
+          var listPlots = []
+          gardens.gardenPlots.map((plot) => {
+          console.log("🚀 ~ file: HomeScreen.js ~ line 78 ~ gardens.gardenPlots.map ~ plot", plot)
+            
+            listPlots.push(
+              <View style={{marginVertical: 24}}>
+              {/* {tablePlantList.map((plot) => ( */}
+              <Pressable onPress={redirectionPlot}>
+              <TilePlot  plotName={plot.name}/>
+              </Pressable>
+              {/* ))} */}
+            </View>
+
+            )
+          })
+
+          return (
+            <ScrollView style={styles.scrollView}>
+            <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
+            {listPlots}
+
+            <ButtonTertiaryExp
+              buttonLabel='Ajouter une nouvelle parcelle' 
+              iconName="checkerboard-plus" 
+              iconColor="#1D6880"
+              text='Submit'
+              onPress={onPress}
+              />
+
+
+            </ScrollView>
+          )
+        }
+
+        // this functions chooses the right screen to display 
+        //eithet the homeScreenEmpty one the homeScreenContent one
+        function displayContent (gardens) {
+
+            console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
+            if (gardenPlotNb>0){
+
+            return (homeScreenContent(gardens))
+            }
+            else
+            { return (homeScreenEmpty())}}
+
+
+          return (
+            
+            <View style={styles.container}>
+
+              <Navbar 
+              iconNameLeft="plus" 
+              iconNameRight="square-edit-outline" 
+              iconColorLeft="#1D6880" 
+              iconColorRight="#1D6880" 
+              navigationText='' 
+              redirectionIconeLeft="../screens/HomeScreen.js" 
+              onPressLeftIcon={onPressLeftIcon} 
+              onPressRightIcon={onPressRightIcon}/>
+
               
-      result();
-
-      //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
-      if(props.store.gardenName != ""){
-        setGardenNameToDisplay(props.store.gardenName)
-      }else{
-        console.log("Mimic1: Homescreen - gardenNameToDisplay : ", gardenNameToDisplay )
-
-      }  
-    
-    }, [])
-
-    console.log("Mimic8: HomeScreen - useEffect - user's garden :", userGardens)
-
-
-
-    function displayContent () {
-
-      console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
-      if (gardenPlotNb>0){
-
-       return (homeScreenContent())
-      }
-      else
-      { return (homeScreenEmpty())}}
-
-
-
-    return (
-      
-      <View style={styles.container}>
-
-        <Navbar 
-        iconNameLeft="plus" 
-        iconNameRight="square-edit-outline" 
-        iconColorLeft="#1D6880" 
-        iconColorRight="#1D6880" 
-        navigationText='' 
-        redirectionIconeLeft="../screens/HomeScreen.js" 
-        onPressLeftIcon={onPressLeftIcon} 
-        onPressRightIcon={onPressRightIcon}/>
+              {displayContent(userGardens)}
+              
 
         
-        {displayContent()}
         
-
-  
-  
-      </View>
-    );
+            </View>
+          );
   }
   
 
@@ -205,7 +227,8 @@ function HomeScreen (props)  {
     container: {
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      backgroundColor: "#FFF"
     },
     scrollView: {
         flex: 1,

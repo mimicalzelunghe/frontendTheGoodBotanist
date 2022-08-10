@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Chart from '../Components/Chart';
 import Navbar from '../Components/Navbar';
@@ -12,24 +12,29 @@ function PlotsScoringScreen(props){
 
   const [plotScores, setPlotScores] = useState([])
   const [plotPlantsNumber, setPlotPlantsNumber] = useState(0)
+  
+  console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 15 ~ PlotsScoringScreen ~ plotPlantsNumber", plotPlantsNumber)
+
+  
 
 
   useEffect(()=>{
 
     var uploadPlot = async ()=>{
     
+      console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 21 ~ uploadPlot")
           //route 13: brings back th plot data without the plants populate 
           const rawPlotData = await fetch(backendIpAddress+'/plots/uploadPlot', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `plotId=${props.store.plotId}`
           })
-          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 17 ~ uploadPlot ~ rawGardenData", rawGardenData)
+          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line é8 ~ uploadPlot ~ rawGardenData", rawGardenData)
 
           //retranscription de la réponse pour qu'on puisse la lire
           const plotData = await rawPlotData.json()
 
-          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 21 ~ uploadPlot ~ plotData", plotData)
+          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 33 ~ uploadPlot ~ plotData", plotData)
           setPlotScores(plotData.scoring)
           setPlotPlantsNumber(plotData.groundedPlants.length)
 
@@ -40,18 +45,19 @@ function PlotsScoringScreen(props){
 
 
   
-  function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  function onPressRightIcon(){console.log("onPressRightIcon");}
+  function onPressLeftIcon(){props.navigation.navigate("Home")}
 
     return(
       <View style={styles.container}>
         
         <View style={{width: "100%"}}>
         <Navbar 
-        iconNameLeft="plus" 
-        iconNameRight="square-edit-outline" 
+        iconNameLeft="keyboard-backspace" 
+        iconNameRight="close" 
         iconColorLeft="#1D6880" 
-        iconColorRight="#1D6880" 
-        navigationText=' ' 
+        iconColorRight="#FFFFFF"  
+        navigationText='Nouvelle parcelle' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         // onPressRightIcon={onPressRightIcon}
@@ -105,6 +111,7 @@ function PlotsScoringScreen(props){
   
 // update the variable into the Redux store
 function mapStateToProps(state) {
+console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 114 ~ mapStateToProps ~ state", state)
 
   return { store: state }
  }
@@ -119,7 +126,8 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#FFF"
         
     }
 })
