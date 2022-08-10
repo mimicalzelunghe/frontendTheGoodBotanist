@@ -134,7 +134,8 @@ const ModalPlant = (props) => {
                     lineHeight: 34,
                     color: "#2A2C2B",
                     textAlign:"center",
-                    marginBottom: 16
+                    marginBottom: 16,
+                    fontFamily: 'BreeSerif'
                   }}>{props.plantInfoModal.common_name}</Text>
 
                   <View style={{
@@ -160,6 +161,7 @@ const ModalPlant = (props) => {
                    color: "#2A2C2B",
                     textAlign:"left",
                     marginRight: 8,
+                    fontFamily: 'BreeSerif'
                     
                   }}>Score de
                   bio-compatibilité :</Text>
@@ -250,6 +252,7 @@ const ModalPlant = (props) => {
                     color: "#2A2C2B",
                     textAlign: "center",
                     marginVertical: 16,
+                    fontFamily: 'BreeSerif'
                   }}>Compatibilité avec la parcelle :</Text>
 
                   <View style={{

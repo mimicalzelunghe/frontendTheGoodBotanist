@@ -9,14 +9,15 @@ const ButtonPrimaryExp = ({iconName,iconColor, onPress, buttonLabel}) =>{
     
 
   return (
-    
-        <View  style={styles.container} > 
-        <Pressable style={styles.pressable} onPress={onPress}>
+        <Pressable style={styles.container} onPress={onPress}>
+        <View  style={styles.pressable} > 
+        
         <MaterialCommunityIcons name={iconName} size={30} color={iconColor} style={{marginRight: 8}} />
 
         <Text style={styles.bodyMD}>{buttonLabel}</Text>
-        </Pressable>
+        
         </View>
+        </Pressable>
   );
 }
 export default ButtonPrimaryExp;

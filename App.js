@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useFonts } from 'expo-font';
 import {Provider} from 'react-redux';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
@@ -94,6 +95,16 @@ const BottomNavigator = () => {
 }
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    BreeSerif: require('./assets/fonts/BreeSerif-Regular.ttf')
+  });
+  
+  if (!loaded) {
+    return null;
+  }
+
+
   return (
 
 

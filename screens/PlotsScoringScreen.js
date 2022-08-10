@@ -73,6 +73,7 @@ function PlotsScoringScreen(props){
       marginHorizontal: 16,
       textAlign: 'center',
       marginTop: 16,
+      fontFamily: 'BreeSerif'
       }}>
         Le potager</Text>
 
@@ -92,12 +93,14 @@ function PlotsScoringScreen(props){
         fontSize: 16,
         lineHeight: 22,
         color: "#1D6880",
+        fontFamily: 'BreeSerif'
       }}>
       BIO-SCORE</Text>
       <Text style={{
          fontSize: 35,
          lineHeight: 40,
          color: "#1D6880",
+         fontFamily: 'BreeSerif'
       }}>
       67</Text>
       </View>

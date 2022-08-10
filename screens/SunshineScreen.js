@@ -215,14 +215,16 @@ function SunshineScreen(props) {
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 16,
@@ -263,7 +265,8 @@ function SunshineScreen(props) {
         fontSize: 20,
         lineHeight: 22,
         color: '#2A2C2B',
-        marginBottom: 4
+        marginBottom: 4,
+        fontFamily: 'BreeSerif'
     },
     Description: {
 

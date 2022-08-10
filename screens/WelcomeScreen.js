@@ -70,24 +70,26 @@ function WelcomeScreen(props) {
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
-      marginHorizontal: 16,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 16,
@@ -96,14 +98,7 @@ function WelcomeScreen(props) {
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 8,},
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
+    
   
   })
   

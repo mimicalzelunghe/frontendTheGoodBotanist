@@ -141,6 +141,7 @@ function PlotPlantsScreen(props) {
       marginHorizontal: 16,
       textAlign: 'center',
       marginTop: 16,
+      fontFamily: 'BreeSerif'
       }}>
         Le potager</Text>
 
@@ -161,12 +162,16 @@ function PlotPlantsScreen(props) {
         fontSize: 16,
         lineHeight: 22,
         color: "#1D6880",
+        fontFamily: 'BreeSerif'
+
       }}>
       BIO-SCORE</Text>
       <Text style={{
          fontSize: 35,
          lineHeight: 40,
          color: "#1D6880",
+         fontFamily: 'BreeSerif'
+
       }}>
       67</Text>
       </View>
@@ -236,14 +241,16 @@ export default connect(
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 16,

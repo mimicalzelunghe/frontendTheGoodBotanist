@@ -25,6 +25,8 @@ function IntroNewSuggestionsScreen(props) {
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 16,
+        fontFamily: 'BreeSerif'
+
         }}>
           Prêts à découvrir les plantes les plus adaptées ?</Text>
 
@@ -38,7 +40,7 @@ function IntroNewSuggestionsScreen(props) {
          
         
         <View style={{marginVertical: 16}}>
-        <Text style={styles.titleLG}>Vous êtes désormais prêt à contribuer à la favorisation de la biodiversité dans votre ville.</Text>
+        <Text style={styles.titleXS}>Vous êtes désormais prêt à contribuer à la favorisation de la biodiversité dans votre ville.</Text>
         <Text style={styles.bodyMd}>En téte de liste vous retourverez les plantes les plus favorables à un retour de la biodiversité.</Text>
         </View>
 
@@ -94,12 +96,13 @@ function IntroNewSuggestionsScreen(props) {
       padding: 16,
     }, 
      
-    titleLG: {
-        fontSize: 26,
-        lineHeight: 34,
+    titleXS: {
+        fontSize: 19,
+        lineHeight: 24,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 16,

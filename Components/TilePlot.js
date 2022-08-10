@@ -72,6 +72,7 @@ return (
                                 color: "#2A2C2B",
                                 textAlign: "left",
                                 marginRight: 16 ,
+                                fontFamily: 'BreeSerif'
                                 }}
                                 numberOfLines={1} 
                                 ellipsizeMode='tail'>{props.plotName}</Text>
