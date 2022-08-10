@@ -140,10 +140,10 @@ function PlotNameScreen(props){
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
       marginHorizontal: 16,
+      marginVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,
@@ -166,14 +166,6 @@ function PlotNameScreen(props){
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 8,},
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
     navbartop: {
       marginTop : 8,
     },

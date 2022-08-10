@@ -128,10 +128,10 @@ function GardenNameScreen(props) {
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
       marginHorizontal: 16,
+      marginVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,
@@ -153,14 +153,7 @@ function GardenNameScreen(props) {
         color: "#2A2C2B",
         textAlign: 'center',
         },
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
+  
   
   })
 

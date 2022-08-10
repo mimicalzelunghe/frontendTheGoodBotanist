@@ -121,7 +121,7 @@ function TabSuggestionsScreen(props) {
         iconNameRight="window-close" 
         iconColorLeft="#1D6880" 
         iconColorRight="#FFFFFF" 
-        navigationText='Nos suggestions' 
+        navigationText='' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         // onPressRightIcon={onPressRightIcon}

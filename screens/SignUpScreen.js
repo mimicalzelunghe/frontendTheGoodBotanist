@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -69,7 +69,10 @@ function SignUpScreen(props){
 
 
     return(
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.navbartop}>
           <Navbar 
           iconNameLeft="arrow-left" 
@@ -101,7 +104,8 @@ function SignUpScreen(props){
         />
         </View>
 
-      </View>
+      </SafeAreaView>
+      </KeyboardAvoidingView>
     );
   }
 
@@ -149,10 +153,10 @@ function SignUpScreen(props){
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
       marginHorizontal: 16,
+      marginVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,
@@ -175,14 +179,6 @@ function SignUpScreen(props){
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 8,},
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
     navbartop: {
       marginTop : 8,
     },

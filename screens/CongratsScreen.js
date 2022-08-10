@@ -117,10 +117,10 @@ function CongratsScreen(props) {
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
-      padding: 16,
+      marginHorizontal: 16,
+      marginVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button, TextInput, KeyboardAvoidingView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -80,8 +80,11 @@ function SignInScreen(props){
     }
 
     return(
-      <View style={styles.container}>
-        <SafeAreaView style={styles.safe}>
+      <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}>
+
+        <View style={styles.safe}>
         <Image
           style={styles.Illustration}
           source={require('../assets/illustrations/logo.png')}
@@ -93,7 +96,7 @@ function SignInScreen(props){
         <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
       </View> 
 
-        </SafeAreaView>
+        </View>
 
         <View style={styles.buttonBlock}>
             <ButtonPrimaryExp
@@ -106,14 +109,15 @@ function SignInScreen(props){
 
             <ButtonSecondaryExp
               buttonLabel='Créer un compte' 
-              iconName="check" 
+              // iconName="check" 
               iconColor="white"
               text='Submit'
               onPress={handleSubmitSignUpRequest}
               />        
         </View>
 
-      </View>
+      </KeyboardAvoidingView>
+
     );
   }
     // update the variable token into the Redux store
@@ -137,7 +141,7 @@ function SignInScreen(props){
       flex: 1,
       backgroundColor: '#fff',
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-end'
     },
     safe: {
         marginTop: 24,
@@ -152,16 +156,17 @@ function SignInScreen(props){
         alignItems: 'center',
       },
       Illustration : {
-        marginVertical: 32,
-        height: 200,
-        width: 200,
+        height: 180,
+        width: 180,
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
       marginHorizontal: 16,
+      marginVertical: 8,
+
+
     }, 
     titleXL: {
         fontSize: 35,
@@ -184,14 +189,7 @@ function SignInScreen(props){
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 8,},
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
+  
   
   })
 

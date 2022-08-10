@@ -13,11 +13,11 @@ function PlotsScoringScreen(props){
         
         <View style={{width: "100%"}}>
         <Navbar 
-        iconNameLeft="keyboard-backspace" 
+        iconNameLeft="arrow-left" 
         iconNameRight="close" 
         iconColorLeft="#1D6880" 
         iconColorRight="#FFFFFF"  
-        navigationText='Nouvelle parcelle' 
+        navigationText='' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         // onPressRightIcon={onPressRightIcon}

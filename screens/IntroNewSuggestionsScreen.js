@@ -37,10 +37,10 @@ function IntroNewSuggestionsScreen(props) {
         
          
         
-        
+        <View style={{marginVertical: 16}}>
         <Text style={styles.titleLG}>Vous êtes désormais prêt à contribuer à la favorisation de la biodiversité dans votre ville.</Text>
         <Text style={styles.bodyMd}>En téte de liste vous retourverez les plantes les plus favorables à un retour de la biodiversité.</Text>
-
+        </View>
 
         </ScrollView>
 
@@ -66,7 +66,8 @@ function IntroNewSuggestionsScreen(props) {
     container: {
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      backgroundColor:"#FFFFFF"
     },
     scrollView: {
         paddingTop: 24,
