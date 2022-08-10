@@ -46,7 +46,16 @@ function SuggestionsScreen(props) {
   
   useEffect(() => {
   var listPlant = async () => {
-    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
+    console.log("🚀 ~ file: SuggestionsScreen.js ~ line 49 ~ useEffect")
+
+
+    var rawResponse = await fetch(backendIpAdress+'/plants/uploadSuggestedPlants', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `plotId=${props.store.plotId}&climateId=${props.store.idClimate}&gardenId=${props.store.idGarden}`
+    })
+
+    
     var response = await rawResponse.json();
     setTablePlantList([...response]);
    }
@@ -166,6 +175,8 @@ function SuggestionsScreen(props) {
   
 // update the variable into the Redux store
 function mapStateToProps(state) {
+console.log("🚀 ~ file: SuggestionsScreen.js ~ line 175 ~ mapStateToProps ~ state", state)
+  
 
   return { store: state }
  }
