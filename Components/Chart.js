@@ -10,7 +10,7 @@ export default class Chart extends React.Component {
         theme={VictoryTheme.material}
       >
         {
-           ["cat", "dog", "bird", "dog", "frog", "fish"].map((d, i) => {
+           ["Attire la bio-diversité", "Exposition au soleil", "Adequation avec le sol", "Survie sans eau","Résistance au froid", "Acclimatation"].map((d, i) => {
             return (
               <VictoryPolarAxis dependentAxis
                 key={i}
@@ -23,13 +23,14 @@ export default class Chart extends React.Component {
           })
         }
         <VictoryBar
-          style={{ data: { fill: "#FFA34E", width: 25 } }}
+          style={{ data: { fill: "#FFA34E", width: 50 } }}
           data={[
-            { x: "cat", y: 10 },
-            { x: "dog", y: 25 },
-            { x: "bird", y: 40 },
-            { x: "frog", y: 50 },
-            { x: "fish", y: 50 }
+            { x: "Attire la bio-diversité", y: 10 },
+            { x: "Exposition au soleil", y: 25 },
+            { x: "Adequation avec le sol", y: 40 },
+            { x: "Survie sans eau", y: 50 },
+            { x: "Résistance au froid", y: 50 },
+            { x: "Acclimatation", y: 50 }
           ]}
         />
       </VictoryChart>

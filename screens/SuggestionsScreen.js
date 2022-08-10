@@ -43,7 +43,8 @@ function SuggestionsScreen(props) {
 
 
   //Rechercher la liste des plantes dans la base de donnée ======================================
-  
+  var response = [];
+
   useEffect(() => {
   var listPlant = async () => {
     console.log("🚀 ~ file: SuggestionsScreen.js ~ line 49 ~ useEffect")
@@ -56,11 +57,15 @@ function SuggestionsScreen(props) {
     })
 
     
-    var response = await rawResponse.json();
+    response = await rawResponse.json();
     setTablePlantList([...response]);
    }
    listPlant();
   }, []);
+  
+    console.log("🚀 ~ file: SuggestionsScreen.js ~ line 63 ~ useEffect ~ tablePlantList")
+
+  
     //Rechercher la liste des plantes dans la base de donnée ======================================
 
   //     //Activation des filtres de recherches ======================================
