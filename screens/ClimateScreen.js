@@ -268,7 +268,8 @@ function ClimateScreen(props) {
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,
@@ -316,7 +317,8 @@ function ClimateScreen(props) {
         fontSize: 20,
         lineHeight: 22,
         color: '#2A2C2B',
-        marginBottom: 4
+        marginBottom: 4,
+        fontFamily: 'BreeSerif'
     },
     Description: {
 

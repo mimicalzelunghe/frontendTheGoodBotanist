@@ -22,6 +22,9 @@ function SignInScreen(props){
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const [captionColor, setCaptionColor] = useState('#FFF')
+    const [textColor, setTextColor] = useState('#6A6E6C')
+
     
     // if the user is unknown or if she has no garden yet (first garden), 
     // then show climateScreen else show HomeScreen
@@ -64,7 +67,10 @@ function SignInScreen(props){
       // call to backend: is the user known?
       // if known user and if she has a garden the display the home
       if(!knownUser){
-        props.navigation.navigate("SignUp")
+        setPasswordError("Adresse mail ou mot de passe incorrect")
+        setCaptionColor("#E91B06")
+        setTextColor("#E91B06")
+
       }else if(!hasGarden){// else, go to HomeScreen and show the gardens
         props.navigation.navigate("Welcome")
       }else{// else, display the garden of this well known user
@@ -80,23 +86,24 @@ function SignInScreen(props){
     }
 
     return(
+      <View style={{flex: 1}}>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}>
-
         <View style={styles.safe}>
         <Image
           style={styles.Illustration}
           source={require('../assets/illustrations/logo.png')}
         />
         <View style={styles.inputLayoutContainer}>
-        <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email} keyboardType="email"/>
-        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-        <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> setPassword(value)} value={password}/>
-        <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
-      </View> 
-
+        <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email} keyboardType="email-address" textContentType="emailAddress" />
+        {/* <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' textColor="#6A6E6C"/> */}
+        <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> setPassword(value)} value={password} keyboardType="default"  textContentType="password" secureTextEntry="true"/>
+        <Caption iconName="information-outline" iconColor={captionColor} errorDetails={passwordError} textColor={textColor}/>
+        </View> 
         </View>
+
+        </KeyboardAvoidingView>
 
         <View style={styles.buttonBlock}>
             <ButtonPrimaryExp
@@ -116,7 +123,8 @@ function SignInScreen(props){
               />        
         </View>
 
-      </KeyboardAvoidingView>
+      
+      </View>
 
     );
   }
@@ -163,8 +171,8 @@ function SignInScreen(props){
       flexDirection: 'row',
       backgroundColor: '#fff',
       flexDirection: 'column',
-      marginHorizontal: 16,
-      marginVertical: 8,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
 
 
     }, 

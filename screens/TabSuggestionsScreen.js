@@ -134,11 +134,11 @@ function TabSuggestionsScreen(props) {
         <Text style={styles.bodyMd}>Les plantes ci-dessous peuvent avoir un vrai impact positif sur la biodiversité de votre région. N'hésitez pas à regarder leur caractéristiques pour les planter plus tard.</Text>
 
         
-        <View style={{flex:1, flexDirection: "row", justifyContent:"center", marginHorizontal: 16, marginVertical: 16}}>
-        <ChipFilter filterLabel="Plantes" /* onPress={plantFilterActivation} *//>
-        <ChipFilter filterLabel="Arbustre" /* onPress={smallTreeFilterActivation} *//>
-        <ChipFilter filterLabel="Arbre" /* onPress={treeFilterActivation} *//>
-        </View>
+        {/* <View style={{flex:1, flexDirection: "row", justifyContent:"center", marginHorizontal: 16, marginVertical: 16}}>
+        <ChipFilter filterLabel="Plantes"  onPress={plantFilterActivation} />
+        <ChipFilter filterLabel="Arbustre" onPress={smallTreeFilterActivation}/>
+        <ChipFilter filterLabel="Arbre"  onPress={treeFilterActivation}/>
+        </View> */}
 
        <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
        {tablePlantList.map((plant, i) => (
@@ -176,7 +176,7 @@ export default connect(
 
         flex: 1,
         
-      },imageContainer : {
+    },imageContainer : {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center'
@@ -199,14 +199,16 @@ export default connect(
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 16,
@@ -215,13 +217,5 @@ export default connect(
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 8,},
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
   
   })

@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
     },  
     Titre: {
-        fontSize: 20,
+        fontSize: 16,
         lineHeight: 22,
         color: '#2A2C2B',
     },

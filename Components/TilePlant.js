@@ -115,6 +115,7 @@ return (
                         textAlign: "center",
                         marginBottom: 8,
                         paddingHorizontal:8 ,
+                        
                     }}numberOfLines={2}>{props.labelTitle}</Text>
                 </Pressable>
                     

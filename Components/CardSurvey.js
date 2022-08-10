@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 22,
         color: '#2A2C2B',
+        fontFamily: 'BreeSerif'
     },
     Description: {
         fontSize: 16,

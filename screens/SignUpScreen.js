@@ -23,6 +23,8 @@ function SignUpScreen(props){
     const [token, setToken] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const [captionColor, setCaptionColor] = useState('#FFF')
+    const [textColor, setTextColor] = useState('#6A6E6C')
 
     var handleValidation = async ()=>{
       // TODO: call to the backend - route signup
@@ -69,10 +71,12 @@ function SignUpScreen(props){
 
 
     return(
+      <View style={{flex: 1}}>
+      
+      <View style={styles.container}>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}>
-      <SafeAreaView style={styles.container}>
         <View style={styles.navbartop}>
           <Navbar 
           iconNameLeft="arrow-left" 
@@ -87,12 +91,14 @@ function SignUpScreen(props){
           <SafeAreaView style={styles.safe}>
             <Text style={styles.titleXL}>Créer votre compte :</Text>
             <View style={styles.inputLayoutContainer}>
-              <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email}/>
-              <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' />
-              <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> {setPassword(value)}} value={password}/>
-              <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/>
+              <Input placeholder='Email' affichage="flex" onChangeText={(value)=> {setEmail(value)}} value={email} keyboardType="email-address" textContentType="emailAddress"/>
+              <Caption iconName="information-outline" iconColor={textColor} errorDetails='Maximum 25 caractères'  textColor={textColor}/>
+              <Input placeholder='Mot de passe' affichage="flex" onChangeText={(value)=> {setPassword(value)}} value={password} keyboardType="default"  textContentType="password" secureTextEntry="true"/>
+              {/* <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails={passwordError}/> */}
             </View> 
           </SafeAreaView>
+        
+        </KeyboardAvoidingView>
 
         <View style={styles.buttonBlock}>
         <ButtonPrimaryExp
@@ -104,8 +110,9 @@ function SignUpScreen(props){
         />
         </View>
 
-      </SafeAreaView>
-      </KeyboardAvoidingView>
+      </View>
+      
+      </View>
     );
   }
 
@@ -155,15 +162,16 @@ function SignUpScreen(props){
       flexDirection: 'row',
       backgroundColor: '#fff',
       flexDirection: 'column',
-      marginHorizontal: 16,
-      marginVertical: 8,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,

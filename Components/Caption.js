@@ -14,7 +14,7 @@ export default function Caption(props) {
                 flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginVertical: 8,
+        marginBottom: 16,
         marginHorizontal: 16,
             }
         } > 
@@ -23,7 +23,7 @@ export default function Caption(props) {
         <Text style={{
             fontSize: 16,
             lineHeight: 22,
-            color: "#6A6E6C",
+            color: props.textColor,
         }
 }>{props.errorDetails}</Text>
         </View>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import Input from '../Components/Input';
 import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
@@ -49,17 +49,21 @@ function GardenNameScreen(props) {
 }
 
   return (
-
-      
+<View style={{flex:1}}>
+    
       <View style={styles.container}>
+      <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={styles.container}>
         <SafeAreaView style={styles.safe}>
         <Text style={styles.titleXL}>Comment voulez vous appeller votre jardin ?</Text>
           <View style={styles.inputLayoutContainer}>
           <Input placeholder='Nom de votre jardin'  affichage="flex" onChangeText={(value)=> {setGardenName(value)}} value={gardenName}/>
-          <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères'/>
+          <Caption iconName="information-outline" iconColor="#6A6E6C" errorDetails='Maximum 25 caractères' textColor="#6A6E6C"/>
           </View>
 
         </SafeAreaView>
+        </KeyboardAvoidingView>
 
         <View style={styles.buttonBlock}>
 
@@ -75,6 +79,7 @@ function GardenNameScreen(props) {
 
   
   
+      </View>
       </View>
     );
   }
@@ -138,14 +143,16 @@ function GardenNameScreen(props) {
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     }, 
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 14,

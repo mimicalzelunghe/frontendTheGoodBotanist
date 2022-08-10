@@ -131,7 +131,7 @@ function HomeScreen (props)  {
           console.log("🚀 ~ file: HomeScreen.js ~ line 78 ~ gardens.gardenPlots.map ~ plot", plot)
             
             listPlots.push(
-              <View style={{marginVertical: 24}}>
+              <View style={{marginVertical: 4}}>
               {/* {tablePlantList.map((plot) => ( */}
               <Pressable onPress={redirectionPlot}>
               <TilePlot  plotName={plot.name}/>
@@ -256,14 +256,17 @@ function HomeScreen (props)  {
         lineHeight: 40,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif',
+        marginBottom: 16
     }, 
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
         color: "#2A2C2B",
         marginHorizontal: 16,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'BreeSerif'
     },
     bodyMd: {
         fontSize: 16,
