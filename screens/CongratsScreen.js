@@ -19,6 +19,8 @@ function CongratsScreen(props) {
 
   function onPressRightIcon(){console.log("onPressRightIcon");}
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  function onPress(){props.navigation.navigate("SelectsPlant")}
+
 
   useEffect(()=>{
 
@@ -33,8 +35,6 @@ function CongratsScreen(props) {
 
   }, [])
 
-  
-  function onPress(){props.navigation.navigate("SelectsPlant")}
 
     return (
       
@@ -44,7 +44,7 @@ function CongratsScreen(props) {
 
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>Félicitation votre parcelle {plotNameToDisplay} a été créée</Text>
+        <Text style={styles.titleXL}>Félicitation votre parcelle "{plotNameToDisplay}" a été créée</Text>
 
         <View  style={styles.imageContainer} >
         <Image
@@ -95,7 +95,8 @@ function CongratsScreen(props) {
     container: {
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      backgroundColor: "#FFFFFF"
     },
     scrollView: {
         paddingTop: 24,
@@ -141,7 +142,7 @@ function CongratsScreen(props) {
         color: "#2A2C2B",
         marginHorizontal: 16,
         textAlign: 'center',
-        marginTop: 8,},
+        marginVertical: 16,},
   
   
   })

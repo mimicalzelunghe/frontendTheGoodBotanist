@@ -1,5 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 
 import {createStore, combineReducers}  from 'redux';
 import { StatusBar } from 'expo-status-bar';
@@ -27,6 +29,11 @@ import SunshineScreen from './screens/SunshineScreen';
 import ViewSinglePlantScreen from './screens/ViewSinglePlantScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
+import AddPlantsScreen from './screens/AddPlantsScreen';
+import TabSuggestionsScreen from './screens/TabSuggestionsScreen';
+import Spiner from './Components/Spiner';
+
+
 //import SnapScreen from './screens/SnapScreen';
 import ComponentsList from './screens/ComponentsList';
 import ModalPlant from './Components/ModalPlant';
@@ -61,24 +68,30 @@ const BottomNavigator = () => {
           let iconName;
 
           if (route.name == 'Score') {
-            iconName = '';
-          } else if (route.name == 'Plantes') {
-            iconName = '';
+            iconName = 'chart-box';
+          } else if (route.name == 'Vos plantes') {
+            iconName = 'tree';
+          } else if (route.name == 'Recommandation') {
+            iconName = 'medal';
           }
   
-          return <Ionicons name={iconName} size={25} color={color} />;
+          return <MaterialCommunityIcons  name={iconName} size={30} color={color} />;
         },
         })}
       tabBarOptions={{
-        activeTintColor: '#eb4d4b',
-        inactiveTintColor: '#FFFFFF',
+        activeTintColor: '#1D6880',
+        inactiveTintColor: '#A8ADAA',
         style: {
-          backgroundColor: '#130f40',
+          height: 72,
+          backgroundColor: '#FFFFFF',
+          paddingBottom: 8,
         }
       }}
     >
       <Tab.Screen name="Score" component={PlotsScoringScreen} />
-      <Tab.Screen name="Plantes" component={PlotPlantsScreen} />
+      <Tab.Screen name="Vos plantes" component={PlotPlantsScreen} />
+      <Tab.Screen name="Recommandation" component={TabSuggestionsScreen} />
+
     </Tab.Navigator>
   );
 }
@@ -86,30 +99,33 @@ const BottomNavigator = () => {
 export default function App() {
   return (
 
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Congrats" component={CongratsScreen} />
-          <Stack.Screen name="GardenName" component={GardenNameScreen} />
-           <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />
-           <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
-           <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
-           <Stack.Screen name="PlotName" component={PlotNameScreen} />
-           <Stack.Screen name="SelectsPlant" component={SelectPlantsScreen} />
-           <Stack.Screen name="IntroNewSuggestions" component={IntroNewSuggestionsScreen} />
-           <Stack.Screen name="Soil" component={SoilScreen} />
-           <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
-           <Stack.Screen name="Sunshine" component={SunshineScreen} />
-           <Stack.Screen name="ViewSinglePlant" component={ViewSinglePlantScreen} />
-           <Stack.Screen name="Welcome" component={WelcomeScreen} />
-           <Stack.Screen name="Climate" component={ClimateScreen} />
-           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-         </Stack.Navigator>
-       </NavigationContainer>
-     </Provider>    
+    <Spiner/>
+
+    // <Provider store={store}>
+    //   <NavigationContainer>
+    //     <Stack.Navigator screenOptions={{headerShown: false}}>
+    //     <Stack.Screen name="SignIn" component={SignInScreen} />
+    //       <Stack.Screen name="SignUp" component={SignUpScreen} />
+    //       <Stack.Screen name="Home" component={HomeScreen} />
+    //       <Stack.Screen name="Congrats" component={CongratsScreen} />
+    //       <Stack.Screen name="GardenName" component={GardenNameScreen} />
+    //        <Stack.Screen name="PlantRecognition" component={PlantRecognitionScreen} />
+    //        <Stack.Screen name="PlantsFavorite" component={PlantsFavoriteScreen} />
+    //        <Stack.Screen name="PlotDimension" component={PlotDimensionScreen} />
+    //        <Stack.Screen name="PlotName" component={PlotNameScreen} />
+    //        <Stack.Screen name="SelectsPlant" component={SelectPlantsScreen} />
+    //        <Stack.Screen name="IntroNewSuggestions" component={IntroNewSuggestionsScreen} />
+    //        <Stack.Screen name="Soil" component={SoilScreen} />
+    //        <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
+    //        <Stack.Screen name="Sunshine" component={SunshineScreen} />
+    //        <Stack.Screen name="ViewSinglePlant" component={ViewSinglePlantScreen} />
+    //        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    //        <Stack.Screen name="Climate" component={ClimateScreen} />
+    //        <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+    //        <Stack.Screen name="AddPlants" component={AddPlantsScreen} />
+    //      </Stack.Navigator>
+    //    </NavigationContainer>
+    //  </Provider>    
     
   );
 }

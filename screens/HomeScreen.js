@@ -41,16 +41,17 @@ function HomeScreen (props)  {
       <Text style={styles.bodyMd}>Créez votre première parcelle et ajoutez les végétaux qui y habitent. C’est à l’echelle d’un bout de terrain que l’on peut améliorer notre écosystème.</Text>
       <Text style={styles.bodyMd}>Vous pouvez diviser votre jardin en autant de petites parcelles que vous avez de projets botaniques.</Text>
 
-      <View style={styles.buttonBlock}>
+      <View style={{margin: 16}}>
       <ButtonPrimaryExp
         buttonLabel='Créer ma première parcelle' 
         iconName="tree" 
         iconColor="white"
         text='Submit'
         onPress={redirectionCreatePlot}
-        />
-      
+        style={{marginHorizontal:16}}/>
       </View>
+      
+      
       
       </ScrollView>)
     
@@ -152,7 +153,7 @@ function HomeScreen (props)  {
 
     return (
       
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
 
         <Navbar 
         iconNameLeft="plus" 
@@ -170,7 +171,7 @@ function HomeScreen (props)  {
 
   
   
-      </SafeAreaView>
+      </View>
     );
   }
   
@@ -207,7 +208,6 @@ function HomeScreen (props)  {
       justifyContent: 'flex-start'
     },
     scrollView: {
-        marginTop: 24,
         flex: 1,
         
       },imageContainer : {

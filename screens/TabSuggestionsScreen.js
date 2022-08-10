@@ -1,20 +1,17 @@
 import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
-import Input from '../Components/Input';
 import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
-import ButtonSecondaryExp from '../Components/ButtonSecondaryExp.js';
 import TilePlant from '../Components/TilePlant';
 import {connect} from 'react-redux';
 import ChipFilter from "../Components/ChipFilter";
 import ModalPlant from "../Components/ModalPlant";
 
-import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 import backendIpAdress from '../parameters/param.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-function SuggestionsScreen(props) {
+function TabSuggestionsScreen(props) {
 
 
   var token = props.store.token;
@@ -173,7 +170,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps, 
   null
-)(SuggestionsScreen);
+)(TabSuggestionsScreen);
 
 
   const styles = StyleSheet.create({

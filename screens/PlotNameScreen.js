@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, Button } from 'react-native';
 import Input from '../Components/Input';
-import TextsStyle from '../Components/TextsStyle';
 import Caption from '../Components/Caption';
-import ButtonPrimary from '../Components/ButtonPrimary.js';
 import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
-
-import ButtonSecondary from '../Components/ButtonSecondary.js';
-import ButtonTerciary from '../Components/ButtonTerciary.js';
-import CardSurvey from '../Components/CardSurvey.js';
 import Navbar from '../Components/Navbar.js';
 
 import {connect} from 'react-redux';

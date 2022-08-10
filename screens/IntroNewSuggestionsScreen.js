@@ -1,14 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, Pressable, View, Image, SafeAreaView, ScrollView } from 'react-native';
-import Input from '../Components/Input';
-import TextsStyle from '../Components/TextsStyle';
-import Caption from '../Components/Caption';
-import ButtonPrimary from '../Components/ButtonPrimary.js';
 import ButtonPrimaryExp from '../Components/ButtonPrimaryExp.js';
-import ButtonSecondary from '../Components/ButtonSecondary.js';
-import ButtonTerciary from '../Components/ButtonTerciary.js';
-import CardSurvey from '../Components/CardSurvey.js';
-import Navbar from '../Components/Navbar.js';
 
 
 function IntroNewSuggestionsScreen(props) {
@@ -21,13 +13,20 @@ function IntroNewSuggestionsScreen(props) {
 
     return (
       
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
 
 
 
-
+        
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>Prêts à découvrir les plantes les plus adaptées ?</Text>
+        <Text style={{fontSize: 35,
+        lineHeight: 40,
+        color: "#2A2C2B",
+        marginHorizontal: 16,
+        textAlign: 'center',
+        marginTop: 16,
+        }}>
+          Prêts à découvrir les plantes les plus adaptées ?</Text>
 
         <View  style={styles.imageContainer} >
         <Image
@@ -57,7 +56,7 @@ function IntroNewSuggestionsScreen(props) {
 
   
   
-      </SafeAreaView>
+      </View>
     );
   }
   
@@ -93,13 +92,7 @@ function IntroNewSuggestionsScreen(props) {
       flexDirection: 'column',
       padding: 16,
     }, 
-    titleXL: {
-        fontSize: 35,
-        lineHeight: 40,
-        color: "#2A2C2B",
-        marginHorizontal: 16,
-        textAlign: 'center'
-    }, 
+     
     titleLG: {
         fontSize: 26,
         lineHeight: 34,
@@ -113,7 +106,8 @@ function IntroNewSuggestionsScreen(props) {
         color: "#2A2C2B",
         marginHorizontal: 16,
         textAlign: 'center',
-        marginTop: 8,},
+        marginVertical: 16,      
+      },
   
   
   })
