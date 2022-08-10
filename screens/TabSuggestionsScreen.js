@@ -102,8 +102,8 @@ function TabSuggestionsScreen(props) {
   //Rechercher la liste des plantes dans la base de donnée =======================================
 
 
-  function onPressRightIcon(){console.log("onPressRightIcon");}
-  function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  // function onPressRightIcon(){console.log("onPressRightIcon");}
+  function onPressLeftIcon(){props.navigation.navigate("Home")}
 
   function onPress(){console.log("onPress");}
   function handleValidation(){
@@ -119,12 +119,13 @@ function TabSuggestionsScreen(props) {
         <Navbar 
         iconNameLeft="arrow-left" 
         iconNameRight="window-close" 
-        iconColorLeft="#FFFFFF" 
-        iconColorRight="#1D6880" 
+        iconColorLeft="#1D6880" 
+        iconColorRight="#FFFFFF" 
         navigationText='Nos suggestions' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
-        // onPressLeftIcon={onPressLeftIcon} 
-        onPressRightIcon={onPressRightIcon}/>
+        onPressLeftIcon={onPressLeftIcon} 
+        // onPressRightIcon={onPressRightIcon}
+        />
 
 
 
@@ -146,17 +147,6 @@ function TabSuggestionsScreen(props) {
        </View>
         </ScrollView>
 
-        <View style={styles.buttonBlock}>
-
-        <ButtonPrimaryExp
-        buttonLabel='Suivant' 
-        // iconName="check" 
-        iconColor="white"
-        text='Submit'
-        onPress={handleValidation}
-        />
-
-        </View>
       </View>
     );
   }

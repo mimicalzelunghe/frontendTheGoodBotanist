@@ -5,18 +5,19 @@ import Navbar from '../Components/Navbar';
 
 function PlotsScoringScreen(props){
   
-  function onPressLeftIcon(){console.log("onPressLeftIcon");}
+  function onPressRightIcon(){console.log("onPressRightIcon");}
+  function onPressLeftIcon(){props.navigation.navigate("Home")}
 
     return(
       <View style={styles.container}>
         
         <View style={{width: "100%"}}>
         <Navbar 
-        iconNameLeft="plus" 
-        iconNameRight="square-edit-outline" 
+        iconNameLeft="keyboard-backspace" 
+        iconNameRight="close" 
         iconColorLeft="#1D6880" 
-        iconColorRight="#1D6880" 
-        navigationText=' ' 
+        iconColorRight="#FFFFFF"  
+        navigationText='Nouvelle parcelle' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         // onPressRightIcon={onPressRightIcon}
@@ -71,7 +72,8 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#FFF"
         
     }
 })

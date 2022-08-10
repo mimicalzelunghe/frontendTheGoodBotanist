@@ -62,15 +62,17 @@ function HomeScreen (props)  {
 
   function homeScreenContent () {
 
-    function onPress(){props.navigation.navigate("PlotDimension");
-  }
+    function onPress(){props.navigation.navigate("PlotDimension");}
+    function redirectionPlot(){props.navigation.navigate("BottomNavigator");}
 
     return (
       <ScrollView style={styles.scrollView}>
       <Text style={styles.titleXL}>{gardenNameToDisplay}</Text>
       <View style={{marginVertical: 24}}>
         {/* {tablePlantList.map((plot) => ( */}
-        <TilePlot  plotName="Le potager"  /*{plots.name} numberOfGroundedPlant={plots.groundedPlants} token={token} */ />
+        <Pressable onPress={redirectionPlot}>
+        <TilePlot  plotName="Le potager" /*{plots.name} numberOfGroundedPlant={plots.groundedPlants} token={token} */ />
+        </Pressable>
         {/* ))} */}
       </View>
       <ButtonTertiaryExp
@@ -205,7 +207,8 @@ function HomeScreen (props)  {
     container: {
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      backgroundColor: "#FFF"
     },
     scrollView: {
         flex: 1,

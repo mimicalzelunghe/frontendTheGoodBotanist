@@ -26,12 +26,11 @@ import SelectPlantsScreen from './screens/SelectPlantsScreen';
 import SoilScreen from './screens/SoilScreen';
 import SuggestionsScreen from './screens/SuggestionsScreen';
 import SunshineScreen from './screens/SunshineScreen';
-import ViewSinglePlantScreen from './screens/ViewSinglePlantScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
 import AddPlantsScreen from './screens/AddPlantsScreen';
 import TabSuggestionsScreen from './screens/TabSuggestionsScreen';
-import Spiner from './Components/Spiner';
+// import Spiner from './Components/Spiner';
 
 
 //import SnapScreen from './screens/SnapScreen';
@@ -117,7 +116,6 @@ export default function App() {
            <Stack.Screen name="Soil" component={SoilScreen} />
            <Stack.Screen name="Suggestions" component={SuggestionsScreen} />
            <Stack.Screen name="Sunshine" component={SunshineScreen} />
-           <Stack.Screen name="ViewSinglePlant" component={ViewSinglePlantScreen} />
            <Stack.Screen name="Welcome" component={WelcomeScreen} />
            <Stack.Screen name="Climate" component={ClimateScreen} />
            <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
