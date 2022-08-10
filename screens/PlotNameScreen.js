@@ -12,6 +12,7 @@ import backendIpAddress from '../parameters/param.js'
 function PlotNameScreen(props){
 
   const [plotName, setPlotName] = useState('')
+  const [plotId, setPlotId] = useState(0)
 
   function onPressLeftIcon(){props.navigation.navigate("Soil");}
   function onPressRightIcon(){props.navigation.navigate("Home");}
@@ -20,7 +21,6 @@ function PlotNameScreen(props){
 
 
           var plotIdCreated = 0
-          var plotNameCreated = ''
 
           // waiting for the call to the backend  to create the plotId
           // use the var plotId as it will be the return of the call function
@@ -34,30 +34,26 @@ function PlotNameScreen(props){
               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
               body: `plotName=${plotName}&plotDimension=${props.store.dimension}&plotSunshine=${props.store.sunshine}&plotSoil=${props.store.soil}&gardenId=${props.store.idGarden}&token=${props.store.token}`
             })
-                  
-          //retranscription de la réponse pour qu'on puisse la lire
-          const plotData = await rawPlotData.json() 
-          console.log("🚀 ~ file: PlotNameScreen.js ~ line 45 ~ createPlotName ~ plotData", plotData)
-          
-          //save the plotId into the store
-          //TODO: to be tested
-          plotIdCreated = plotData._id
-          plotNameCreated = plotData.name
-          setPlotName(plotData.name)
-
-          // and fill plotIdCreated with the plotId return by the route
-          // store the soil quality into redux
-          //props.onCreatePlotName(plotIdCreated, plotNameCreated)
+                    
+            //retranscription de la réponse pour qu'on puisse la lire
+            const plotData = await rawPlotData.json() 
+            console.log("🚀 ~ file: PlotNameScreen.js ~ line 47 ~ createPlotName ~ plotData", plotData)
+            console.log("🚀 ~ file: PlotNameScreen.js ~ line 48 ~ createPlotName ~ plotData._id", plotData._id)
+            
+            //save the plotId into the store
+            plotIdCreated = plotData._id
+            
+            // and fill plotIdCreated with the plotId return by the route
+            // store the soil quality into redux
+            props.onCreatePlotName(plotIdCreated, plotName)
 
           }
-          props.onCreatePlotName(plotIdCreated, plotName)
 
           createPlotName()
 
-          //props.navigation.navigate("SelectsPlant")
-          //TODO: uncomment previous code line
           props.navigation.navigate("Congrats")
-    }
+
+    }//end handleValidation
 
     return(
       <View style={styles.container}>
@@ -91,8 +87,7 @@ function PlotNameScreen(props){
 
       </View>
     );
-  }
-
+  }//end PlotNameScreen
 
 
   // pour lire une variable Redux
