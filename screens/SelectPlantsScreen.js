@@ -72,7 +72,7 @@ function SelectPlantsScreen(props) {
         iconNameRight="window-close" 
         iconColorLeft="#FFFFFF" 
         iconColorRight="#FFFFFF" 
-        navigationText='Plantes existantes' 
+        navigationText='' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         // onPressLeftIcon={onPressLeftIcon} 
         // onPressRightIcon={onPressRightIcon}
@@ -156,10 +156,10 @@ export default connect(
       },
     buttonBlock: {
       flexDirection: 'row',
-      gap: 8,
       backgroundColor: '#fff',
       flexDirection: 'column',
       marginHorizontal: 16,
+      marginVertical: 8,
     }, 
     titleXL: {
         fontSize: 35,
@@ -182,13 +182,5 @@ export default connect(
         marginHorizontal: 16,
         textAlign: 'center',
         marginTop: 8,},
-    buttonBlock : {
-        flexDirection: 'row',
-    gap: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    marginHorizontal: 16,
-    marginVertical: 16,
-    },
   
   })

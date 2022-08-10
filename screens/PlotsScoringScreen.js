@@ -29,7 +29,7 @@ function PlotsScoringScreen(props){
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `plotId=${props.store.plotId}`
           })
-          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line é8 ~ uploadPlot ~ rawGardenData", rawGardenData)
+          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 32 ~ uploadPlot ~ rawGardenData", rawGardenData)
 
           //retranscription de la réponse pour qu'on puisse la lire
           const plotData = await rawPlotData.json()
@@ -53,11 +53,11 @@ function PlotsScoringScreen(props){
         
         <View style={{width: "100%"}}>
         <Navbar 
-        iconNameLeft="keyboard-backspace" 
+        iconNameLeft="arrow-left" 
         iconNameRight="close" 
         iconColorLeft="#1D6880" 
         iconColorRight="#FFFFFF"  
-        navigationText='Nouvelle parcelle' 
+        navigationText='' 
         redirectionIconeLeft="../screens/HomeScreen.js" 
         onPressLeftIcon={onPressLeftIcon} 
         // onPressRightIcon={onPressRightIcon}
