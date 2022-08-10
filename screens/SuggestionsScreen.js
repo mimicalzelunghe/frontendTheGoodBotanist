@@ -57,6 +57,8 @@ function SuggestionsScreen(props) {
 
     
     var response = await rawResponse.json();
+    console.log("🚀 ~ file: SuggestionsScreen.js ~ line 60 ~ listPlant ~ response", response)
+    
     setTablePlantList([...response]);
    }
    listPlant();
