@@ -6,7 +6,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import {createStore, combineReducers}  from 'redux';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, LogBox } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -95,6 +95,7 @@ const BottomNavigator = () => {
 }
 
 export default function App() {
+  console.disableYellowBox = true
 
   const [loaded] = useFonts({
     BreeSerif: require('./assets/fonts/BreeSerif-Regular.ttf')
