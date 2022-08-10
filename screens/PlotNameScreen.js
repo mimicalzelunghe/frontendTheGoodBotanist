@@ -21,6 +21,7 @@ function PlotNameScreen(props){
 
 
           var plotIdCreated = 0
+          var plotNameCreated = 0
 
           // waiting for the call to the backend  to create the plotId
           // use the var plotId as it will be the return of the call function
@@ -42,10 +43,11 @@ function PlotNameScreen(props){
             
             //save the plotId into the store
             plotIdCreated = plotData._id
+            plotNameCreated = plotData.name
             
             // and fill plotIdCreated with the plotId return by the route
             // store the soil quality into redux
-            props.onCreatePlotName(plotIdCreated, plotName)
+            props.onCreatePlotName(plotIdCreated, plotNameCreated)
 
           }
 

@@ -23,13 +23,14 @@ function CongratsScreen(props) {
 
 
   useEffect(()=>{
+    console.log("🚀 ~ file: CongratsScreen.js ~ line 26 ~ useEffect ~ props.store", props.store)
 
     //if garden name is not empty, then display it name otherwise, the name of the first garden will be displayed
     if(props.store.plotName != ""){
       setPlotNameToDisplay(props.store.plotName)
-      console.log("🚀 ~ file: CongratsScreen.js ~ line 24 ~ CongratsScreen ~ plotNameToDisplay", props.store.plotName)
+      console.log("🚀 ~ file: CongratsScreen.js ~ line 31 ~ CongratsScreen ~ plotNameToDisplay", props.store.plotName)
     }else{
-      console.log("🚀 ~ file: CongratsScreen.js ~ line 26 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
+      console.log("🚀 ~ file: CongratsScreen.js ~ line 33 ~ CongratsScreen ~ plotNameToDisplay", plotNameToDisplay)
       
     }  
 

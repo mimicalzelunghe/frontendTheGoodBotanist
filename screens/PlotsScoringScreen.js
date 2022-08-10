@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Chart from '../Components/Chart';
 import Navbar from '../Components/Navbar';
 
+import {connect} from 'react-redux';
+
+import backendIpAddress from '../parameters/param.js'
+
+
 function PlotsScoringScreen(props){
+
+  const [plotScores, setPlotScores] = useState([])
+  const [plotPlantsNumber, setPlotPlantsNumber] = useState(0)
+
+
+  useEffect(()=>{
+
+    var uploadPlot = async ()=>{
+    
+          //route 13: brings back th plot data without the plants populate 
+          const rawPlotData = await fetch(backendIpAddress+'/plots/uploadPlot', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `plotId=${props.store.plotId}`
+          })
+          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 17 ~ uploadPlot ~ rawGardenData", rawGardenData)
+
+          //retranscription de la réponse pour qu'on puisse la lire
+          const plotData = await rawPlotData.json()
+
+          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 21 ~ uploadPlot ~ plotData", plotData)
+          setPlotScores(plotData.scoring)
+          setPlotPlantsNumber(plotData.groundedPlants.length)
+
+    }
+
+
+  }, [])//end initialization UseEffect 
+
+
   
   function onPressLeftIcon(){console.log("onPressLeftIcon");}
 
@@ -65,7 +100,20 @@ function PlotsScoringScreen(props){
 
     </View>
     )
-}
+}//end PlotsScoringScreen
+
+  
+// update the variable into the Redux store
+function mapStateToProps(state) {
+
+  return { store: state }
+ }
+ 
+export default connect(
+  mapStateToProps, 
+  null
+)(PlotsScoringScreen);
+
 
 const styles = StyleSheet.create({
     container:{
@@ -75,5 +123,3 @@ const styles = StyleSheet.create({
         
     }
 })
-
-export default PlotsScoringScreen

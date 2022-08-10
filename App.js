@@ -31,7 +31,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import ClimateScreen from './screens/ClimateScreen';
 import AddPlantsScreen from './screens/AddPlantsScreen';
 import TabSuggestionsScreen from './screens/TabSuggestionsScreen';
-import Spiner from './Components/Spiner';
+//import Spiner from './Components/Spiner';
 
 
 //import SnapScreen from './screens/SnapScreen';
