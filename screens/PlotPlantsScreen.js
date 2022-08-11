@@ -44,7 +44,11 @@ function PlotPlantsScreen(props) {
   
   useEffect(() => {
   var listPlant = async () => {
-    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
+    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlotPlants', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `plotId=${props.store.plotId}&climateId=${props.store.idClimate}&gardenId=${props.store.idGarden}`
+    })
     var response = await rawResponse.json();
     setTablePlantList([...response]);
    }
@@ -193,6 +197,7 @@ function PlotPlantsScreen(props) {
   
 // update the variable into the Redux store
 function mapStateToProps(state) {
+  console.log("🚀 ~ file: PlotPlantsScreen.js ~ line 200 ~ mapStateToProps ~ state", state)
 
   return { store: state }
  }
