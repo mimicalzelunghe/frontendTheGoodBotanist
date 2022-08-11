@@ -130,7 +130,7 @@ return (
                         paddingHorizontal: 4,
                         borderColor: "#1D6880",
                         
-                    }}>{props.score}score</Text>
+                    }}>{props.plantInfo.globalScore}</Text>
             
                 
                 {/* <MaterialCommunityIcons name={likeIcon} size={24} color={likeColor}  onPress={ () => [likeClick(), handlePressAddPlant(), handlePressDeletePlant() ]  }/> */}

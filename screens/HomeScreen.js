@@ -128,7 +128,6 @@ function HomeScreen (props)  {
 
           var listPlots = []
           gardens.gardenPlots.map((plot) => {
-          console.log("🚀 ~ file: HomeScreen.js ~ line 78 ~ gardens.gardenPlots.map ~ plot", plot)
             
             listPlots.push(
               <View style={{marginVertical: 4}}>
@@ -163,6 +162,7 @@ function HomeScreen (props)  {
         // this functions chooses the right screen to display 
         //eithet the homeScreenEmpty one the homeScreenContent one
         function displayContent (gardens) {
+          
 
             console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
             if (gardenPlotNb>0){
@@ -203,6 +203,7 @@ function HomeScreen (props)  {
     console.log("🚀 ~ file: HomeScreen.js ~ line 139 ~ mapStateToProps ~ state", state)
     return { store: state }
    }
+
 
   // update the variable into the Redux store
   function mapDispatchToProps(dispatch) {

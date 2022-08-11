@@ -12,18 +12,16 @@ const image = { uri: "https://media.gerbeaud.net/2015/03/640/tilleul.jpg" };
 
 const ModalPlant = (props) => {
 
-  console.log("Lecture du composant modale");
-  console.log("🚀 ~ file: ModalPlant.js ~ line 18 ~ ModalPlant ~ activateModal", props.activateModal)
 
   // const [modalVisible, setModalVisible] = useState(props.activateModal);
-  
-
 
   const [heroHeaderHeight, setHeroHeaderHeight] = useState(150)
   
+
+  // Apparition des tags
   var tagAttractBirds = () => {
 
-    if(props.plantInfoModal.attracts_birds === "oui"){
+    if(props.plantInfoModal.attracts_birds === "oui" || "Oui"){
       return ( <View style={{
           borderWidth:  1,
           borderColor:  '#FFA34E',
@@ -38,12 +36,56 @@ const ModalPlant = (props) => {
         fontSize: 11,
         lineHeight: 13,
         color: "#FFA34E",
-      }}>ATTIRE LES PAPILLONS</Text>
+      }}>ATTIRE LES OISEAUX</Text>
       </View>
       )
       } }
 
-      console.log("plantInfoModal.attracts_butterflies",props.plantInfoModal.attracts_butterflies);
+      var tagAttractButterflies = () => {
+
+        if(props.plantInfoModal.attracts_butterflies === "oui" || "Oui"){
+          return ( <View style={{
+              borderWidth:  1,
+              borderColor:  '#FFA34E',
+              borderRadius:4,
+              paddingHorizontal: 8,
+              paddingVertical: 4,
+              marginRight: 8,
+              marginVertical: 4
+            }}>
+        
+          <Text style={{ 
+            fontSize: 11,
+            lineHeight: 13,
+            color: "#FFA34E",
+          }}>ATTIRE LES PAPILLONS</Text>
+          </View>
+          )
+          } }
+      
+      var tagPollinator = () => {
+
+            if(props.plantInfoModal.attracts_butterflies !== ""){
+              return ( <View style={{
+                  borderWidth:  1,
+                  borderColor:  '#FFA34E',
+                  borderRadius:4,
+                  paddingHorizontal: 8,
+                  paddingVertical: 4,
+                  marginRight: 8,
+                  marginVertical: 4
+                }}>
+            
+              <Text style={{ 
+                fontSize: 11,
+                lineHeight: 13,
+                color: "#FFA34E",
+              }}>POLÉNISATEUR</Text>
+              </View>
+              )
+              } }
+
+  // Apparition des tags
 
 
         
@@ -160,7 +202,7 @@ const ModalPlant = (props) => {
                    lineHeight: 24,
                    color: "#2A2C2B",
                     textAlign:"left",
-                    marginRight: 8,
+                    marginRight: 16,
                     fontFamily: 'BreeSerif'
                     
                   }}>Score de
@@ -172,7 +214,7 @@ const ModalPlant = (props) => {
                    lineHeight: 40,
                    color: "#2A2C2B",
                     textAlign:"center",
-                  }}>68%</Text>
+                  }}>{props.plantInfoModal.globalScore}</Text>
 
 
                   </View>
@@ -188,44 +230,10 @@ const ModalPlant = (props) => {
 
                   }}>
                   
-
-
-                  <View style={{
-                    borderWidth:  1,
-                    borderColor:  '#FFA34E',
-                    borderRadius:4,
-                    paddingHorizontal: 8,
-                    paddingVertical: 4,
-                    marginRight: 8,
-                    marginVertical: 4
-                  }}>
-                    
-                    <Text style={{ 
-                    fontSize: 11,
-                    lineHeight: 13,
-                    color: "#FFA34E",
-                  }}>POLÉNISATEUR</Text>
-                  </View>
-
-                  {/* {if(props.plantInfoModal.attracts_butterflies === "Oui"){
-          <View style={{
-              borderWidth:  1,
-              borderColor:  '#FFA34E',
-              borderRadius:4,
-              paddingHorizontal: 8,
-              paddingVertical: 4,
-              marginRight: 8,
-              marginVertical: 4
-            }}>
-        
-          <Text style={{ 
-            fontSize: 11,
-            lineHeight: 13,
-            color: "#FFA34E",
-          }}>ATTIRE LES PAPILLONS</Text>
-          </View>}} */}
-          
-                            
+                  {tagPollinator()}
+                  {tagAttractBirds()}
+                  {tagAttractButterflies()}
+      
 
                   </View>
                   
@@ -260,8 +268,8 @@ const ModalPlant = (props) => {
                     flexDirection: "row",
                     justifyContent: "center"
                   }}>
-                  <Chart style={{width: 100}}/>
-
+                  <Chart style={{width: 100}} score={props.plantInfoModal.score} />
+                    
                   </View>
 
 
