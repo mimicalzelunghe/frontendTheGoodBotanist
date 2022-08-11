@@ -109,7 +109,7 @@ function PlotNameScreen(props){
     return {
       onCreatePlotName: function(plotIdCreated, plotNameCreated) { 
           console.log("🚀 ~ file: PlotNameScreen.js ~ line 114 ~ mapDispatchToProps ~ plotIdCreated", plotIdCreated)
-          console.log("🚀 ~ file: PlotNameScreen.js ~ line 115 ~ mapDispatchToProps ~ plotIdCreated", plotNameCreated)
+          console.log("🚀 ~ file: PlotNameScreen.js ~ line 115 ~ mapDispatchToProps ~ plotNameCreated", plotNameCreated)
           dispatch( {type: 'plotId', plotId: plotIdCreated}) 
           dispatch( {type: 'plotName', plotName: plotNameCreated}) 
       }
