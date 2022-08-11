@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function TilePlant(props) {
 
 
-    const image = { uri: "https://media.gerbeaud.net/2015/03/640/tilleul.jpg" };
+    const image = { uri: props.Img };
 
     var modalInfoPress = () =>{
         console.log("ModalePress")
