@@ -45,7 +45,7 @@ function CongratsScreen(props) {
 
 
         <ScrollView style={styles.scrollView}>
-        <Text style={styles.titleXL}>Félicitation votre parcelle "{plotNameToDisplay}" a été créée</Text>
+        <Text style={styles.titleXL}>Félicitation votre parcelle {plotNameToDisplay} a été créée</Text>
 
         <View  style={styles.imageContainer} >
         <Image
