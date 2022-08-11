@@ -37,14 +37,19 @@ function TabSuggestionsScreen(props) {
    //Initialisation d'un comportement de reverse dataflow pour récupérer les informations de la plantes cliquée et les faire remonter dans le composant parent
 
 
+//Rechercher la liste des plantes dans la base de donnée ======================================
+var response = [];
 
 
-  //Rechercher la liste des plantes dans la base de donnée ======================================
   
   useEffect(() => {
   var listPlant = async () => {
-    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlants');
-    var response = await rawResponse.json();
+    var rawResponse = await fetch(backendIpAdress+'/plants/uploadSuggestedPlants', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `plotId=${props.store.plotId}&climateId=${props.store.idClimate}&gardenId=${props.store.idGarden}`
+    })
+    response = await rawResponse.json();
     setTablePlantList([...response]);
    }
    listPlant();
@@ -140,11 +145,12 @@ function TabSuggestionsScreen(props) {
         <ChipFilter filterLabel="Arbre"  onPress={treeFilterActivation}/>
         </View> */}
 
-       <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
        {tablePlantList.map((plant, i) => (
-        <TilePlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
+        <TilePlant Img={plant.url_image} labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
         ))}
        </View>
+       
         </ScrollView>
 
       </View>

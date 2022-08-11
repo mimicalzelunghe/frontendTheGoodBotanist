@@ -8,16 +8,18 @@ import Chart from '../Components/Chart.js';
 
 
 
-const image = { uri: "https://media.gerbeaud.net/2015/03/640/tilleul.jpg" };
+
 
 const ModalPlant = (props) => {
+console.log("🚀 ~ file: ModalPlant.js ~ line 14 ~ ModalPlant ~ props", props)
+  
 
 
   // const [modalVisible, setModalVisible] = useState(props.activateModal);
 
   const [heroHeaderHeight, setHeroHeaderHeight] = useState(150)
   
-
+  const image = { uri: props.plantInfoModal.url_image };
   // Apparition des tags
   var tagAttractBirds = () => {
 

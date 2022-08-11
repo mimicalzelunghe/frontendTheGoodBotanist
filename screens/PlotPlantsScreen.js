@@ -16,6 +16,9 @@ function PlotPlantsScreen(props) {
 
   const [tablePlantList,setTablePlantList] = useState([]);
 
+  
+
+
   useEffect(() => {
     var listPlant = async () => {
       var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlotPlants', {
@@ -30,6 +33,8 @@ function PlotPlantsScreen(props) {
      }
      listPlant();
     }, []);
+
+    
 
   var token = props.store.token;
  
@@ -122,6 +127,20 @@ function PlotPlantsScreen(props) {
     props.navigation.navigate("BottomNavigator")
     }
 
+    var afficherPlantes = []
+    if (tablePlantList[0]){
+      tablePlantList[0].map((plant)=>{
+        afficherPlantes.push(
+          <TilePlant Img={plant.url_image} labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
+
+        )
+
+      })
+
+    }else{
+      afficherPlantes.push(<Text>Je suis  vide</Text>)
+
+    }
   
     return (
       
@@ -189,13 +208,10 @@ function PlotPlantsScreen(props) {
 
           </View>
         
-        
+          <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
+          {afficherPlantes}
+          </View>
 
-       <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
-       {tablePlantList[0].map((plant, i) => (
-        <TilePlant Img={plant.url_image} labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
-        ))}
-       </View>
         </ScrollView>
 
       </View>

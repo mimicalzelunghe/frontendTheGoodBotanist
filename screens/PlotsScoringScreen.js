@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Chart from '../Components/Chart';
 import Navbar from '../Components/Navbar';
@@ -14,10 +14,7 @@ function PlotsScoringScreen(props){
 
   const [plotScores, setPlotScores] = useState([])
   const [plotPlantsNumber, setPlotPlantsNumber] = useState(0)
-  
-
-
-  
+  const isMounted = useRef(false);
 
 
   useEffect(()=>{
@@ -45,6 +42,7 @@ function PlotsScoringScreen(props){
 
 
   }, [])//end initialization UseEffect 
+
 
 
   
