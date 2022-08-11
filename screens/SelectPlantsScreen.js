@@ -59,7 +59,7 @@ function SelectPlantsScreen(props) {
 
     var tabPlantes = []
     plantsList.map((plant) => {
-      tabPlantes.push(<CellPlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' CellTitle={plant.common_name} plantId={plant._id} token={token} climateId={props.store.climate} plotId={props.store.plotId} />)
+      tabPlantes.push(<CellPlant Img={plant.url_image} CellTitle={plant.common_name} plantId={plant._id} token={token} climateId={props.store.climate} plotId={props.store.plotId} />)
       })
 
   

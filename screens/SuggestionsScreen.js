@@ -154,7 +154,7 @@ function SuggestionsScreen(props) {
 
        <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
        {tablePlantList.map((plant, i) => (
-        <TilePlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
+        <TilePlant Img={plant.url_image} labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
         ))}
        </View>
         </ScrollView>
