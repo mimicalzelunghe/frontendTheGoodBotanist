@@ -25,9 +25,10 @@ function HomeScreen (props)  {
         const [gardenClimateId, setGardenClimateId] = useState('')
         const [gardenPlotNb, setGardenPlotNb] = useState(0)
         const [gardenPlots, setGardenPlots] = useState([])
+        const [plotClick, setPlotClick] = useState([])
 
 
-        console.log("Info gardenBody ====================> ", gardenPlots)
+
 
 
         /* Before displaying the component, load all user's gardens, */
@@ -68,7 +69,6 @@ function HomeScreen (props)  {
         
         }, [])
 
-        console.log("Mimic8: HomeScreen - useEffect - user's garden :", userGardens)
 
         //redirects to plot dimension declaration if new plot is to created
         var redirectionCreatePlot = function() {props.navigation.navigate("PlotDimension")};
@@ -121,7 +121,6 @@ function HomeScreen (props)  {
         // at least one plot, we display the homeScreenContent
         function homeScreenContent (gardens) {
 
-          console.log("🚀 ~ file: HomeScreen.js ~ line 65 ~ homeScreenContent ~ gardens", gardens)
           
 
           function onPress(){
@@ -129,18 +128,23 @@ function HomeScreen (props)  {
           
           }
 
-          function redirectionPlot(){props.navigation.navigate("BottomNavigator");}
+          function redirectionPlot(plot){
+          console.log("🚀 ~ file: HomeScreen.js ~ line 135 ~ redirectionPlot ~ plot", plot)
+          // setPlotClick()
+          props.onViewPlot(plot._id)
+          
+          props.navigation.navigate("BottomNavigator");
+        }
 
           var listPlots = []
           gardens.gardenPlots.map((plot) => {
             
             listPlots.push(
               <View style={{marginVertical: 4}}>
-              {/* {tablePlantList.map((plot) => ( */}
-              <Pressable onPress={redirectionPlot}>
+              <Pressable onPress={ () => redirectionPlot(plot)}>
               <TilePlot  plotName={plot.name} gardenPlotNb={plot.groundedPlants.length}/>
               </Pressable>
-              {/* ))} */}
+           
             </View>
 
             )
@@ -169,7 +173,7 @@ function HomeScreen (props)  {
         function displayContent (gardens) {
 
 
-            console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
+            // console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
             if (gardenPlotNb>0){
 
             return (homeScreenContent(gardens))
@@ -220,7 +224,11 @@ function HomeScreen (props)  {
       onLoadGarden: function(firstGardenId, climateId) { 
         dispatch( {type: 'idGarden', idGarden: firstGardenId}) 
         dispatch( {type: 'idClimate', idClimate: climateId}) 
-      }
+      },
+      onViewPlot : function(plotId) { 
+      console.log("🚀 ~ file: HomeScreen.js ~ line 229 ~ mapDispatchToProps ~ plotId", plotId)
+        dispatch( {type: 'plotId', plotId: plotId}) 
+    },
     }
    }
 

@@ -14,11 +14,27 @@ import TilePlant from '../Components/TilePlant';
 
 function PlotPlantsScreen(props) {
 
+  const [tablePlantList,setTablePlantList] = useState([]);
+
+  useEffect(() => {
+    var listPlant = async () => {
+      var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlotPlants', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `plotId=${props.store.plotId}&climateId=${props.store.idClimate}&gardenId=${props.store.idGarden}`
+      })
+      var response = await rawResponse.json();
+      console.log("🚀 ~ file: PlotPlantsScreen.js ~ line 27 ~ listPlant ~ response", response)
+      
+      setTablePlantList([...response]);
+     }
+     listPlant();
+    }, []);
 
   var token = props.store.token;
  
-  const [tablePlantList,setTablePlantList] = useState([]);
-
+  
+  console.log("🚀 ~ file: PlotPlantsScreen.js ~ line 57 ~ listPlant ~ TablePlantList", tablePlantList)
 
   //Initialisation d'un comportement de reverse dataflow pour récupérer les informations de la plantes cliquée et les faire remonter dans le composant parent
   const [plantInfoModal, setPlantInfoModal] = useState([])
@@ -39,21 +55,12 @@ function PlotPlantsScreen(props) {
 
 
 
-
   //Rechercher la liste des plantes dans la base de donnée ======================================
   
-  useEffect(() => {
-  var listPlant = async () => {
-    var rawResponse = await fetch(backendIpAdress+'/plants/uploadPlotPlants', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `plotId=${props.store.plotId}&climateId=${props.store.idClimate}&gardenId=${props.store.idGarden}`
-    })
-    var response = await rawResponse.json();
-    setTablePlantList([...response]);
-   }
-   listPlant();
-  }, []);
+  
+
+
+
     //Rechercher la liste des plantes dans la base de donnée ======================================
 
   //     //Activation des filtres de recherches ======================================
@@ -185,8 +192,8 @@ function PlotPlantsScreen(props) {
         
 
        <View style={{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 8}}>
-       {tablePlantList.map((plant, i) => (
-        <TilePlant Img='https://jardinage.lemonde.fr/images/dossiers/historique/tilleul-172652.jpg' labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
+       {tablePlantList[0].map((plant, i) => (
+        <TilePlant Img={plant.url_image} labelTitle={plant.common_name} plantId={plant._id} token={token} plantInfo={plant} modalInfoPressParent={modalInfoPress} store={props.store} />
         ))}
        </View>
         </ScrollView>
@@ -194,6 +201,7 @@ function PlotPlantsScreen(props) {
       </View>
     );
   }
+  
   
 // update the variable into the Redux store
 function mapStateToProps(state) {

@@ -10,10 +10,12 @@ import backendIpAddress from '../parameters/param.js'
 
 function PlotsScoringScreen(props){
 
+  const [plotData, setPlotData] = useState([])
+
   const [plotScores, setPlotScores] = useState([])
   const [plotPlantsNumber, setPlotPlantsNumber] = useState(0)
   
-  console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 15 ~ PlotsScoringScreen ~ plotPlantsNumber", plotPlantsNumber)
+
 
   
 
@@ -22,7 +24,6 @@ function PlotsScoringScreen(props){
 
     var uploadPlot = async ()=>{
     
-      console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 21 ~ uploadPlot")
           //route 13: brings back th plot data without the plants populate 
           const rawPlotData = await fetch(backendIpAddress+'/plots/uploadPlot', {
             method: 'POST',
@@ -32,12 +33,15 @@ function PlotsScoringScreen(props){
 
           //retranscription de la réponse pour qu'on puisse la lire
           const plotData = await rawPlotData.json()
+          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 36 ~ uploadPlot ~ plotData", plotData)
 
-          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 33 ~ uploadPlot ~ plotData", plotData)
           setPlotScores(plotData.scoring)
           setPlotPlantsNumber(plotData.groundedPlants.length)
+          setPlotData(plotData)
 
     }
+
+    uploadPlot();
 
 
   }, [])//end initialization UseEffect 
