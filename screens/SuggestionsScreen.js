@@ -34,7 +34,6 @@ function SuggestionsScreen(props) {
 
   var modalInfoPress = (infoModal) => {
     setPlantInfoModal(infoModal)
-    console.log('plantInfoModal:',plantInfoModal);
     setActivateModal(true)
   } 
    //Initialisation d'un comportement de reverse dataflow pour récupérer les informations de la plantes cliquée et les faire remonter dans le composant parent
@@ -47,7 +46,6 @@ function SuggestionsScreen(props) {
 
   useEffect(() => {
   var listPlant = async () => {
-    console.log("🚀 ~ file: SuggestionsScreen.js ~ line 49 ~ useEffect")
 
 
     var rawResponse = await fetch(backendIpAdress+'/plants/uploadSuggestedPlants', {
@@ -62,7 +60,6 @@ function SuggestionsScreen(props) {
    listPlant();
   }, []);
   
-    console.log("🚀 ~ file: SuggestionsScreen.js ~ line 63 ~ useEffect ~ tablePlantList")
 
   
     //Rechercher la liste des plantes dans la base de donnée ======================================
@@ -179,7 +176,6 @@ function SuggestionsScreen(props) {
   
 // update the variable into the Redux store
 function mapStateToProps(state) {
-console.log("🚀 ~ file: SuggestionsScreen.js ~ line 175 ~ mapStateToProps ~ state", state)
   
 
   return { store: state }

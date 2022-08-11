@@ -9,63 +9,34 @@ export default function CellPlant(props) {
 
     //conditions pour appliquer le toggle des checkbox
     const [plantAdded, setPlantAdded] = useState("default");
-    const [checkColor, setcheckColor] = useState("#A8ADAA");
-    const [checkIcon, setCheckIcon] = useState("checkbox-blank-outline");
-
-
     
 
     //Mise en place des settings front du toggle
-    var checkClick = ()=> {
+        var checkClick = async ()=> {
+    
+            if(plantAdded === "default") {
+            setPlantAdded("active");
+            await fetch(backendIpAdress+'/plants/addPlant', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}&climate=${props.climate}`
+              })
 
-        console.log("checkColor",checkColor);
-        console.log("plantAdded",plantAdded);
-        
-        if(plantAdded === "active"){setPlantAdded("default")} else {setPlantAdded("active")}
 
-        
-        if(plantAdded === "default") {
-            setcheckColor("#A8ADAA");
-            setCheckIcon("checkbox-blank-outline")
         } else {
-            setcheckColor("#1D6880");
-            setCheckIcon("checkbox-marked")}}
-
-
-        var handlePressAddPlant = async ()=>{
-            if(plantAdded === "default"){
-                console.log("handlePressAddPlant")
-                console.log("props.plantId", props.plantId);
-                console.log("props.token", props.token);
-
-                await fetch(backendIpAdress+'/plants/addPlant', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}&climate=${props.climate}`
-                  })
-
-            } 
-          }
-          
-          var handlePressDeletePlant = async ()=>{
-            if(plantAdded === "active"){
-                
-                console.log("handlePressDeletePlant");
-                await fetch(backendIpAdress+'/plants/deletePlant', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}&climate=${props.climate}`
-                  })
-            
-            
-            } 
-          }
+            setPlantAdded("default");
+            await fetch(backendIpAdress+'/plants/deletePlant', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `plantId=${props.plantId}&token=${props.token}&plotId=${props.plotId}&climate=${props.climate}`
+              })
+        }}
 
 
 return (
         <View style={{
             marginHorizontal: 16,
-            paddingVertical:8}}>
+            }}>
         <View  style={{
                 borderRadius:16,
                 flexDirection: 'row',
@@ -82,7 +53,7 @@ return (
                     height: 80,
                     marginRight: 16,
                     resizeMode: 'cover',
-                
+                    borderRadius: 16,
                 }}
                 source={{uri: props.Img}}
                 />
@@ -91,14 +62,14 @@ return (
                     <Text style={styles.Titre}>{props.CellTitle}</Text>
                 </View>
 
-                <MaterialCommunityIcons name={checkIcon} size={24} color={checkColor}  onPress={ () => [checkClick(), handlePressAddPlant(), handlePressDeletePlant() ]  }/>
-            
+                <MaterialCommunityIcons name={plantAdded === "default" ? "checkbox-blank-outline" : "checkbox-marked"} size={24} color={plantAdded === "default" ? "#1D6880" : "#1D6880"}  onPress={ () => [checkClick(), /* handlePressAddPlant(), handlePressDeletePlant() */ ]  }/>
+
                 </View>
                 <View style={{backgroundColor: "#A8ADAA", height: 1}}></View>
         </View>
         
-  );
-}
+  );}
+
 
 const styles = StyleSheet.create({
     pressable :{
