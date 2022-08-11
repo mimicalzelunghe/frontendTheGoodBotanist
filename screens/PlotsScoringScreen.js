@@ -29,7 +29,6 @@ function PlotsScoringScreen(props){
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `plotId=${props.store.plotId}`
           })
-          console.log("🚀 ~ file: PlotsScoringScreen.js ~ line 32 ~ uploadPlot ~ rawGardenData", rawGardenData)
 
           //retranscription de la réponse pour qu'on puisse la lire
           const plotData = await rawPlotData.json()
@@ -105,7 +104,7 @@ function PlotsScoringScreen(props){
       67</Text>
       </View>
       
-      <Chart style={{width: 100}}/>
+      <Chart style={{width: 100}} score={[10,10,10,10,10,10]}/>
 
     </View>
     )
