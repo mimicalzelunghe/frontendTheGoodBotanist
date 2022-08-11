@@ -107,7 +107,7 @@ return (
                                 lineHeight: 15,
                                 color: "#1D6880",
                                 textAlign: "center",
-                                }}>8</Text>
+                                }}>{props.gardenPlotNb}</Text>
                         </View>
 
                         {/* <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 16, }}>

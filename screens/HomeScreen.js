@@ -24,6 +24,11 @@ function HomeScreen (props)  {
         const [gardenIdToDisplay, setGardenIdToDisplay] = useState('')
         const [gardenClimateId, setGardenClimateId] = useState('')
         const [gardenPlotNb, setGardenPlotNb] = useState(0)
+        const [gardenPlots, setGardenPlots] = useState([])
+
+
+        console.log("Info gardenBody ====================> ", gardenPlots)
+
 
         /* Before displaying the component, load all user's gardens, */
         useEffect(()=>{
@@ -38,8 +43,8 @@ function HomeScreen (props)  {
 
           //retranscription de la réponse pour qu'on puisse la lire
             const gardensBody = await rawGardens.json()
-            console.log("Mimic9: returned gardens : ", gardensBody)
 
+            setGardenPlots(gardensBody.gardensId[0].gardenPlots)
             setUserGardens(gardensBody.gardensId[0])
             setGardenNameToDisplay(gardensBody.gardensId[0].garden_name)
             setGardenIdToDisplay(gardensBody.gardensId[0]._id)
@@ -133,7 +138,7 @@ function HomeScreen (props)  {
               <View style={{marginVertical: 4}}>
               {/* {tablePlantList.map((plot) => ( */}
               <Pressable onPress={redirectionPlot}>
-              <TilePlot  plotName={plot.name}/>
+              <TilePlot  plotName={plot.name} gardenPlotNb={plot.groundedPlants.length}/>
               </Pressable>
               {/* ))} */}
             </View>
@@ -162,7 +167,7 @@ function HomeScreen (props)  {
         // this functions chooses the right screen to display 
         //eithet the homeScreenEmpty one the homeScreenContent one
         function displayContent (gardens) {
-          
+
 
             console.log("🚀 ~ file: HomeScreen.js ~ line 143 ~ displayContent ~ gardenPlotNb", gardenPlotNb)
             if (gardenPlotNb>0){
